@@ -1181,8 +1181,8 @@
             const heroDescEl = document.querySelector('#beranda .card .text-white-50.small.mb-0');
             if (heroDescEl && bestSeller.description) {
                 let shortDesc = bestSeller.description;
-                if (shortDesc.length > 60) {
-                    shortDesc = shortDesc.substring(0, 60) + '...';
+                if (shortDesc.length > 150) {
+                    shortDesc = shortDesc.substring(0, 150) + '...';
                 }
                 heroDescEl.textContent = shortDesc;
             }
