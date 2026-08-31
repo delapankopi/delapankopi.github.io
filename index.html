@@ -142,7 +142,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-                <div class="brand-logo-container rounded-3 d-flex align-items-center justify-content-center text-white bg-dark p-1 shadow-sm overflow-hidden" style="width: 45px; height: 45px; border: 1px solid rgba(255,255,255,0.2);">
+                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 45px; height: 45px;">
                     <span class="font-serif fw-bold fs-5 tracking-tight">00</span>
                 </div>
                 <div>
@@ -157,9 +157,16 @@
                 <ul class="navbar-nav align-items-lg-center gap-lg-4 my-3 my-lg-0">
                     <li class="nav-item"><a class="nav-link text-white-50" href="#beranda">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#keunggulan">Keunggulan</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="#">Daftar Menu & Paket Dispenser</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="#menu">Daftar Menu</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="#menu-jar">Paket Dispenser Acara</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white-50" href="#" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Daftar Menu & Paket Dispenser
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark rounded-3 shadow border-secondary" aria-labelledby="navbarDropdownMenu">
+                            <li><a class="dropdown-item py-2" href="#menu"><i class="fa-solid fa-mug-hot me-2 text-warning"></i>Daftar Menu</a></li>
+                            <li><hr class="dropdown-divider border-secondary my-1"></li>
+                            <li><a class="dropdown-item py-2" href="#menu-jar"><i class="fa-solid fa-whiskey-glass me-2 text-success"></i>Paket Dispenser Acara</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#cara-pesan">Cara Pesan</a></li>
                     <li class="nav-item mt-2 mt-lg-0">
                         <button onclick="openOrderModal('Spanish Latte 1L', 'Rp 80.000')" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm border-0">
@@ -440,7 +447,7 @@
             <div class="row g-4 mb-4">
                 <div class="col-md-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="brand-logo-container rounded-3 d-flex align-items-center justify-content-center text-white bg-dark p-1 overflow-hidden" style="width: 35px; height: 35px;">
+                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 35px; height: 35px;">
                             <span class="font-serif fw-bold fs-6">00</span>
                         </div>
                         <span class="font-serif fs-5 fw-bold tracking-wider text-white">DELAPAN KOPI</span>
@@ -452,16 +459,16 @@
                 <div class="col-md-4">
                     <h4 class="text-white font-serif fs-6 fw-bold mb-3">Kontak & Lokasi</h4>
                     <p id="footerAddress" class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Sapphire Residence (Cluster Zamrud) Blok F-8 RT.10/RW.09 Kel. Pacul, Kec. Talang, Kab. Tegal.</p>
-                    <p class="small mb-2"><a id="footerWa" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none hover-text-white"><i class="fa-brands fa-whatsapp me-2 text-success"></i> +62 857-8601-2464</a></p>
+                    <p class="small mb-2"><a id="footerWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none hover-text-white"><i class="fa-brands fa-whatsapp me-2 text-success"></i> +62 857-8601-2464</a></p>
                     <p id="footerOperational" class="small mb-0"><i class="fa-solid fa-clock me-2 text-info"></i> Senin - Sabtu: 08.00 - 17.00 WIB</p>
                 </div>
                 <div class="col-md-3">
-                    <h4 class="text-white font-serif fs-6 fw-bold mb-3">Media Sosial</h4>
+                    <h4 class="text-white font-serif fs-6 fw-bold mb-3">Media Sosial & Chat</h4>
                     <div class="d-flex gap-3 fs-5">
                         <a id="footerIg" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <a id="footerFb" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
                         <a id="footerTiktok" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                        <a id="socialWa" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a id="socialWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition text-success" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -540,11 +547,10 @@
                     document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
                 }
                 
-                const waFormatted = `https://wa.me/${siteConfig.whatsapp}`;
+                const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
                 document.getElementById('floatingWaBtn').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20bertanya%20seputar%20produk%20Delapan%20Kopi.%20%F0%9F%91%8B`;
                 document.getElementById('footerWa').href = waFormatted;
-                // Perbaikan: Tampilan teks nomor HP disesuaikan lebih aman
-                document.getElementById('footerWa').innerText = `+${siteConfig.whatsapp}`;
+                document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
                 document.getElementById('socialWa').href = waFormatted;
 
                 document.getElementById('footerIg').href = siteConfig.instagram;
@@ -752,7 +758,6 @@
             document.getElementById('grandTotalDisplay').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
         }
 
-        // Perbaikan: Update variabel global dan tampilan koordinat secara utuh saat Geolocation berhasil
         function detectUserLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
@@ -810,7 +815,7 @@
             const textMessage = `Halo kak 👋\n\nIzin pesan produk berikut:\n${itemsText.trim()}\n*Estimasi Total:* *Rp ${grandTotal.toLocaleString('id-ID')}*\n\n*Nama Pemesan:* ${name}\n*Detail Alamat:* ${address}\n*Titik Google Maps:* ${mapsLink}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏`;
 
             const encodedMessage = encodeURIComponent(textMessage);
-            const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}?text=${encodedMessage}`;
 
             window.open(whatsappUrl, '_blank');
         }
