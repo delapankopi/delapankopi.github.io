@@ -396,51 +396,93 @@
             opacity: 1;
         }
 
-        /* Penyesuaian Responsif Slider */
+        /* ============================================================
+           PENYESUAIAN KHUSUS SMARTPHONE - TAMPIL 2 SLIDE RAPI
+           ============================================================ */
         @media (max-width: 576px) {
             .product-section {
-                padding: 50px 0;
+                padding: 40px 0;
             }
             .product-slider-wrapper {
-                padding: 0;
+                padding: 0 4px;
             }
             .productSlider {
-                padding: 10px 5px 45px 5px !important;
+                padding: 8px 2px 40px 2px !important;
             }
+            /* Ukuran gambar lebih proporsional untuk 2 slide */
             .product-img-holder {
-                height: 160px;
+                height: 130px;
+                padding: 10px;
             }
             .product-info {
-                padding: 15px;
+                padding: 10px 12px 12px 12px;
             }
             .product-title {
-                font-size: 0.95rem;
+                font-size: 0.8rem;
+                margin-bottom: 2px;
             }
             .product-price {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
+                margin-bottom: 4px;
             }
             .product-desc {
-                font-size: 0.75rem;
-                margin-bottom: 12px;
+                font-size: 0.65rem;
+                margin-bottom: 8px;
+                -webkit-line-clamp: 2;
             }
+            .product-category-tag {
+                font-size: 0.6rem;
+                margin-bottom: 2px;
+            }
+            .btn-order-product {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+                gap: 4px;
+            }
+            .btn-order-product i {
+                font-size: 0.7rem;
+            }
+            /* Sembunyikan panah navigasi di HP */
             .product-slider-wrapper .swiper-button-next,
             .product-slider-wrapper .swiper-button-prev {
                 display: none !important;
             }
+            /* Pagination bullets lebih kecil & rapi */
+            .swiper-pagination {
+                bottom: 0px !important;
+            }
+            .swiper-pagination-bullet {
+                width: 7px;
+                height: 7px;
+            }
+            .swiper-pagination-bullet-active {
+                width: 18px;
+            }
+            /* Badge lebih kecil */
+            .product-badge {
+                font-size: 0.55rem;
+                padding: 3px 8px;
+                top: 8px;
+                right: 8px;
+            }
         }
 
+        /* Tablet kecil (577px - 768px) - tetap tampil 2 slide */
         @media (min-width: 577px) and (max-width: 768px) {
             .product-slider-wrapper {
-                padding: 0 25px;
+                padding: 0 20px;
+            }
+            .product-img-holder {
+                height: 160px;
             }
             .product-slider-wrapper .swiper-button-next,
             .product-slider-wrapper .swiper-button-prev {
-                width: 38px;
-                height: 38px;
+                width: 36px;
+                height: 36px;
             }
             .product-slider-wrapper .swiper-button-next::after,
             .product-slider-wrapper .swiper-button-prev::after {
-                font-size: 14px;
+                font-size: 13px;
             }
         }
 
@@ -779,7 +821,7 @@
         </div>
     </section>
 
-    <!-- Menu Varian Produk Slider (PERBAIKAN TAMPILAN MODEREN SLIDER) -->
+    <!-- Menu Varian Produk Slider (TAMPIL 2 SLIDE DI SMARTPHONE) -->
     <section id="menu" class="product-section">
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
@@ -1220,9 +1262,37 @@
                         prevEl: '.swiper-button-prev',
                     },
                     breakpoints: {
-                        576: { slidesPerView: 2, spaceBetween: 18 },
-                        768: { slidesPerView: 3, spaceBetween: 20 },
-                        1200: { slidesPerView: 4, spaceBetween: 24 }
+                        // ===== PERUBAHAN UTAMA: TAMPIL 2 SLIDE DI HP =====
+                        0: { 
+                            slidesPerView: 2, 
+                            spaceBetween: 10,
+                            slidesPerGroup: 1
+                        },
+                        400: { 
+                            slidesPerView: 2, 
+                            spaceBetween: 12,
+                            slidesPerGroup: 1
+                        },
+                        576: { 
+                            slidesPerView: 2.2, 
+                            spaceBetween: 16,
+                            slidesPerGroup: 1
+                        },
+                        768: { 
+                            slidesPerView: 3, 
+                            spaceBetween: 20,
+                            slidesPerGroup: 1
+                        },
+                        992: { 
+                            slidesPerView: 3.5, 
+                            spaceBetween: 22,
+                            slidesPerGroup: 1
+                        },
+                        1200: { 
+                            slidesPerView: 4, 
+                            spaceBetween: 24,
+                            slidesPerGroup: 1
+                        }
                     }
                 });
             }, 100);
