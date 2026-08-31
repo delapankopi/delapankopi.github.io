@@ -683,7 +683,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-   <!-- Script Penggerak & Sinkronisasi JSON - REVISI LENGKAP -->
+<!-- Script Penggerak & Sinkronisasi JSON - REVISI LENGKAP DENGAN SPAN -->
 <script>
     let siteConfig = {};
     let orderModalInstance = null;
@@ -778,7 +778,7 @@
     });
 
     // ==============================================
-    // FUNGSI RENDER PRODUCTS - DENGAN DESKRIPSI
+    // FUNGSI RENDER PRODUCTS - SEMUA ELEMEN MENGGUNAKAN SPAN
     // ==============================================
     function renderProducts() {
         const wrapper = document.getElementById('productSliderWrapper');
@@ -788,7 +788,7 @@
         // Gabungkan semua produk dari berbagai kategori
         const allItems = [
             ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
-            ...(siteConfig.products.coffeeLatte || []).map(p => ({ ...p, badge: 'Coffee Latte', badgeClass: 'bg-secondary' })),
+            ...(siteConfig.products.coffeeLatte || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
             ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
         ];
 
@@ -813,11 +813,12 @@
                             <span class="position-absolute top-0 end-0 m-2 badge ${item.badgeClass} text-white px-2 py-1 rounded-pill small">${item.badge}</span>
                         </div>
                         <div class="p-3">
+                            <!-- SEMUA ELEMEN MENGGUNAKAN SPAN -->
                             <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">${item.badge}</span>
-                            <h3 class="font-serif fw-bold fs-6 text-dark mb-1">${item.name}</h3>
+                            <span class="font-serif fw-bold fs-6 text-dark d-block mb-1">${item.name}</span>
                             <span class="fw-bold text-success d-block mb-2 fs-6">${item.price}</span>
-                            <!-- Deskripsi produk dari JSON dengan batasan 3 baris -->
-                            <p class="text-muted small mb-0 lh-sm" style="font-size: 11px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px;">${description}</p>
+                            <!-- Deskripsi produk dalam span dengan batasan 3 baris -->
+                            <span class="text-muted small d-block lh-sm" style="font-size: 11px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px;">${description}</span>
                         </div>
                     </div>
                     <div class="p-3 pt-0">
