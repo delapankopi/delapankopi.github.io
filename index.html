@@ -34,12 +34,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS (Animate On Scroll) CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Swiper CSS untuk Slider Produk -->
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- Leaflet CSS untuk Peta Lokasi -->
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bs-body-font-family: 'Plus Jakarta Sans', sans-serif;
@@ -187,7 +188,6 @@
             background-color: var(--sb-green) !important;
         }
 
-        /* PERBAIKAN SLIDER */
         .product-slider-wrapper {
             position: relative;
             padding: 0 45px;
@@ -296,7 +296,6 @@
             text-overflow: ellipsis;
         }
 
-        /* Responsif Slider */
         @media (max-width: 576px) {
             .product-slider-wrapper {
                 padding: 0;
@@ -394,7 +393,6 @@
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* TOAST NOTIFIKASI */
         .btn-detect-location.loading {
             opacity: 0.7;
             pointer-events: none;
@@ -489,7 +487,6 @@
             color: #6a7a75;
         }
 
-        /* Tooltip bantuan */
         .location-tooltip {
             display: none;
             background: #fff;
@@ -516,7 +513,6 @@
             font-weight: 600;
         }
 
-        /* Pulse marker */
         .pulse-marker {
             animation: pulse 1.5s ease-in-out infinite;
         }
@@ -586,7 +582,7 @@
                 <div class="toast-title" id="toastTitle">Lokasi Terdeteksi!</div>
                 <p class="toast-message" id="toastMessage">Koordinat berhasil diperbarui</p>
             </div>
-            <button class="toast-close" onclick="closeToast()">
+            <button type="button" class="toast-close" onclick="closeToast()" aria-label="Tutup">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -596,12 +592,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 36px; height: 36px;">
-                    <span class="font-serif fw-bold" style="font-size: 18px;">00</span>
+                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden">
+                    <span class="font-serif fw-bold">00</span>
                 </div>
                 <div>
-                    <span id="navBrand" class="font-serif fw-bold d-block lh-1" style="font-size: 18px;">DELAPAN KOPI</span>
-                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1" style="font-size: 8px; letter-spacing: 0.8px;">Satu Liter Kebaikan Nusantara</span>
+                    <span id="navBrand" class="font-serif fw-bold d-block lh-1">DELAPAN KOPI</span>
+                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1">Satu Liter Kebaikan Nusantara</span>
                 </div>
             </a>
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -623,7 +619,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#cara-pesan">Cara Pesan</a></li>
                     <li class="nav-item mt-2 mt-lg-0">
-                        <button onclick="openOrderModal()" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm border-0">
+                        <button type="button" onclick="openOrderModal()" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm border-0">
                             <i class="fa-brands fa-whatsapp fs-5"></i> Pesan Cepat
                         </button>
                     </li>
@@ -632,7 +628,7 @@
         </div>
     </nav>
 
-    <!-- Bagian Utama (Hero) -->
+    <!-- Hero Section -->
     <section id="beranda" class="hero-section text-white overflow-hidden">
         <div class="container position-relative z-2">
             <div class="row align-items-center gy-5">
@@ -644,14 +640,14 @@
                     <h1 id="heroHeading" class="font-serif display-4 fw-bold lh-sm mb-4 text-shadow">
                         Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal
                     </h1>
-                    <p id="heroSubtitle" class="text-white-50 fs-5 mb-4 fw-light" style="color: rgba(255,255,255,0.85) !important;">
+                    <p id="heroSubtitle" class="text-white-50 fs-5 mb-4 fw-light">
                         Menyediakan kopi literan fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di Tegal.
                     </p>
                     <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
                         <a href="#menu" class="btn btn-success fw-semibold px-4 py-3 rounded-4 shadow-lg">
                             Lihat Katalog Menu
                         </a>
-                        <button onclick="openOrderModal()" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
+                        <button type="button" onclick="openOrderModal()" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
                             <i class="fa-brands fa-whatsapp text-success fs-5"></i> Pesan via WhatsApp
                         </button>
                     </div>
@@ -679,7 +675,7 @@
     <section id="keunggulan" class="py-5 bg-white overflow-hidden">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
-                <span class="text-uppercase fw-bold text-muted tracking-widest" style="font-size: 11px; color: var(--sb-green) !important;">Standar Kualitas Home Industry</span>
+                <span class="text-uppercase fw-bold tracking-widest" style="font-size: 11px; color: var(--sb-green) !important;">Standar Kualitas Home Industry</span>
                 <h2 class="font-serif fw-bold fs-2 mt-2">Mengapa Harus Delapan Kopi?</h2>
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
@@ -756,7 +752,7 @@
                         <ul class="list-unstyled text-muted small space-y-2 mb-4">
                             <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Arisan Keluarga & Kumpul Kerabat:</strong> Praktis di meja tamu, tinggal putar keran tanpa repot menuang satu per satu.</li>
                             <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Resepsi Pernikahan & Lamaran:</strong> Tampilan prasmanan minuman terlihat mewah, estetik, dan berkelas untuk tamu undangan.</li>
-                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Ulang Tahun & Pesta kebun:</strong> Suguhan segar berkapasitas besar yang menjaga minuman tetap higienis dan mudah diakses.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Ulang Tahun & Pesta Kebun:</strong> Suguhan segar berkapasitas besar yang menjaga minuman tetap higienis dan mudah diakses.</li>
                             <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Meeting Kantor & Seminar:</strong> Solusi jamuan kapasitas besar yang efisien untuk konsumsi peserta dalam jumlah banyak.</li>
                         </ul>
                         <div class="alert alert-success border-0 small mb-0">
@@ -804,7 +800,7 @@
     <section id="cara-pesan" class="py-5 bg-white border-top overflow-hidden">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
-                <span class="text-uppercase fw-bold text-muted tracking-widest" style="font-size: 11px; color: var(--sb-green) !important;">Alur Pembelian</span>
+                <span class="text-uppercase fw-bold tracking-widest" style="font-size: 11px; color: var(--sb-green) !important;">Alur Pembelian</span>
                 <h2 class="font-serif fw-bold fs-2 mt-2">Cara Pesan Sangat Mudah</h2>
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
@@ -875,7 +871,6 @@
                                 Koordinat dipilih: <span id="coordDisplay" class="fw-bold text-dark">-6.8796, 109.1256</span> (Geser pin jika posisinya belum pas)
                             </small>
                             
-                            <!-- Tooltip bantuan -->
                             <div id="locationTooltip" class="location-tooltip">
                                 <i class="fa-solid fa-info-circle me-1" style="color: #0d6efd;"></i> 
                                 Klik tombol <strong>"Deteksi Lokasi"</strong> untuk mendapatkan koordinat otomatis dari GPS Anda.
@@ -909,8 +904,8 @@
             <div class="row g-4 mb-4">
                 <div class="col-md-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 28px; height: 28px;">
-                            <span class="font-serif fw-bold" style="font-size: 14px;">00</span>
+                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden">
+                            <span class="font-serif fw-bold">00</span>
                         </div>
                         <span class="font-serif fw-bold tracking-wider text-white" style="font-size: 16px;">DELAPAN KOPI</span>
                     </div>
@@ -949,7 +944,6 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Script Utama -->
     <script>
         let siteConfig = {};
         let orderModalInstance = null;
@@ -961,21 +955,23 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             const modalEl = document.getElementById('orderModal');
-            orderModalInstance = new bootstrap.Modal(modalEl);
+            if (modalEl) {
+                orderModalInstance = new bootstrap.Modal(modalEl);
 
-            modalEl.addEventListener('shown.bs.modal', () => {
-                initOrUpdateMap();
-                
-                setTimeout(() => {
-                    const tooltip = document.getElementById('locationTooltip');
-                    if (tooltip) {
-                        tooltip.classList.add('show');
-                        setTimeout(() => {
-                            tooltip.classList.remove('show');
-                        }, 6000);
-                    }
-                }, 500);
-            });
+                modalEl.addEventListener('shown.bs.modal', () => {
+                    initOrUpdateMap();
+                    
+                    setTimeout(() => {
+                        const tooltip = document.getElementById('locationTooltip');
+                        if (tooltip) {
+                            tooltip.classList.add('show');
+                            setTimeout(() => {
+                                tooltip.classList.remove('show');
+                            }, 6000);
+                        }
+                    }, 500);
+                });
+            }
 
             fetch('content.json')
                 .then(response => response.json())
@@ -1009,50 +1005,51 @@
                         }
                         if (siteConfig.hero.hero_image) {
                             const heroImgEl = document.getElementById('heroMainImage');
-                            if (heroImgEl) {
-                                heroImgEl.src = siteConfig.hero.hero_image;
-                            }
+                            if (heroImgEl) heroImgEl.src = siteConfig.hero.hero_image;
                         }
                         if (siteConfig.hero.heading) {
-                            document.getElementById('heroHeading').innerText = siteConfig.hero.heading;
+                            const heroHeading = document.getElementById('heroHeading');
+                            if (heroHeading) heroHeading.innerText = siteConfig.hero.heading;
                         }
                         if (siteConfig.hero.subtitle) {
-                            document.getElementById('heroSubtitle').innerText = siteConfig.hero.subtitle;
+                            const heroSubtitle = document.getElementById('heroSubtitle');
+                            if (heroSubtitle) heroSubtitle.innerText = siteConfig.hero.subtitle;
                         }
                     }
 
                     updateHeroBestSeller();
 
-                    if (siteConfig.brand) document.getElementById('navBrand').innerText = siteConfig.brand;
-                    if (siteConfig.tagline) document.getElementById('navTagline').innerText = siteConfig.tagline;
-                    if (siteConfig.address) document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
+                    if (siteConfig.brand && document.getElementById('navBrand')) document.getElementById('navBrand').innerText = siteConfig.brand;
+                    if (siteConfig.tagline && document.getElementById('navTagline')) document.getElementById('navTagline').innerText = siteConfig.tagline;
+                    if (siteConfig.address && document.getElementById('footerAddress')) document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
                     
-                    if (siteConfig.operational_hours) {
+                    if (siteConfig.operational_hours && document.getElementById('footerOperational')) {
                         document.getElementById('footerOperational').innerHTML = `<i class="fa-solid fa-clock me-2 text-info"></i> ${siteConfig.operational_hours}`;
                     }
 
-                    if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title) {
+                    if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title && document.getElementById('modalTitleText')) {
                         document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
                     }
                     
                     const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
-                    
                     const floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
-                    document.getElementById('floatingWaBtn').href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
                     
-                    document.getElementById('footerWa').href = waFormatted;
-                    document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
-                    document.getElementById('socialWa').href = waFormatted;
+                    if (document.getElementById('floatingWaBtn')) document.getElementById('floatingWaBtn').href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
+                    if (document.getElementById('footerWa')) {
+                        document.getElementById('footerWa').href = waFormatted;
+                        document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
+                    }
+                    if (document.getElementById('socialWa')) document.getElementById('socialWa').href = waFormatted;
 
                     const jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-                    document.getElementById('jarBtn8L').href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
+                    if (document.getElementById('jarBtn8L')) document.getElementById('jarBtn8L').href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
                     
                     const jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-                    document.getElementById('jarBtn16L').href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
+                    if (document.getElementById('jarBtn16L')) document.getElementById('jarBtn16L').href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
 
-                    if (siteConfig.instagram) document.getElementById('footerIg').href = siteConfig.instagram;
-                    if (siteConfig.facebook) document.getElementById('footerFb').href = siteConfig.facebook;
-                    if (siteConfig.tiktok) document.getElementById('footerTiktok').href = siteConfig.tiktok;
+                    if (siteConfig.instagram && document.getElementById('footerIg')) document.getElementById('footerIg').href = siteConfig.instagram;
+                    if (siteConfig.facebook && document.getElementById('footerFb')) document.getElementById('footerFb').href = siteConfig.facebook;
+                    if (siteConfig.tiktok && document.getElementById('footerTiktok')) document.getElementById('footerTiktok').href = siteConfig.tiktok;
 
                     renderProducts();
                 })
@@ -1125,7 +1122,7 @@
                             </div>
                         </div>
                         <div class="p-3 pt-0">
-                            <button onclick="openOrderModal('${safeName}')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                            <button type="button" onclick="openOrderModal('${safeName}')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
                                 <i class="fa-solid fa-bag-shopping"></i> Pesan
                             </button>
                         </div>
@@ -1201,7 +1198,8 @@
                             }
                         }
                         
-                        document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
+                        const coordDisplay = document.getElementById('coordDisplay');
+                        if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
                         showToast('success', '✅ Lokasi Terdeteksi!', `Koordinat: ${currentLat}, ${currentLng}`);
                         
                         if (tooltip) {
@@ -1258,24 +1256,24 @@
             const titleEl = document.getElementById('toastTitle');
             const messageEl = document.getElementById('toastMessage');
             
-            icon.className = 'toast-icon';
+            if (icon) icon.className = 'toast-icon';
             
             if (type === 'success') {
-                icon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
-                icon.classList.add('success');
+                if (icon) icon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
+                if (icon) icon.classList.add('success');
                 toast.style.borderLeftColor = '#198754';
             } else if (type === 'error') {
-                icon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
-                icon.classList.add('error');
+                if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+                if (icon) icon.classList.add('error');
                 toast.style.borderLeftColor = '#dc3545';
             } else {
-                icon.innerHTML = '<i class="fa-solid fa-info-circle"></i>';
-                icon.classList.add('info');
+                if (icon) icon.innerHTML = '<i class="fa-solid fa-info-circle"></i>';
+                if (icon) icon.classList.add('info');
                 toast.style.borderLeftColor = '#0d6efd';
             }
             
-            titleEl.textContent = title;
-            messageEl.textContent = message;
+            if (titleEl) titleEl.textContent = title;
+            if (messageEl) messageEl.textContent = message;
             
             toast.classList.add('show');
             
@@ -1295,8 +1293,10 @@
 
         function openOrderModal(initialProduct = "") {
             const container = document.getElementById('orderItemsContainer');
-            container.innerHTML = ''; 
-            addOrderItem(initialProduct, 1, 'Normal (100%)');
+            if (container) {
+                container.innerHTML = ''; 
+                addOrderItem(initialProduct, 1, 'Normal (100%)');
+            }
 
             if (orderModalInstance) {
                 orderModalInstance.show();
@@ -1316,14 +1316,16 @@
                     const position = marker.getLatLng();
                     currentLat = position.lat.toFixed(6);
                     currentLng = position.lng.toFixed(6);
-                    document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
+                    const coordDisplay = document.getElementById('coordDisplay');
+                    if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
                 });
 
                 map.on('click', function(e) {
                     marker.setLatLng(e.latlng);
                     currentLat = e.latlng.lat.toFixed(6);
                     currentLng = e.latlng.lng.toFixed(6);
-                    document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
+                    const coordDisplay = document.getElementById('coordDisplay');
+                    if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
                 });
             } else {
                 map.invalidateSize();
@@ -1334,6 +1336,8 @@
 
         function addOrderItem(selectedName = "", qty = 1, selectedSweetness = "Normal (100%)") {
             const container = document.getElementById('orderItemsContainer');
+            if (!container) return;
+            
             const rowId = 'item-row-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
             let optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
@@ -1439,13 +1443,17 @@
                     grandTotal += rawPrice * qty;
                 }
             });
-            document.getElementById('grandTotalDisplay').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+            const grandTotalEl = document.getElementById('grandTotalDisplay');
+            if (grandTotalEl) grandTotalEl.innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
         }
 
         function sendWhatsAppOrder(event) {
             event.preventDefault();
-            const name = document.getElementById('customerName').value;
-            const address = document.getElementById('customerAddress').value;
+            const nameEl = document.getElementById('customerName');
+            const addressEl = document.getElementById('customerAddress');
+            
+            const name = nameEl ? nameEl.value : '';
+            const address = addressEl ? addressEl.value : '';
             const mapsLink = `https://maps.google.com/?q=${currentLat},${currentLng}`;
 
             let itemsText = "";
