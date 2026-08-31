@@ -187,9 +187,7 @@
             background-color: var(--sb-green) !important;
         }
 
-        /* ============================================== */
-        /* PERBAIKAN SLIDER - CENTER & TIDAK TERPOTONG    */
-        /* ============================================== */
+        /* PERBAIKAN SLIDER */
         .product-slider-wrapper {
             position: relative;
             padding: 0 45px;
@@ -340,9 +338,6 @@
                 height: 160px !important;
             }
         }
-        /* ============================================== */
-        /* END PERBAIKAN SLIDER                          */
-        /* ============================================== */
 
         .floating-wa {
             position: fixed;
@@ -399,9 +394,7 @@
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* ============================================== */
-        /* TOAST NOTIFIKASI - DARI ATAS KE BAWAH         */
-        /* ============================================== */
+        /* TOAST NOTIFIKASI */
         .btn-detect-location.loading {
             opacity: 0.7;
             pointer-events: none;
@@ -583,7 +576,7 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Toast Notifikasi - DARI ATAS KE BAWAH -->
+    <!-- Toast Notifikasi -->
     <div id="locationToast" class="location-toast">
         <div class="d-flex align-items-center gap-3">
             <div class="toast-icon success">
@@ -752,7 +745,7 @@
             <div class="text-center mx-auto mb-5" style="max-width: 700px;" data-aos="fade-up">
                 <span class="text-uppercase fw-bold tracking-widest text-success" style="font-size: 11px;">Spesial Acara & Jamuan Prasmanan</span>
                 <h2 class="font-serif fw-bold fs-2 mt-2">Paket Kemasan Dispenser (Kapasitas 8L & 16L)</h2>
-                <p class="text-muted small mt-2">Solusi penyajian minuman modern dengan wadah dispenser besar berkeran. Sangat estetik dan memudahkan tamu mengambil minuman sendiri saat arisan, pernikahan, atau event spesial.</p>
+                <p class="text-muted small mt-2">Solusi penyajikan minuman modern dengan wadah dispenser besar berkeran. Sangat estetik dan memudahkan tamu mengambil minuman sendiri saat arisan, pernikahan, atau event spesial.</p>
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
 
@@ -956,7 +949,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <!-- Script Penggerak & Sinkronisasi JSON -->
+    <!-- Script Utama -->
     <script>
         let siteConfig = {};
         let orderModalInstance = null;
@@ -1070,10 +1063,7 @@
 
         function updateHeroBestSeller() {
             const bestSeller = siteConfig.products?.bestSeller?.[0];
-            if (!bestSeller) {
-                console.warn('Tidak ada produk best seller untuk hero');
-                return;
-            }
+            if (!bestSeller) return;
 
             const heroImgEl = document.getElementById('heroMainImage');
             if (heroImgEl && bestSeller.image) {
@@ -1101,9 +1091,6 @@
             }
         }
 
-        // ==============================================
-        // FUNGSI RENDER PRODUCTS - DIPERBAIKI
-        // ==============================================
         function renderProducts() {
             const wrapper = document.getElementById('productSliderWrapper');
             if (!wrapper || !siteConfig.products) return;
@@ -1171,26 +1158,14 @@
                         prevEl: '.swiper-button-prev',
                     },
                     breakpoints: {
-                        576: { 
-                            slidesPerView: 2, 
-                            spaceBetween: 16
-                        },
-                        768: { 
-                            slidesPerView: 3, 
-                            spaceBetween: 20
-                        },
-                        992: { 
-                            slidesPerView: 4, 
-                            spaceBetween: 24
-                        }
+                        576: { slidesPerView: 2, spaceBetween: 16 },
+                        768: { slidesPerView: 3, spaceBetween: 20 },
+                        992: { slidesPerView: 4, spaceBetween: 24 }
                     }
                 });
             }, 100);
         }
 
-        // ==============================================
-        // FUNGSI DETEKSI LOKASI
-        // ==============================================
         function detectUserLocation() {
             const btn = document.querySelector('.btn-detect-location');
             if (!btn) return;
@@ -1275,9 +1250,6 @@
             }
         }
 
-        // ==============================================
-        // FUNGSI TOAST NOTIFIKASI
-        // ==============================================
         function showToast(type, title, message) {
             const toast = document.getElementById('locationToast');
             if (!toast) return;
@@ -1321,9 +1293,6 @@
             }
         }
 
-        // ==============================================
-        // FUNGSI LAINNYA
-        // ==============================================
         function openOrderModal(initialProduct = "") {
             const container = document.getElementById('orderItemsContainer');
             container.innerHTML = ''; 
