@@ -72,9 +72,9 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section Default */
+        /* Hero Section (Dipertenang dengan overlay terang) */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.60)), center/cover no-repeat;
+            background: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.85)), center/cover no-repeat;
             padding-top: 140px;
             padding-bottom: 100px;
             position: relative;
@@ -190,25 +190,25 @@
     </nav>
 
     <!-- Bagian Utama (Hero) -->
-    <section id="beranda" class="hero-section text-white overflow-hidden">
+    <section id="beranda" class="hero-section overflow-hidden">
         <div class="container position-relative z-2">
             <div class="row align-items-center gy-5">
                 <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-25 backdrop-blur text-warning px-3 py-2 rounded-pill border border-white-50 mb-4 small fw-semibold shadow-sm">
+                    <div class="d-inline-flex align-items-center gap-2 bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill border border-success border-opacity-25 mb-4 small fw-semibold shadow-sm">
                         <span class="spinner-grow spinner-grow-sm text-success" role="status"></span>
                         <span>Freshly Brewed & Bottled Daily</span>
                     </div>
-                    <h1 id="heroHeading" class="font-serif display-5 fw-bold lh-sm mb-4">
+                    <h1 id="heroHeading" class="font-serif display-5 fw-bold lh-sm mb-4" style="color: var(--sb-green-dark);">
                         Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal
                     </h1>
-                    <p id="heroSubtitle" class="text-white-50 fs-6 mb-4 fw-light">
+                    <p id="heroSubtitle" class="text-dark text-opacity-75 fs-6 mb-4 fw-normal">
                         Menyediakan kopi literan fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di Tegal.
                     </p>
                     <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
                         <a href="#menu" class="btn text-white fw-semibold px-4 py-3 rounded-4 shadow" style="background-color: var(--sb-green);">
                             Lihat Katalog Menu
                         </a>
-                        <button onclick="openOrderModal()" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
+                        <button onclick="openOrderModal()" class="btn btn-outline-success fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2" style="border-width: 2px;">
                             <i class="fa-brands fa-whatsapp text-success fs-5"></i> Pesan via WhatsApp
                         </button>
                     </div>
@@ -537,7 +537,7 @@
                         if (siteConfig.hero.background_image) {
                             const heroSection = document.getElementById('beranda');
                             if (heroSection) {
-                                heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.60)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+                                heroSection.style.background = `linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.85)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
                             }
                         }
                         if (siteConfig.hero.hero_image) {
