@@ -779,17 +779,12 @@
         AOS.init({ duration: 800, once: true, offset: 100 });
     });
 
-    // ==============================================
-    // FUNGSI UPDATE HERO BEST SELLER DARI JSON
-    // ==============================================
     function updateHeroBestSeller() {
         const bestSeller = siteConfig.products?.bestSeller?.[0];
         if (!bestSeller) {
             console.warn('Tidak ada produk best seller untuk hero');
             return;
         }
-
-        console.log('Update Hero Best Seller:', bestSeller);
 
         const heroImgEl = document.getElementById('heroMainImage');
         if (heroImgEl && bestSeller.image) {
@@ -818,17 +813,17 @@
     }
 
     // ==============================================
-    // FUNGSI RENDER PRODUCTS - SEMUA PRODUK TAMPIL
+    // FUNGSI RENDER PRODUCTS - DIPERBAIKI
     // ==============================================
     function renderProducts() {
         const wrapper = document.getElementById('productSliderWrapper');
         if (!wrapper || !siteConfig.products) return;
         wrapper.innerHTML = '';
 
-        // Gabungkan semua produk dari berbagai kategori
+        // PERBAIKAN: Gunakan 'coffee' bukan 'coffeeLatte' sesuai JSON
         const allItems = [
             ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
-            ...(siteConfig.products.coffeeLatte || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
+            ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
             ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
         ];
 
@@ -836,14 +831,14 @@
 
         allItems.forEach(item => {
             const slide = document.createElement('div');
-            slide.className = 'swiper-slide h-auto';
+            slide.className = 'swiper-slide';
             
             const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
             const safeName = item.name.replace(/'/g, "\\'");
             const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
             slide.innerHTML = `
-                <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm" style="min-width: 180px; max-width: 260px; width: 100%;">
                     <div>
                         <div class="position-relative overflow-hidden" style="height: 180px;">
                             <img src="${imgSrc}" alt="${item.name}" class="w-100 h-100 object-fit-cover" loading="lazy">
@@ -872,42 +867,52 @@
             productSwiper = null;
         }
 
-        // Inisialisasi Swiper dengan pengaturan yang benar
-        productSwiper = new Swiper('.productSlider', {
-            slidesPerView: 'auto',
-            spaceBetween: 12,
-            loop: allItems.length > 5,
-            autoplay: { 
-                delay: 4000, 
-                disableOnInteraction: false 
-            },
-            pagination: { 
-                el: '.swiper-pagination', 
-                clickable: true 
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                0: { 
-                    slidesPerView: 2, 
-                    spaceBetween: 12 
+        // Inisialisasi Swiper
+        setTimeout(() => {
+            productSwiper = new Swiper('.productSlider', {
+                slidesPerView: 'auto',
+                spaceBetween: 16,
+                loop: allItems.length > 4,
+                centeredSlides: false,
+                autoplay: { 
+                    delay: 4000, 
+                    disableOnInteraction: false 
                 },
-                768: { 
-                    slidesPerView: 3, 
-                    spaceBetween: 16 
+                pagination: { 
+                    el: '.swiper-pagination', 
+                    clickable: true 
                 },
-                992: { 
-                    slidesPerView: 5, 
-                    spaceBetween: 24 
-                }
-            },
-            watchSlidesProgress: true,
-            watchSlidesVisibility: true
-        });
-
-        console.log('Swiper initialized dengan', allItems.length, 'produk');
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    0: { 
+                        slidesPerView: 2, 
+                        spaceBetween: 12 
+                    },
+                    576: { 
+                        slidesPerView: 2.5, 
+                        spaceBetween: 14 
+                    },
+                    768: { 
+                        slidesPerView: 3, 
+                        spaceBetween: 16 
+                    },
+                    992: { 
+                        slidesPerView: 4, 
+                        spaceBetween: 20 
+                    },
+                    1200: { 
+                        slidesPerView: 5, 
+                        spaceBetween: 24 
+                    }
+                },
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true
+            });
+            console.log('Swiper initialized dengan', allItems.length, 'produk');
+        }, 100);
     }
 
     // ==============================================
@@ -969,9 +974,9 @@
                 optionsHtml += '</optgroup>';
             }
 
-            if (siteConfig.products.coffeeLatte && siteConfig.products.coffeeLatte.length > 0) {
+            if (siteConfig.products.coffee && siteConfig.products.coffee.length > 0) {
                 optionsHtml += '<optgroup label="-- COFFEE --">';
-                siteConfig.products.coffeeLatte.forEach(p => {
+                siteConfig.products.coffee.forEach(p => {
                     const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
                     const isSelected = (p.name === selectedName) ? 'selected' : '';
                     optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
