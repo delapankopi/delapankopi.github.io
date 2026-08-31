@@ -1195,13 +1195,15 @@
                 });
             }
 
-            // ===== PERBAIKAN: Auto close navbar di mobile =====
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
+            // ===== PERBAIKAN: Auto close navbar di mobile (TANPA menutup dropdown) =====
             const navbarCollapse = document.getElementById('navbarNav');
             const navbarToggler = document.querySelector('.navbar-toggler');
-
+            
+            // Hanya untuk link utama (bukan dropdown toggle dan bukan dropdown item)
+            const navLinks = document.querySelectorAll('.navbar-nav > .nav-item > .nav-link:not([data-bs-toggle="dropdown"])');
+            
             navLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function(e) {
                     if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
                         const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                         if (bsCollapse) {
