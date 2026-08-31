@@ -605,6 +605,58 @@
                 padding: 12px 16px;
                 width: 92%;
             }
+            /* ===== PERBAIKAN: Modal Order di mobile ===== */
+            .modal-dialog {
+                margin: 10px;
+            }
+            .modal-body {
+                padding: 16px !important;
+            }
+            .modal-header {
+                padding: 12px 16px !important;
+            }
+            .modal-header .modal-title {
+                font-size: 16px !important;
+            }
+            #grandTotalDisplay {
+                font-size: 1rem !important;
+            }
+            .btn-detect-location {
+                font-size: 10px !important;
+                padding: 4px 10px !important;
+                white-space: nowrap !important;
+            }
+            .order-location-label {
+                font-size: 12px !important;
+                white-space: nowrap !important;
+            }
+            #coordDisplay {
+                font-size: 11px !important;
+            }
+            .coord-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 4px 8px;
+            }
+            .coord-wrapper .text-muted {
+                font-size: 10px !important;
+            }
+            .order-total-wrapper {
+                display: flex !important;
+                flex-wrap: nowrap !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 8px;
+            }
+            .order-total-wrapper .fw-semibold {
+                font-size: 13px !important;
+                white-space: nowrap !important;
+            }
+            .order-total-wrapper #grandTotalDisplay {
+                font-size: 14px !important;
+                white-space: nowrap !important;
+            }
         }
 
         @media (min-width: 577px) and (max-width: 768px) {
@@ -776,6 +828,42 @@
             0% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.3); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ===== PERBAIKAN: Modal Order wrapper ===== */
+        .order-total-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 12px;
+        }
+
+        .order-location-label {
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .coord-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 10px;
+        }
+
+        .coord-wrapper .text-muted {
+            font-size: 11px;
+        }
+
+        #coordDisplay {
+            font-weight: 700;
+            color: #1a2a25;
+        }
+
+        .btn-detect-location {
+            white-space: nowrap !important;
+            font-size: 12px;
+            padding: 5px 14px;
         }
     </style>
 </head>
@@ -1055,12 +1143,15 @@
         </div>
     </section>
 
-    <!-- Modal Form Order -->
+    <!-- ===== MODAL FORM ORDER (DIPERBAIKI) ===== -->
     <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-4 border-0 shadow-lg">
                 <div class="modal-header bg-success text-white px-4 py-3">
-                    <h5 class="modal-title font-serif fw-bold" id="orderModalLabel"><i class="fa-solid fa-cart-shopping me-2"></i><span id="modalTitleText">List Order Delapan Kopi</span></h5>
+                    <h5 class="modal-title font-serif fw-bold" id="orderModalLabel">
+                        <i class="fa-solid fa-cart-shopping me-2"></i>
+                        <span id="modalTitleText">List Order</span>
+                    </h5>
                     <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -1074,7 +1165,8 @@
                             </button>
                         </div>
 
-                        <div class="mb-3 p-3 bg-light rounded-3 border d-flex justify-content-between align-items-center">
+                        <!-- ===== PERBAIKAN: Estimasi Total tidak ter-wrap ===== -->
+                        <div class="mb-3 p-3 bg-light rounded-3 border order-total-wrapper">
                             <span class="fw-semibold text-dark">Estimasi Total Harga:</span>
                             <span id="grandTotalDisplay" class="fw-bold text-success fs-5">Rp 0</span>
                         </div>
@@ -1089,18 +1181,25 @@
                                 <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
                             </div>
                             <div id="map" class="mb-2 shadow-sm"></div>
-                            <small class="text-muted d-block" style="font-size: 11px;">
-                                Koordinat dipilih: <span id="coordDisplay" class="fw-bold text-dark">-6.8796, 109.1256</span> (Geser pin jika posisinya belum pas)
-                            </small>
+                            
+                            <!-- ===== PERBAIKAN: Koordinat & keterangan dalam satu baris ===== -->
+                            <div class="coord-wrapper">
+                                <small class="text-muted">Koordinat dipilih:</small>
+                                <span id="coordDisplay" class="fw-bold text-dark">-6.8796, 109.1256</span>
+                                <small class="text-muted">(Geser pin jika posisinya belum pas)</small>
+                            </div>
                             
                             <div id="locationTooltip" class="location-tooltip">
                                 <i class="fa-solid fa-info-circle me-1" style="color: #0d6efd;"></i> 
                                 Klik tombol <strong>"Deteksi Lokasi"</strong> untuk mendapatkan koordinat otomatis dari GPS Anda.
                             </div>
 
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <label class="form-label fw-semibold small mb-0">Ketuk Deteksi Lokasi Pengiriman</label>
-                                <button type="button" onclick="detectUserLocation()" class="btn-detect-location btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
+                            <!-- ===== PERBAIKAN: Label & Button tidak ter-wrap ===== -->
+                            <div class="d-flex justify-content-between align-items-center mt-2 flex-wrap gap-2">
+                                <label class="form-label fw-semibold small mb-0 order-location-label">
+                                    <i class="fa-solid fa-location-crosshairs me-1 text-success"></i> Ketuk Deteksi Lokasi Pengiriman
+                                </label>
+                                <button type="button" onclick="detectUserLocation()" class="btn-detect-location btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 12px; white-space: nowrap;">
                                     <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
                                 </button>
                             </div>
