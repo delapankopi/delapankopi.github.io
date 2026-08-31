@@ -1037,19 +1037,25 @@
 
                 <!-- ===== PERBAIKAN: Hero card tampil di semua ukuran ===== -->
                 <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative hero-card">
-                        <img id="heroMainImage" src="" alt="Hero Image" class="w-100" style="aspect-ratio: 4/5; object-fit: cover;">
-                        <div class="position-absolute bottom-0 start-0 end-0 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);">
-                            <div class="bg-dark bg-opacity-75 backdrop-blur p-3 rounded-3 border border-secondary shadow">
-                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <span class="font-serif fw-bold text-white fs-6">Spanish Latte 1L</span>
-                                    <span class="badge bg-success bg-opacity-25 text-success fw-bold px-2 py-1 rounded-pill small">Best Seller</span>
-                                </div>
-                                <p class="text-white-50 small mb-0" style="font-size: 11px;">Botol Food Grade 1000ml • Espresso & Susu Khas</p>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative hero-card">
+        <img id="heroMainImage" src="" alt="Hero Image" class="w-100" style="aspect-ratio: 4/5; object-fit: cover;">
+        
+        <!-- ===== BADGE BEST SELLER DI POJOK KANAN ATAS ===== -->
+        <span class="position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill fw-bold small" 
+              style="background-color: #003825; color: #ffc107; font-size: 11px; z-index: 5; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <i class="fa-solid fa-star me-1"></i> Best Seller
+        </span>
+        
+        <div class="position-absolute bottom-0 start-0 end-0 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);">
+            <div class="bg-dark bg-opacity-75 backdrop-blur p-3 rounded-3 border border-secondary shadow">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="font-serif fw-bold text-white fs-6">Spanish Latte 1L</span>
                 </div>
+                <p class="text-white-50 small mb-0" style="font-size: 11px;">Botol Food Grade 1000ml • Espresso & Susu Khas</p>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </section>
