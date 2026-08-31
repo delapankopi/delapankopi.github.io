@@ -273,6 +273,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
 
         .product-slider-wrapper .card-custom .position-relative img {
@@ -408,7 +409,7 @@
         }
 
         /* ============================================== */
-        /* STYLE TOAST NOTIFIKASI LOKASI */
+        /* STYLE TOAST NOTIFIKASI - POSISI ATAS */
         /* ============================================== */
         .btn-detect-location.loading {
             opacity: 0.7;
@@ -426,7 +427,7 @@
 
         .location-toast {
             position: fixed;
-            bottom: 90px;
+            top: 80px;
             right: 25px;
             z-index: 1060;
             background: white;
@@ -572,7 +573,7 @@
             .location-toast {
                 max-width: 320px;
                 right: 15px;
-                bottom: 80px;
+                top: 70px;
                 padding: 12px 16px;
             }
             .location-toast .toast-title {
@@ -591,7 +592,7 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Toast Notifikasi Lokasi -->
+    <!-- Toast Notifikasi Lokasi - POSISI ATAS -->
     <div id="locationToast" class="location-toast">
         <div class="d-flex align-items-center gap-3">
             <div class="toast-icon success">
@@ -981,7 +982,6 @@
             modalEl.addEventListener('shown.bs.modal', () => {
                 initOrUpdateMap();
                 
-                // Tampilkan tooltip bantuan saat modal dibuka
                 setTimeout(() => {
                     const tooltip = document.getElementById('locationTooltip');
                     if (tooltip) {
@@ -1053,7 +1053,6 @@
                     
                     const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
                     
-                    // Floating WhatsApp
                     const floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
                     document.getElementById('floatingWaBtn').href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
                     
@@ -1061,11 +1060,9 @@
                     document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
                     document.getElementById('socialWa').href = waFormatted;
 
-                    // Jar 8L
                     const jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
                     document.getElementById('jarBtn8L').href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
                     
-                    // Jar 16L
                     const jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
                     document.getElementById('jarBtn16L').href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
 
@@ -1219,7 +1216,7 @@
         }
 
         // ==============================================
-        // FUNGSI DETEKSI LOKASI - DIPERBAIKI
+        // FUNGSI DETEKSI LOKASI
         // ==============================================
         function detectUserLocation() {
             const btn = document.querySelector('.btn-detect-location');
@@ -1230,12 +1227,10 @@
             
             const originalHtml = btn.innerHTML;
             
-            // Tampilkan loading
             btn.innerHTML = '<i class="fa-solid fa-spinner"></i> Mendeteksi...';
             btn.classList.add('loading');
             btn.disabled = true;
 
-            // Tampilkan tooltip
             const tooltip = document.getElementById('locationTooltip');
             if (tooltip) {
                 tooltip.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1" style="color: #0d6efd;"></i> Mengakses GPS Anda...';
@@ -1244,7 +1239,6 @@
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
-                    // Success
                     (position) => {
                         currentLat = position.coords.latitude.toFixed(6);
                         currentLng = position.coords.longitude.toFixed(6);
@@ -1277,7 +1271,6 @@
                         btn.classList.remove('loading');
                         btn.disabled = false;
                     },
-                    // Error
                     (error) => {
                         let errorMessage = 'Gagal mendeteksi lokasi. ';
                         switch(error.code) {
@@ -1560,7 +1553,6 @@
                 return;
             }
 
-            // Gunakan template dari content.json
             const template = siteConfig.whatsapp_messages?.order_template || 
                 "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
             
