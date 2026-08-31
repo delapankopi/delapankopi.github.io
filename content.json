@@ -38,7 +38,8 @@
         "name": "Spanish Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "assets/img/products/spanish_latte.webp" 
+        "image": "assets/img/products/spanish_latte.webp",
+        "description": "Perpaduan sempurna espresso pekat dengan susu segar dan sentuhan karamel khas Spanyol. Manis creamy dengan aftertaste kopi yang kuat."
       }
     ],
     "coffeeLatte": [
@@ -46,49 +47,57 @@
         "name": "Almond Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/almond_latte.webp" 
+        "image": "assets/img/products/almond_latte.webp",
+        "description": "Kombinasi espresso dan susu almond premium yang lembut. Rasa nutty alami dengan sentuhan vanilla, cocok untuk pecinta rasa ringan dan elegan."
       },
       { 
         "name": "Aren Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "assets/img/products/aren_latte.webp" 
+        "image": "assets/img/products/aren_latte.webp",
+        "description": "Cita rasa khas Nusantara dengan gula aren asli yang dipadukan bersama espresso dan susu segar. Manis legit dengan aroma karamel alami."
       },
       { 
         "name": "Blewah Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "assets/img/products/blewah_latte.webp" 
+        "image": "assets/img/products/blewah_latte.webp",
+        "description": "Kesegaran blewah yang dipadukan dengan espresso dan susu segar. Menyajikan rasa fruity yang unik dan menyegarkan di setiap tegukan."
       },
       { 
         "name": "Butter Caramel Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/butter_caramel_latte.webp" 
+        "image": "assets/img/products/butter_caramel_latte.webp",
+        "description": "Perpaduan butter caramel yang lumer dengan espresso dan susu pilihan. Rasa manis gurih yang creamy dengan aroma butterscotch yang menggoda."
       },
       { 
         "name": "Creamy Latte Low Sugar 1L", 
         "price": "Rp 75.000", 
         "rawPrice": 75000, 
-        "image": "assets/img/products/creamy_latte_low_sugar.webp" 
+        "image": "assets/img/products/creamy_latte_low_sugar.webp",
+        "description": "Latte rendah gula dengan tekstur creamy yang tetap nikmat. Pilihan sehat tanpa mengurangi cita rasa kopi yang autentik."
       },
       { 
         "name": "Longblack 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/longblack.webp" 
+        "image": "assets/img/products/longblack.webp",
+        "description": "Black coffee dengan perpaduan dua shot espresso dan air berkualitas. Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati."
       },
       { 
         "name": "Pandan Aren Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "assets/img/products/pandan_aren_latte.webp"" 
+        "image": "assets/img/products/pandan_aren_latte.webp",
+        "description": "Favorit best seller! Perpaduan ekstrak pandan asli, gula aren, espresso, dan susu segar. Aroma wangi pandan berpadu manis legit aren."
       },
       { 
         "name": "Praline Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/praline_latte.webp"" 
+        "image": "assets/img/products/praline_latte.webp",
+        "description": "Latte dengan sentuhan praline cokelat hazelnut yang mewah. Rasa manis gurih dengan aroma roasted nut yang memanjakan lidah."
       }
     ],
     "nonCoffee": [
@@ -96,13 +105,15 @@
         "name": "Double Chocolate 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/double_chocolate.webp" 
+        "image": "assets/img/products/double_chocolate.webp",
+        "description": "Minuman tanpa kopi favorit! Perpaduan dark chocolate dan milk chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan."
       },
       { 
         "name": "Matcha Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "assets/img/products/matcha_latte.web" 
+        "image": "assets/img/products/matcha_latte.webp",
+        "description": "Bubuk matcha premium berkualitas tinggi yang dipadukan dengan susu segar. Rasa earthy yang khas dengan aftertaste manis alami dan creamy."
       }
     ]
   }
