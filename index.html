@@ -156,7 +156,7 @@
                 <ul class="navbar-nav align-items-lg-center gap-lg-4 my-3 my-lg-0">
                     <li class="nav-item"><a class="nav-link text-white-50" href="#beranda">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#keunggulan">Keunggulan</a></li>
-                    <li class="nav-item"><a class="nav-link text-white-50" href="#menu">Menu & Produk</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" href="#menu">Daftar Menu & Produk</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#menu-jar">Dispenser / Jar Acara</a></li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#cara-pesan">Cara Pesan</a></li>
                     <li class="nav-item mt-2 mt-lg-0">
@@ -391,7 +391,7 @@
                             <label class="form-label fw-semibold small">Daftar Produk Pesanan (1 Liter)</label>
                             <div id="orderItemsContainer" class="space-y-3 mb-2"></div>
                             <button type="button" onclick="addOrderItem()" class="btn btn-outline-success btn-sm rounded-pill px-3 mt-1">
-                                <i class="fa-solid fa-plus me-1"></i> Tambah Produk Lain
+                                <i class="fa-solid fa-plus me-1"></i> Tambah Menu Lain
                             </button>
                         </div>
 
@@ -408,7 +408,7 @@
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
-                                    <label class="form-label fw-semibold small mb-0">Titik Lokasi Pengiriman</label>
+                                    <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
                                     <span class="text-muted d-block" style="font-size: 11px;">(Geser Pin / Deteksi GPS)</span>
                                 </div>
                                 <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
@@ -417,6 +417,12 @@
                             </div>
                             <div id="map" class="mb-2 shadow-sm"></div>
                             <small class="text-muted d-block" style="font-size: 11px;">Koordinat dipilih: <span id="coordDisplay">-6.8796, 109.1256</span></small>
+                            <div>
+                                <span class="text-muted d-block" style="font-size: 11px;">(Geser Pin / Deteksi GPS)</span>
+                            </div>
+                            <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
+                                    <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
+                            </button>
                         </div>
 
                         <div class="mb-4">
