@@ -187,9 +187,12 @@
             background-color: var(--sb-green) !important;
         }
 
+        /* ============================================== */
+        /* PERBAIKAN SLIDER - CENTER & TIDAK TERPOTONG */
+        /* ============================================== */
         .product-slider-wrapper {
             position: relative;
-            padding: 0 50px;
+            padding: 0 60px;
         }
 
         .product-slider-wrapper .swiper-button-next,
@@ -202,6 +205,17 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
             transition: all 0.3s;
             border: 1px solid rgba(0, 98, 65, 0.15);
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: -10px;
+        }
+
+        .product-slider-wrapper .swiper-button-prev {
+            left: 8px;
+        }
+
+        .product-slider-wrapper .swiper-button-next {
+            right: 8px;
         }
 
         .product-slider-wrapper .swiper-button-next::after,
@@ -224,19 +238,6 @@
             cursor: not-allowed;
         }
 
-        @media (max-width: 767px) {
-            .product-slider-wrapper {
-                padding: 0 10px;
-            }
-            .product-slider-wrapper .swiper-button-next,
-            .product-slider-wrapper .swiper-button-prev {
-                display: none;
-            }
-        }
-
-        /* ============================================== */
-        /* PERBAIKAN SLIDER CARD - TINGGI SERAGAM */
-        /* ============================================== */
         .swiper-slide {
             height: auto !important;
             width: auto !important;
@@ -252,6 +253,8 @@
             display: flex !important;
             flex-direction: column !important;
             min-height: 380px;
+            border-radius: 1.5rem;
+            overflow: hidden;
         }
 
         .product-slider-wrapper .card-custom > div:first-child {
@@ -274,13 +277,15 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            width: 100%;
         }
 
         .product-slider-wrapper .card-custom .position-relative img {
             width: 100%;
             height: 100%;
             object-fit: contain !important;
-            padding: 8px;
+            padding: 10px;
+            display: block;
         }
 
         .product-slider-wrapper .card-custom .font-serif.fw-bold.fs-6 {
@@ -305,7 +310,15 @@
             flex-shrink: 0;
         }
 
+        /* Responsive slider */
         @media (max-width: 576px) {
+            .product-slider-wrapper {
+                padding: 0 10px;
+            }
+            .product-slider-wrapper .swiper-button-next,
+            .product-slider-wrapper .swiper-button-prev {
+                display: none !important;
+            }
             .swiper-slide {
                 max-width: 160px;
             }
@@ -327,6 +340,19 @@
         }
 
         @media (min-width: 577px) and (max-width: 768px) {
+            .product-slider-wrapper {
+                padding: 0 40px;
+            }
+            .product-slider-wrapper .swiper-button-next,
+            .product-slider-wrapper .swiper-button-prev {
+                display: flex !important;
+                width: 36px;
+                height: 36px;
+            }
+            .product-slider-wrapper .swiper-button-next::after,
+            .product-slider-wrapper .swiper-button-prev::after {
+                font-size: 14px;
+            }
             .swiper-slide {
                 max-width: 200px;
             }
@@ -339,12 +365,18 @@
         }
 
         @media (min-width: 769px) and (max-width: 992px) {
+            .product-slider-wrapper {
+                padding: 0 50px;
+            }
             .swiper-slide {
                 max-width: 220px;
             }
         }
 
         @media (min-width: 993px) {
+            .product-slider-wrapper {
+                padding: 0 60px;
+            }
             .swiper-slide {
                 max-width: 240px;
             }
@@ -409,7 +441,7 @@
         }
 
         /* ============================================== */
-        /* STYLE TOAST NOTIFIKASI - POSISI ATAS */
+        /* TOAST NOTIFIKASI - DARI ATAS KE BAWAH */
         /* ============================================== */
         .btn-detect-location.loading {
             opacity: 0.7;
@@ -427,21 +459,24 @@
 
         .location-toast {
             position: fixed;
-            top: 80px;
-            right: 25px;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-120px);
             z-index: 1060;
             background: white;
             border-radius: 12px;
-            padding: 14px 20px;
+            padding: 14px 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.15);
             border-left: 4px solid #198754;
-            max-width: 380px;
-            transform: translateX(120%);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 420px;
+            width: 90%;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease;
+            opacity: 0;
         }
 
         .location-toast.show {
-            transform: translateX(0);
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         .location-toast .toast-icon {
@@ -494,7 +529,7 @@
             color: #aab5b0;
             cursor: pointer;
             font-size: 1.1rem;
-            padding: 0 0 0 10px;
+            padding: 0 0 0 12px;
             transition: color 0.2s;
         }
 
@@ -539,9 +574,6 @@
             50% { transform: scale(1.3); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
         }
-        /* ============================================== */
-        /* END STYLE TOAST */
-        /* ============================================== */
 
         @media (max-width: 576px) {
             .navbar-brand .brand-logo-container {
@@ -571,10 +603,10 @@
                 font-size: 14px !important;
             }
             .location-toast {
-                max-width: 320px;
-                right: 15px;
-                top: 70px;
+                top: 60px;
+                max-width: 340px;
                 padding: 12px 16px;
+                width: 92%;
             }
             .location-toast .toast-title {
                 font-size: 0.78rem;
@@ -592,7 +624,7 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Toast Notifikasi Lokasi - POSISI ATAS -->
+    <!-- Toast Notifikasi - DARI ATAS KE BAWAH -->
     <div id="locationToast" class="location-toast">
         <div class="d-flex align-items-center gap-3">
             <div class="toast-icon success">
@@ -1321,7 +1353,7 @@
         }
 
         // ==============================================
-        // FUNGSI TOAST NOTIFIKASI
+        // FUNGSI TOAST NOTIFIKASI - DARI ATAS
         // ==============================================
         function showToast(type, title, message) {
             const toast = document.getElementById('locationToast');
