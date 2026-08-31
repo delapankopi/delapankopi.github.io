@@ -69,13 +69,69 @@
             background-color: rgba(0, 56, 37, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        /* Ukuran logo di navbar lebih proporsional */
+        .navbar-brand .brand-logo-container {
+            width: 36px !important;
+            height: 36px !important;
+        }
+
+        .navbar-brand .brand-logo-container span {
+            font-size: 18px !important;
+        }
+
+        .navbar-brand .brand-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #navBrand {
+            font-size: 18px !important;
+            line-height: 1.2 !important;
+        }
+
+        #navTagline {
+            font-size: 8px !important;
+            letter-spacing: 0.8px !important;
+        }
+
+        /* Ukuran logo di footer lebih proporsional */
+        footer .brand-logo-container {
+            width: 28px !important;
+            height: 28px !important;
+        }
+
+        footer .brand-logo-container span {
+            font-size: 14px !important;
+        }
+
+        footer .brand-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        footer .font-serif.fs-5 {
+            font-size: 16px !important;
+        }
+
+        .navbar-brand {
+            gap: 10px !important;
+        }
+
+        footer .d-flex.align-items-center.gap-3 {
+            gap: 10px !important;
         }
 
         /* Hero Section - perbaikan komposisi warna agar lebih nyaman */
         .hero-section {
             background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), center/cover no-repeat;
-            padding-top: 140px;
-            padding-bottom: 100px;
+            padding-top: 120px;
+            padding-bottom: 80px;
             position: relative;
             overflow: hidden;
             min-height: 100vh;
@@ -240,6 +296,36 @@
         .hero-section .text-shadow {
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
+
+        /* responsive untuk logo di mobile */
+        @media (max-width: 576px) {
+            .navbar-brand .brand-logo-container {
+                width: 30px !important;
+                height: 30px !important;
+            }
+            .navbar-brand .brand-logo-container span {
+                font-size: 14px !important;
+            }
+            #navBrand {
+                font-size: 15px !important;
+            }
+            #navTagline {
+                font-size: 7px !important;
+            }
+            .navbar-brand {
+                gap: 8px !important;
+            }
+            footer .brand-logo-container {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            footer .brand-logo-container span {
+                font-size: 12px !important;
+            }
+            footer .font-serif.fs-5 {
+                font-size: 14px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -250,15 +336,15 @@
     </a>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top py-3">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 45px; height: 45px;">
-                    <span class="font-serif fw-bold fs-5 tracking-tight">00</span>
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 36px; height: 36px;">
+                    <span class="font-serif fw-bold" style="font-size: 18px;">00</span>
                 </div>
                 <div>
-                    <span id="navBrand" class="font-serif fs-5 fw-bold tracking-wide d-block lh-1">DELAPAN KOPI</span>
-                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1" style="font-size: 9px; letter-spacing: 1px;">Satu Liter Kebaikan Nusantara</span>
+                    <span id="navBrand" class="font-serif fw-bold d-block lh-1" style="font-size: 18px;">DELAPAN KOPI</span>
+                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1" style="font-size: 8px; letter-spacing: 0.8px;">Satu Liter Kebaikan Nusantara</span>
                 </div>
             </a>
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -557,10 +643,10 @@
             <div class="row g-4 mb-4">
                 <div class="col-md-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 35px; height: 35px;">
-                            <span class="font-serif fw-bold fs-6">00</span>
+                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 28px; height: 28px;">
+                            <span class="font-serif fw-bold" style="font-size: 14px;">00</span>
                         </div>
-                        <span class="font-serif fs-5 fw-bold tracking-wider text-white">DELAPAN KOPI</span>
+                        <span class="font-serif fw-bold tracking-wider text-white" style="font-size: 16px;">DELAPAN KOPI</span>
                     </div>
                     <p class="small mb-0 text-white-50">
                         Home industry penyedia kopi botolan kemasan 1 liter berkualitas tinggi dan paket kemasan dispenser berkeran untuk berbagai acara spesial Anda di Tegal.
@@ -633,7 +719,7 @@
                             if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
                                 container.innerHTML = `<img src="${siteConfig.logo.image_url}" alt="Logo" class="w-100 h-100 object-fit-contain">`;
                             } else {
-                                container.innerHTML = `<span class="font-serif fw-bold fs-5 tracking-tight">${siteConfig.logo.text_icon || '00'}</span>`;
+                                container.innerHTML = `<span class="font-serif fw-bold" style="font-size: ${window.innerWidth < 576 ? '14px' : '18px'};">${siteConfig.logo.text_icon || '00'}</span>`;
                             }
                         });
                     }
