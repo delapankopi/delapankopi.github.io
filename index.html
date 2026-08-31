@@ -271,8 +271,8 @@
         </div>
     </section>
 
-    <!-- Menu Varian Produk -->
-    <section id="menu" class="py-5" style="background-color: var(--coffee-50);">
+    <!-- Menu Varian Produk (Slider Botolan 1L) -->
+    <section id="menu" class="py-5" style="background-color: #e6f2ed;">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
                 <span class="text-uppercase fw-bold tracking-widest" style="font-size: 11px; color: var(--sb-green);">Katalog Produk</span>
@@ -281,13 +281,224 @@
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
 
+            <!-- Wadah Slider Swiper -->
             <div class="swiper productSlider pb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="swiper-wrapper" id="productSliderWrapper"></div>
+                <div class="swiper-wrapper">
+                    
+                    <!-- 1. Spanish Latte (Best Seller) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Spanish Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-success text-white px-2 py-1 rounded-pill small">Best Seller</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Best Seller</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Spanish Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 80.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Perpaduan espresso dengan susu kental manis dan susu segar yang khas.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Spanish Latte 1L', 'Rp 80.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Almond Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Almond Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Almond Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 85.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Perpaduan aroma kacang almond gurih, espresso, dan susu segar.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Almond Latte 1L', 'Rp 85.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Blewah Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600" alt="Blewah Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Blewah Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 80.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Sensasi segar rasa buah blewah khas Nusantara berpadu creamy latte.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Blewah Latte 1L', 'Rp 80.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Butter Caramel Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Butter Caramel Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Butter Caramel Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 85.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Karamel mentega gurih manis berpadu espresso dan susu segar pilihan.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Butter Caramel Latte 1L', 'Rp 85.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Latte Low Sugar -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Latte Low Sugar" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Latte Low Sugar 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 75.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Pilihan latte dengan kadar gula rendah, pas untuk yang menjaga kesehatan.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Latte Low Sugar 1L', 'Rp 75.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Pandan Aren Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="Pandan Aren Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Pandan Aren Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 80.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Perpaduan daun pandan asli, gula aren murni Nusantara, espresso, dan susu segar.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Pandan Aren Latte 1L', 'Rp 80.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Praline Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" alt="Praline Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-secondary text-white px-2 py-1 rounded-pill small">Coffee Latte</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Coffee Latte</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Praline Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 85.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Aroma kacang praline panggang yang khas dan manis lembut berpadu kopi.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Praline Latte 1L', 'Rp 85.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Double Chocolate -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600" alt="Double Chocolate" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-info text-dark px-2 py-1 rounded-pill small">Non-Coffee</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Non-Coffee</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Double Chocolate 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 85.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Cokelat pekat berlimpah dengan rasa yang kaya dan sangat memanjakan lidah.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Double Chocolate 1L', 'Rp 85.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Matcha Latte -->
+                    <div class="swiper-slide h-auto">
+                        <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
+                            <div>
+                                <div class="position-relative overflow-hidden" style="height: 180px;">
+                                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600" alt="Matcha Latte" class="w-100 h-100 object-fit-cover">
+                                    <span class="position-absolute top-0 end-0 m-2 badge bg-info text-dark px-2 py-1 rounded-pill small">Non-Coffee</span>
+                                </div>
+                                <div class="p-3">
+                                    <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">Non-Coffee</span>
+                                    <h3 class="font-serif fw-bold fs-6 text-dark mb-1">Matcha Latte 1L</h3>
+                                    <span class="fw-bold text-success d-block mb-2 fs-6">Rp 85.000</span>
+                                    <p class="text-muted small mb-0 lh-sm" style="font-size: 12px;">Bubuk matcha hijau Jepang berkualitas berpadu susu segar yang creamy.</p>
+                                </div>
+                            </div>
+                            <div class="p-3 pt-0">
+                                <button onclick="openOrderModal('Matcha Latte 1L', 'Rp 85.000')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                                    <i class="fa-solid fa-bag-shopping"></i> Pesan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Indikator Navigasi Slider -->
                 <div class="swiper-pagination mt-4"></div>
             </div>
         </div>
     </section>
-
+    
     <!-- Menu Khusus Dispenser Jar -->
     <section id="menu-jar" class="py-5 bg-white">
         <div class="container py-4">
