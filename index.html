@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delapan Kopi - Pusat Kopi Botolan 1 Liter & Paket Dispenser Acara di Tegal</title>
+    <title>Delapan Kopi - Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="manifest" href="/assets/img/site.webmanifest">
+    <link rel="manifest" href="assets/img/site.webmanifest">
     
     <!-- Meta SEO & Open Graph (OG) Optimization -->
     <meta name="description" content="Pusat kopi botolan 1 liter premium terbaik di Tegal. Sedia juga paket menu khusus kemasan dispenser (8L & 16L) untuk acara arisan, pernikahan, dan event spesial Anda.">
@@ -124,10 +124,11 @@
 
         /* Leaflet Map Styling */
         #map {
-            height: 200px;
+            height: 220px;
             width: 100%;
             border-radius: 0.75rem;
             border: 1px solid #ced4da;
+            z-index: 1;
         }
 
         .product-choice {
@@ -135,6 +136,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        /* Space Utility */
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
     </style>
 </head>
 <body>
@@ -175,7 +180,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link text-white-50" href="#cara-pesan">Cara Pesan</a></li>
                     <li class="nav-item mt-2 mt-lg-0">
-                        <button onclick="openOrderModal('Spanish Latte 1L', 'Rp 80.000')" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm border-0">
+                        <button onclick="openOrderModal()" class="btn btn-success rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm border-0">
                             <i class="fa-brands fa-whatsapp fs-5"></i> Pesan Cepat
                         </button>
                     </li>
@@ -194,7 +199,7 @@
                         <span>Freshly Brewed & Bottled Daily</span>
                     </div>
                     <h1 id="heroHeading" class="font-serif display-5 fw-bold lh-sm mb-4">
-                        Pusat Kopi Botolan 1 Liter & Paket Kemasan Dispenser Acara Terbaik di Tegal
+                        Pusat Kopi Botolan 1 Liter & Paket Kemasan Dispenser untuk Acara Terbaik di Tegal
                     </h1>
                     <p id="heroSubtitle" class="text-white-50 fs-6 mb-4 fw-light">
                         Pilihan sempurna untuk stok di rumah, teman WFH, arisan, pernikahan, maupun acara spesial Anda. Tersedia juga paket kemasan dispenser besar kapasitas 8L & 16L.
@@ -203,7 +208,7 @@
                         <a href="#menu" class="btn text-white fw-semibold px-4 py-3 rounded-4 shadow" style="background-color: var(--sb-green);">
                             Lihat Katalog Menu
                         </a>
-                        <button onclick="openOrderModal('Spanish Latte 1L', 'Rp 80.000')" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
+                        <button onclick="openOrderModal()" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
                             <i class="fa-brands fa-whatsapp text-success fs-5"></i> Pesan via WhatsApp
                         </button>
                     </div>
@@ -416,21 +421,15 @@
 
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
-                                </div>
-                            </div>
-                            <div id="map" class="mb-2 shadow-sm"></div>
-                            <small class="text-muted d-block" style="font-size: 11px;">Koordinat dipilih: <span id="coordDisplay">-6.8796, 109.1256</span></small>
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <div>
-                                    <label class="form-label fw-semibold small mb-0">Klik Deteksi Lokasi, lalu geser pin jika posisinya belum pas</label>
-                                </div>
+                                <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
                                 <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
                                     <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
                                 </button>
                             </div>
-                        
+                            <div id="map" class="mb-2 shadow-sm"></div>
+                            <small class="text-muted d-block" style="font-size: 11px;">
+                                Koordinat dipilih: <span id="coordDisplay" class="fw-bold text-dark">-6.8796, 109.1256</span> (Geser pin jika posisinya belum pas)
+                            </small>
                         </div>
 
                         <div class="mb-4">
@@ -496,94 +495,115 @@
     <!-- Script Penggerak & Sinkronisasi JSON -->
     <script>
         let siteConfig = {};
+        let orderModalInstance = null;
+        let map = null;
+        let marker = null;
+        let currentLat = -6.8796; 
+        let currentLng = 109.1256;
 
-        fetch('content.json')
-            .then(response => response.json())
-            .then(data => {
-                siteConfig = data;
-                
-                if (siteConfig.theme_colors) {
-                    const root = document.documentElement;
-                    if (siteConfig.theme_colors.primary_green) root.style.setProperty('--sb-green', siteConfig.theme_colors.primary_green);
-                    if (siteConfig.theme_colors.dark_green) root.style.setProperty('--sb-green-dark', siteConfig.theme_colors.dark_green);
-                    if (siteConfig.theme_colors.light_bg) root.style.setProperty('--coffee-50', siteConfig.theme_colors.light_bg);
-                }
+        document.addEventListener("DOMContentLoaded", () => {
+            const modalEl = document.getElementById('orderModal');
+            orderModalInstance = new bootstrap.Modal(modalEl);
 
-                if (siteConfig.logo) {
-                    const logoContainers = document.querySelectorAll('.brand-logo-container');
-                    logoContainers.forEach(container => {
-                        if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
-                            container.innerHTML = `<img src="${siteConfig.logo.image_url}" alt="Logo" class="w-100 h-100 object-fit-contain">`;
-                        } else {
-                            container.innerHTML = `<span class="font-serif fw-bold fs-5 tracking-tight">${siteConfig.logo.text_icon || '00'}</span>`;
+            // PERBAIKAN BUG MAP: Render ulang map secara sempurna saat modal Bootstrap selesai terbuka
+            modalEl.addEventListener('shown.bs.modal', () => {
+                initOrUpdateMap();
+            });
+
+            fetch('content.json')
+                .then(response => response.json())
+                .then(data => {
+                    siteConfig = data;
+                    
+                    if (siteConfig.theme_colors) {
+                        const root = document.documentElement;
+                        if (siteConfig.theme_colors.primary_green) root.style.setProperty('--sb-green', siteConfig.theme_colors.primary_green);
+                        if (siteConfig.theme_colors.dark_green) root.style.setProperty('--sb-green-dark', siteConfig.theme_colors.dark_green);
+                        if (siteConfig.theme_colors.light_bg) root.style.setProperty('--coffee-50', siteConfig.theme_colors.light_bg);
+                    }
+
+                    if (siteConfig.logo) {
+                        const logoContainers = document.querySelectorAll('.brand-logo-container');
+                        logoContainers.forEach(container => {
+                            if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
+                                container.innerHTML = `<img src="${siteConfig.logo.image_url}" alt="Logo" class="w-100 h-100 object-fit-contain">`;
+                            } else {
+                                container.innerHTML = `<span class="font-serif fw-bold fs-5 tracking-tight">${siteConfig.logo.text_icon || '00'}</span>`;
+                            }
+                        });
+                    }
+
+                    if (siteConfig.hero) {
+                        if (siteConfig.hero.background_image) {
+                            const heroSection = document.getElementById('beranda');
+                            if (heroSection) {
+                                heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.90)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+                            }
                         }
-                    });
-                }
-
-                if (siteConfig.hero) {
-                    if (siteConfig.hero.background_image) {
-                        const heroSection = document.getElementById('beranda');
-                        if (heroSection) {
-                            heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.90)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+                        if (siteConfig.hero.hero_image) {
+                            const heroImgEl = document.getElementById('heroMainImage');
+                            if (heroImgEl) {
+                                heroImgEl.src = siteConfig.hero.hero_image;
+                            }
+                        }
+                        if (siteConfig.hero.heading) {
+                            document.getElementById('heroHeading').innerText = siteConfig.hero.heading;
+                        }
+                        if (siteConfig.hero.subtitle) {
+                            document.getElementById('heroSubtitle').innerText = siteConfig.hero.subtitle;
                         }
                     }
-                    if (siteConfig.hero.hero_image) {
-                        const heroImgEl = document.getElementById('heroMainImage');
-                        if (heroImgEl) {
-                            heroImgEl.src = siteConfig.hero.hero_image;
-                        }
+
+                    if (siteConfig.brand) document.getElementById('navBrand').innerText = siteConfig.brand;
+                    if (siteConfig.tagline) document.getElementById('navTagline').innerText = siteConfig.tagline;
+                    if (siteConfig.address) document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
+                    
+                    if (siteConfig.operational_hours) {
+                        document.getElementById('footerOperational').innerHTML = `<i class="fa-solid fa-clock me-2 text-info"></i> ${siteConfig.operational_hours}`;
                     }
-                    if (siteConfig.hero.heading) {
-                        document.getElementById('heroHeading').innerText = siteConfig.hero.heading;
+
+                    if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title) {
+                        document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
                     }
-                    if (siteConfig.hero.subtitle) {
-                        document.getElementById('heroSubtitle').innerText = siteConfig.hero.subtitle;
-                    }
-                }
+                    
+                    const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
+                    document.getElementById('floatingWaBtn').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20bertanya%20seputar%20produk%20Delapan%20Kopi.%20%F0%9F%91%8B`;
+                    document.getElementById('footerWa').href = waFormatted;
+                    document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
+                    document.getElementById('socialWa').href = waFormatted;
 
-                document.getElementById('navBrand').innerText = siteConfig.brand;
-                document.getElementById('navTagline').innerText = siteConfig.tagline;
-                document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
-                
-                if (siteConfig.operational_hours) {
-                    document.getElementById('footerOperational').innerHTML = `<i class="fa-solid fa-clock me-2 text-info"></i> ${siteConfig.operational_hours}`;
-                }
+                    if (siteConfig.instagram) document.getElementById('footerIg').href = siteConfig.instagram;
+                    if (siteConfig.facebook) document.getElementById('footerFb').href = siteConfig.facebook;
+                    if (siteConfig.tiktok) document.getElementById('footerTiktok').href = siteConfig.tiktok;
 
-                if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title) {
-                    document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
-                }
-                
-                const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
-                document.getElementById('floatingWaBtn').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20bertanya%20seputar%20produk%20Delapan%20Kopi.%20%F0%9F%91%8B`;
-                document.getElementById('footerWa').href = waFormatted;
-                document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
-                document.getElementById('socialWa').href = waFormatted;
+                    document.getElementById('jarBtn8L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%208%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
+                    document.getElementById('jarBtn16L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%2016%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
 
-                document.getElementById('footerIg').href = siteConfig.instagram;
-                document.getElementById('footerFb').href = siteConfig.facebook;
-                document.getElementById('footerTiktok').href = siteConfig.tiktok;
+                    renderProducts();
+                })
+                .catch(error => console.error('Gagal memuat content.json:', error));
 
-                document.getElementById('jarBtn8L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%208%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
-                document.getElementById('jarBtn16L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%2016%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
-
-                renderProducts();
-            })
-            .catch(error => console.error('Gagal memuat content.json:', error));
+            AOS.init({ duration: 800, once: true, offset: 100 });
+        });
 
         function renderProducts() {
             const wrapper = document.getElementById('productSliderWrapper');
+            if (!wrapper || !siteConfig.products) return;
             wrapper.innerHTML = '';
 
             const allItems = [
-                ...siteConfig.products.bestSeller.map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
-                ...siteConfig.products.coffeeLatte.map(p => ({ ...p, badge: 'Coffee Latte', badgeClass: 'bg-secondary' })),
-                ...siteConfig.products.nonCoffee.map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
+                ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
+                ...(siteConfig.products.coffeeLatte || []).map(p => ({ ...p, badge: 'Coffee Latte', badgeClass: 'bg-secondary' })),
+                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
             ];
 
             allItems.forEach(item => {
                 const slide = document.createElement('div');
                 slide.className = 'swiper-slide h-auto';
                 const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
+                
+                // Menghindari karakter kutip error saat passing nama produk ke function
+                const safeName = item.name.replace(/'/g, "\\'");
                 
                 slide.innerHTML = `
                     <div class="card card-custom bg-white h-100 d-flex flex-column justify-content-between overflow-hidden shadow-sm">
@@ -600,7 +620,7 @@
                             </div>
                         </div>
                         <div class="p-3 pt-0">
-                            <button onclick="openOrderModal('${item.name}', '${item.price}')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
+                            <button onclick="openOrderModal('${safeName}')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
                                 <i class="fa-solid fa-bag-shopping"></i> Pesan
                             </button>
                         </div>
@@ -623,79 +643,86 @@
             });
         }
 
-        AOS.init({ duration: 800, once: true, offset: 100 });
-
-        let map = null;
-        let marker = null;
-        let currentLat = -6.8796; 
-        let currentLng = 109.1256;
-
-        function openOrderModal(initialProduct, initialPrice) {
+        function openOrderModal(initialProduct = "") {
             const container = document.getElementById('orderItemsContainer');
             container.innerHTML = ''; 
             addOrderItem(initialProduct, 1, 'Normal (100%)');
 
-            const myModal = new bootstrap.Modal(document.getElementById('orderModal'));
-            myModal.show();
+            if (orderModalInstance) {
+                orderModalInstance.show();
+            }
+        }
 
-            setTimeout(() => {
-                if (!map) {
-                    map = L.map('map').setView([currentLat, currentLng], 14);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; OpenStreetMap contributors'
-                    }).addTo(map);
+        function initOrUpdateMap() {
+            if (!map) {
+                map = L.map('map').setView([currentLat, currentLng], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
 
-                    marker = L.marker([currentLat, currentLng], { draggable: true }).addTo(map);
+                marker = L.marker([currentLat, currentLng], { draggable: true }).addTo(map);
 
-                    marker.on('dragend', function (event) {
-                        const position = marker.getLatLng();
-                        currentLat = position.lat.toFixed(6);
-                        currentLng = position.lng.toFixed(6);
-                        document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
-                    });
+                marker.on('dragend', function () {
+                    const position = marker.getLatLng();
+                    currentLat = position.lat.toFixed(6);
+                    currentLng = position.lng.toFixed(6);
+                    document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
+                });
 
-                    map.on('click', function(e) {
-                        marker.setLatLng(e.latlng);
-                        currentLat = e.latlng.lat.toFixed(6);
-                        currentLng = e.latlng.lng.toFixed(6);
-                        document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
-                    });
-                } else {
-                    map.invalidateSize();
-                }
-            }, 300);
+                map.on('click', function(e) {
+                    marker.setLatLng(e.latlng);
+                    currentLat = e.latlng.lat.toFixed(6);
+                    currentLng = e.latlng.lng.toFixed(6);
+                    document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
+                });
+            } else {
+                map.invalidateSize();
+                map.setView([currentLat, currentLng], 14);
+                marker.setLatLng([currentLat, currentLng]);
+            }
         }
 
         function addOrderItem(selectedName = "", qty = 1, selectedSweetness = "Normal (100%)") {
             const container = document.getElementById('orderItemsContainer');
-            const rowId = 'item-row-' + Date.now();
+            const rowId = 'item-row-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
-            let optionsHtml = '<option value="" disabled selected>--- Pilih Menu ---</option>';
+            let optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
 
-            if (siteConfig.products) {
-                optionsHtml += '<optgroup label="-- POPULER / BEST SELLER --">';
-                siteConfig.products.bestSeller.forEach(p => {
-                    const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                    const isSelected = (p.name === selectedName) ? 'selected' : '';
-                    optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                });
-                optionsHtml += '</optgroup>';
+            if (siteConfig && siteConfig.products) {
+                if (siteConfig.products.bestSeller && siteConfig.products.bestSeller.length > 0) {
+                    optionsHtml += '<optgroup label="-- POPULER / BEST SELLER --">';
+                    siteConfig.products.bestSeller.forEach(p => {
+                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
+                        const isSelected = (p.name === selectedName) ? 'selected' : '';
+                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
+                    });
+                    optionsHtml += '</optgroup>';
+                }
 
-                optionsHtml += '<optgroup label="-- COFFEE LATTE --">';
-                siteConfig.products.coffeeLatte.forEach(p => {
-                    const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                    const isSelected = (p.name === selectedName) ? 'selected' : '';
-                    optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                });
-                optionsHtml += '</optgroup>';
+                if (siteConfig.products.coffeeLatte && siteConfig.products.coffeeLatte.length > 0) {
+                    optionsHtml += '<optgroup label="-- COFFEE LATTE --">';
+                    siteConfig.products.coffeeLatte.forEach(p => {
+                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
+                        const isSelected = (p.name === selectedName) ? 'selected' : '';
+                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
+                    });
+                    optionsHtml += '</optgroup>';
+                }
 
-                optionsHtml += '<optgroup label="-- NON-COFFEE --">';
-                siteConfig.products.nonCoffee.forEach(p => {
-                    const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                    const isSelected = (p.name === selectedName) ? 'selected' : '';
-                    optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                });
-                optionsHtml += '</optgroup>';
+                if (siteConfig.products.nonCoffee && siteConfig.products.nonCoffee.length > 0) {
+                    optionsHtml += '<optgroup label="-- NON-COFFEE --">';
+                    siteConfig.products.nonCoffee.forEach(p => {
+                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
+                        const isSelected = (p.name === selectedName) ? 'selected' : '';
+                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
+                    });
+                    optionsHtml += '</optgroup>';
+                }
+            }
+
+            // Jika dipanggil tanpa selectedName, otomatis pilih opsi pertama
+            if (!selectedName) {
+                optionsHtml = optionsHtml.replace('value="" disabled', 'value="" disabled selected');
             }
 
             const sweetnessLevels = (siteConfig.modal_settings && siteConfig.modal_settings.sweetness_levels) 
@@ -709,28 +736,29 @@
             });
 
             const rowDiv = document.createElement('div');
-            rowDiv.className = 'card p-3 mb-2 bg-light border item-row';
+            rowDiv.className = 'card p-3 bg-light border item-row';
             rowDiv.id = rowId;
             rowDiv.innerHTML = `
                 <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-6">
-                        <label class="form-label text-muted" style="font-size: 10px; margin-bottom: 2px;">PRODUK</label>
+                    <div class="col-12 col-md-5">
+                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">PRODUK</label>
                         <select class="form-select form-select-sm product-choice" onchange="calculateGrandTotal()" required>
                             ${optionsHtml}
                         </select>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <label class="form-label text-muted" style="font-size: 10px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
+                    <div class="col-6 col-md-4">
+                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
                         <select class="form-select form-select-sm product-sweetness">
                             ${sweetnessOptionsHtml}
                         </select>
                     </div>
                     <div class="col-4 col-md-2">
-                        <label class="form-label text-muted" style="font-size: 10px; margin-bottom: 2px;">JUMLAH</label>
+                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">JUMLAH</label>
                         <input type="number" class="form-control form-control-sm product-qty" min="1" value="${qty}" oninput="calculateGrandTotal()" required>
                     </div>
-                    <div class="col-2 col-md-1 text-end d-flex align-items-end">
-                        <button type="button" class="btn btn-outline-danger btn-sm w-100 mt-3" onclick="removeOrderItem('${rowId}')"><i class="fa-solid fa-trash"></i></button>
+                    <div class="col-2 col-md-1 text-end">
+                        <label class="form-label d-block text-white" style="font-size: 10px; margin-bottom: 2px;">-</label>
+                        <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeOrderItem('${rowId}')" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
             `;
@@ -741,7 +769,8 @@
         function removeOrderItem(rowId) {
             const rows = document.querySelectorAll('.item-row');
             if (rows.length > 1) {
-                document.getElementById(rowId).remove();
+                const el = document.getElementById(rowId);
+                if (el) el.remove();
                 calculateGrandTotal();
             } else {
                 alert("Minimal harus ada 1 produk dalam pesanan.");
@@ -754,7 +783,7 @@
             rows.forEach(row => {
                 const selectEl = row.querySelector('.product-choice');
                 const qtyEl = row.querySelector('.product-qty');
-                if (selectEl.value && qtyEl.value) {
+                if (selectEl && selectEl.value && qtyEl && qtyEl.value) {
                     const valParts = selectEl.value.split('|');
                     const rawPrice = parseInt(valParts[2]) || 0;
                     const qty = parseInt(qtyEl.value) || 0;
@@ -776,10 +805,10 @@
                     }
                     document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
                 }, (error) => {
-                    alert("Gagal mendeteksi lokasi. Pastikan izin GPS aktif.");
+                    alert("Gagal mendeteksi lokasi. Pastikan izin lokasi/GPS di browser aktif.");
                 });
             } else {
-                alert("Browser Anda tidak mendukung Geolocation.");
+                alert("Browser Anda tidak mendukung fitur Geolocation.");
             }
         }
 
@@ -799,7 +828,7 @@
                 const sweetEl = row.querySelector('.product-sweetness');
                 const qtyEl = row.querySelector('.product-qty');
                 
-                if (!selectEl.value) {
+                if (!selectEl || !selectEl.value) {
                     isValid = false;
                     return;
                 }
@@ -818,7 +847,7 @@
                 return;
             }
 
-            const textMessage = `Halo kak 👋\n\nIzin pesan produk berikut:\n${itemsText.trim()}\n*Estimasi Total:* *Rp ${grandTotal.toLocaleString('id-ID')}*\n\n*Nama Pemesan:* ${name}\n*Detail Alamat:* ${address}\n*Titik Google Maps:* ${mapsLink}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏`;
+            const textMessage = `Halo kak 👋\n\nIzin pesan produk berikut:\n${itemsText.trim()}\n\n*Estimasi Total:* *Rp ${grandTotal.toLocaleString('id-ID')}*\n\n*Nama Pemesan:* ${name}\n*Detail Alamat:* ${address}\n*Titik Google Maps:* ${mapsLink}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏`;
 
             const encodedMessage = encodeURIComponent(textMessage);
             const whatsappUrl = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}?text=${encodedMessage}`;
