@@ -628,7 +628,6 @@
             }
             .order-location-label {
                 font-size: 12px !important;
-                white-space: nowrap !important;
             }
             #coordDisplay {
                 font-size: 11px !important;
@@ -656,6 +655,44 @@
             .order-total-wrapper #grandTotalDisplay {
                 font-size: 14px !important;
                 white-space: nowrap !important;
+            }
+            /* ===== PERBAIKAN: Kolom Jumlah diperkecil ===== */
+            .item-row .col-qty {
+                flex: 0 0 55px !important;
+                max-width: 55px !important;
+            }
+            .item-row .col-sweetness {
+                flex: 1 1 auto !important;
+                min-width: 80px !important;
+            }
+            .item-row .col-product {
+                flex: 2 1 auto !important;
+                min-width: 100px !important;
+            }
+            .item-row .col-delete {
+                flex: 0 0 30px !important;
+                max-width: 30px !important;
+            }
+            .item-row .product-qty {
+                font-size: 12px !important;
+                padding: 2px 4px !important;
+                min-width: 35px !important;
+                width: 100% !important;
+            }
+            .item-row .product-sweetness {
+                font-size: 10px !important;
+                padding: 2px 4px !important;
+            }
+            .item-row .product-choice {
+                font-size: 11px !important;
+                padding: 2px 4px !important;
+            }
+            .item-row .form-label {
+                font-size: 8px !important;
+            }
+            .item-row .btn-outline-danger {
+                font-size: 10px !important;
+                padding: 2px 4px !important;
             }
         }
 
@@ -840,7 +877,6 @@
         }
 
         .order-location-label {
-            white-space: nowrap;
             font-size: 13px;
         }
 
@@ -864,6 +900,45 @@
             white-space: nowrap !important;
             font-size: 12px;
             padding: 5px 14px;
+        }
+
+        /* ===== PERBAIKAN: Kolom Jumlah di item row ===== */
+        .item-row .col-qty {
+            flex: 0 0 65px;
+            max-width: 65px;
+        }
+        .item-row .col-sweetness {
+            flex: 1 1 auto;
+            min-width: 100px;
+        }
+        .item-row .col-product {
+            flex: 2 1 auto;
+            min-width: 120px;
+        }
+        .item-row .col-delete {
+            flex: 0 0 35px;
+            max-width: 35px;
+        }
+        .item-row .product-qty {
+            font-size: 13px;
+            padding: 4px 6px;
+            min-width: 40px;
+            width: 100%;
+        }
+        .item-row .product-sweetness {
+            font-size: 12px;
+            padding: 4px 6px;
+        }
+        .item-row .product-choice {
+            font-size: 12px;
+            padding: 4px 6px;
+        }
+        .item-row .form-label {
+            font-size: 9px;
+        }
+        .item-row .btn-outline-danger {
+            font-size: 11px;
+            padding: 4px 6px;
         }
     </style>
 </head>
@@ -1182,11 +1257,10 @@
                             </div>
                             <div id="map" class="mb-2 shadow-sm"></div>
                             
-                            <!-- ===== PERBAIKAN: Koordinat & keterangan dalam satu baris ===== -->
+                            <!-- ===== PERBAIKAN: Koordinat ===== -->
                             <div class="coord-wrapper">
                                 <small class="text-muted">Koordinat dipilih:</small>
                                 <span id="coordDisplay" class="fw-bold text-dark">-6.8796, 109.1256</span>
-                                <small class="text-muted">(Geser pin jika posisinya belum pas)</small>
                             </div>
                             
                             <div id="locationTooltip" class="location-tooltip">
@@ -1194,15 +1268,18 @@
                                 Klik tombol <strong>"Deteksi Lokasi"</strong> untuk mendapatkan koordinat otomatis dari GPS Anda.
                             </div>
 
-                            <!-- ===== PERBAIKAN: Label & Button tidak ter-wrap ===== -->
-                            <div class="d-flex justify-content-between align-items-center mt-2 flex-wrap gap-2">
+                            <!-- ===== PERBAIKAN: Label tanpa icon, button sejajar, text geser di bawah ===== -->
+                            <div class="d-flex align-items-center mt-2 gap-2 flex-wrap">
                                 <label class="form-label fw-semibold small mb-0 order-location-label">
-                                    <i class="fa-solid fa-location-crosshairs me-1 text-success"></i> Ketuk Deteksi Lokasi Pengiriman
+                                    Ketuk Deteksi Lokasi Pengiriman
                                 </label>
-                                <button type="button" onclick="detectUserLocation()" class="btn-detect-location btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 12px; white-space: nowrap;">
+                                <button type="button" onclick="detectUserLocation()" class="btn-detect-location btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 12px; white-space: nowrap; flex-shrink: 0;">
                                     <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
                                 </button>
                             </div>
+                            <small class="text-muted d-block mt-1" style="font-size: 10px;">
+                                (Geser pin jika posisi lokasi belum pas / gagal mendapatkan lokasi)
+                            </small>
                         </div>
 
                         <div class="mb-4">
@@ -1764,24 +1841,24 @@
             rowDiv.id = rowId;
             rowDiv.innerHTML = `
                 <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-5">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">PRODUK</label>
+                    <div class="col-12 col-md-5 col-product">
+                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">PRODUK</label>
                         <select class="form-select form-select-sm product-choice" onchange="calculateGrandTotal()" required>
                             ${optionsHtml}
                         </select>
                     </div>
-                    <div class="col-6 col-md-4">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
+                    <div class="col-6 col-md-4 col-sweetness">
+                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
                         <select class="form-select form-select-sm product-sweetness">
                             ${sweetnessOptionsHtml}
                         </select>
                     </div>
-                    <div class="col-4 col-md-2">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 10px; margin-bottom: 2px;">JUMLAH</label>
+                    <div class="col-4 col-md-2 col-qty">
+                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">JUMLAH</label>
                         <input type="number" class="form-control form-control-sm product-qty" min="1" value="${qty}" oninput="calculateGrandTotal()" required>
                     </div>
-                    <div class="col-2 col-md-1 text-end">
-                        <label class="form-label d-block text-white" style="font-size: 10px; margin-bottom: 2px;">-</label>
+                    <div class="col-2 col-md-1 col-delete text-end">
+                        <label class="form-label d-block text-white" style="font-size: 9px; margin-bottom: 2px;">-</label>
                         <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeOrderItem('${rowId}')" title="Hapus"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
