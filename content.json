@@ -7,7 +7,7 @@
   "tiktok": "https://tiktok.com/@delapankopi",
   "logo": {
     "text_icon": "",
-    "image_url": "/assets/img/logo_delapan_kopi.webp"
+    "image_url": "assets/img/logo_delapan_kopi.webp"
   },
   "theme_colors": {
     "primary_green": "#006241",
@@ -15,7 +15,7 @@
     "light_bg": "#f2f7f4"
   },
   "hero": {
-    "background_image": "/assets/img/background.webp",
+    "background_image": "assets/img/background.webp",
     "hero_image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
     "heading": "Pusat Kopi Botolan 1 Liter & Jar / Dispenser Acara Terbaik di Tegal",
     "subtitle": "Pilihan sempurna untuk stok di rumah, teman WFH, arisan, pernikahan, maupun acara spesial Anda. Tersedia juga paket jar / dispenser besar kapasitas 8L & 16L."
