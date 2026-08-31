@@ -141,14 +141,13 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top py-3">
         <div class="container">
-            <!-- Brand Logo & Title dibuat presisi tegak lurus -->
             <a class="navbar-brand d-flex align-items-center gap-3" href="#">
-                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden rounded-circle flex-shrink-0" style="width: 42px; height: 42px;">
-                    <span class="font-serif fw-bold fs-5 tracking-tight lh-1">00</span>
+                <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 45px; height: 45px;">
+                    <span class="font-serif fw-bold fs-5 tracking-tight">00</span>
                 </div>
-                <div class="d-flex flex-column justify-content-center">
+                <div>
                     <span id="navBrand" class="font-serif fs-5 fw-bold tracking-wide d-block lh-1">DELAPAN KOPI</span>
-                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1 lh-1" style="font-size: 9px; letter-spacing: 1px;">Satu Liter Kebaikan Nusantara</span>
+                    <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1" style="font-size: 9px; letter-spacing: 1px;">Satu Liter Kebaikan Nusantara</span>
                 </div>
             </a>
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -447,12 +446,11 @@
         <div class="container">
             <div class="row g-4 mb-4">
                 <div class="col-md-5">
-                    <!-- Logo & Title Footer disamakan presisi -->
                     <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden rounded-circle flex-shrink-0" style="width: 38px; height: 38px;">
-                            <span class="font-serif fw-bold fs-6 lh-1">00</span>
+                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden" style="width: 35px; height: 35px;">
+                            <span class="font-serif fw-bold fs-6">00</span>
                         </div>
-                        <span class="font-serif fs-5 fw-bold tracking-wider text-white lh-1">DELAPAN KOPI</span>
+                        <span class="font-serif fs-5 fw-bold tracking-wider text-white">DELAPAN KOPI</span>
                     </div>
                     <p class="small mb-0 text-white-50">
                         Home industry penyedia kopi botolan kemasan 1 liter berkualitas tinggi dan paket kemasan dispenser berkeran untuk berbagai acara spesial Anda di Tegal.
@@ -493,22 +491,6 @@
     <script>
         let siteConfig = {};
 
-        // SCRIPT AUTO-CLOSE NAVBAR
-        document.addEventListener('DOMContentLoaded', () => {
-            const navbarCollapse = document.getElementById('navbarNav');
-            if (navbarCollapse) {
-                const navLinks = navbarCollapse.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-item, .btn');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navbarCollapse.classList.contains('show')) {
-                            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse);
-                            bsCollapse.hide();
-                        }
-                    });
-                });
-            }
-        });
-
         fetch('content.json')
             .then(response => response.json())
             .then(data => {
@@ -527,7 +509,7 @@
                         if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
                             container.innerHTML = `<img src="${siteConfig.logo.image_url}" alt="Logo" class="w-100 h-100 object-fit-contain">`;
                         } else {
-                            container.innerHTML = `<span class="font-serif fw-bold fs-5 tracking-tight lh-1">${siteConfig.logo.text_icon || '00'}</span>`;
+                            container.innerHTML = `<span class="font-serif fw-bold fs-5 tracking-tight">${siteConfig.logo.text_icon || '00'}</span>`;
                         }
                     });
                 }
