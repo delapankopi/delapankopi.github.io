@@ -1798,7 +1798,7 @@
 
             if (siteConfig && siteConfig.products) {
                 if (siteConfig.products.bestSeller && siteConfig.products.bestSeller.length > 0) {
-                    optionsHtml += '<optgroup label="-- POPULER / BEST SELLER --">';
+                    optionsHtml += '<optgroup label="-- FAVORIT / BEST SELLER --">';
                     siteConfig.products.bestSeller.forEach(p => {
                         const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
                         const isSelected = (p.name === selectedName) ? 'selected' : '';
