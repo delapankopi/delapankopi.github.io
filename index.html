@@ -47,9 +47,9 @@
             --sb-green-dark: #003825;
             --sb-green-light: #008556;
             --coffee-50: #f2f7f4;
+            --hero-overlay: rgba(0, 30, 20, 0.6);
         }
 
-        /* PERBAIKAN: Mencegah scroll horizontal pada level root */
         html, body {
             max-width: 100%;
             overflow-x: hidden;
@@ -65,20 +65,58 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navbar Custom */
         .navbar-custom {
             background-color: rgba(0, 56, 37, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section Default */
+        /* Hero Section - perbaikan komposisi warna agar lebih nyaman */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.60)), center/cover no-repeat;
+            background: linear-gradient(var(--hero-overlay), var(--hero-overlay)), center/cover no-repeat;
             padding-top: 140px;
             padding-bottom: 100px;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section .text-white-50 {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .hero-section h1 {
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section .btn-outline-light {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+
+        .hero-section .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .hero-section .btn-success {
+            background: var(--sb-green);
+            border-color: var(--sb-green);
+            transition: all 0.3s;
+        }
+
+        .hero-section .btn-success:hover {
+            background: var(--sb-green-light);
+            border-color: var(--sb-green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 98, 65, 0.4);
         }
 
         /* Cards & Styling */
@@ -93,9 +131,56 @@
             box-shadow: 0 1rem 3rem rgba(0, 56, 37, 0.15);
         }
 
-        /* Swiper Pagination Styling */
         .swiper-pagination-bullet-active {
             background-color: var(--sb-green) !important;
+        }
+
+        /* Tombol navigasi slider - desktop */
+        .product-slider-wrapper {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .product-slider-wrapper .swiper-button-next,
+        .product-slider-wrapper .swiper-button-prev {
+            color: var(--sb-green);
+            background: rgba(255, 255, 255, 0.95);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 98, 65, 0.15);
+        }
+
+        .product-slider-wrapper .swiper-button-next::after,
+        .product-slider-wrapper .swiper-button-prev::after {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .product-slider-wrapper .swiper-button-next:hover,
+        .product-slider-wrapper .swiper-button-prev:hover {
+            background: var(--sb-green);
+            color: #fff;
+            border-color: var(--sb-green);
+            box-shadow: 0 6px 20px rgba(0, 98, 65, 0.3);
+        }
+
+        .product-slider-wrapper .swiper-button-next.swiper-button-disabled,
+        .product-slider-wrapper .swiper-button-prev.swiper-button-disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 767px) {
+            .product-slider-wrapper {
+                padding: 0 10px;
+            }
+            .product-slider-wrapper .swiper-button-next,
+            .product-slider-wrapper .swiper-button-prev {
+                display: none;
+            }
         }
 
         /* Floating WhatsApp */
@@ -122,7 +207,6 @@
             color: white;
         }
 
-        /* Leaflet Map Styling */
         #map {
             height: 220px;
             width: 100%;
@@ -137,9 +221,25 @@
             text-overflow: ellipsis;
         }
 
-        /* Space Utility */
         .space-y-2 > * + * { margin-top: 0.5rem; }
         .space-y-3 > * + * { margin-top: 0.75rem; }
+
+        /* tambahan untuk hero text readability */
+        .hero-section .badge {
+            background: rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+        }
+
+        .hero-section .badge .text-success {
+            color: #8bc34a !important;
+        }
+
+        /* shadow untuk teks hero */
+        .hero-section .text-shadow {
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -189,23 +289,23 @@
         </div>
     </nav>
 
-    <!-- Bagian Utama (Hero) -->
+    <!-- Bagian Utama (Hero) - perbaikan komposisi warna -->
     <section id="beranda" class="hero-section text-white overflow-hidden">
         <div class="container position-relative z-2">
             <div class="row align-items-center gy-5">
-                <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-25 backdrop-blur text-warning px-3 py-2 rounded-pill border border-white-50 mb-4 small fw-semibold shadow-sm">
+                <div class="col-lg-7 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="d-inline-flex align-items-center gap-2 badge px-3 py-2 rounded-pill mb-4 small fw-semibold shadow-sm">
                         <span class="spinner-grow spinner-grow-sm text-success" role="status"></span>
                         <span>Freshly Brewed & Bottled Daily</span>
                     </div>
-                    <h1 id="heroHeading" class="font-serif display-5 fw-bold lh-sm mb-4">
+                    <h1 id="heroHeading" class="font-serif display-4 fw-bold lh-sm mb-4 text-shadow">
                         Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal
                     </h1>
-                    <p id="heroSubtitle" class="text-white-50 fs-6 mb-4 fw-light">
+                    <p id="heroSubtitle" class="text-white-50 fs-5 mb-4 fw-light" style="color: rgba(255,255,255,0.85) !important;">
                         Menyediakan kopi literan fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di Tegal.
                     </p>
                     <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
-                        <a href="#menu" class="btn text-white fw-semibold px-4 py-3 rounded-4 shadow" style="background-color: var(--sb-green);">
+                        <a href="#menu" class="btn btn-success fw-semibold px-4 py-3 rounded-4 shadow-lg">
                             Lihat Katalog Menu
                         </a>
                         <button onclick="openOrderModal()" class="btn btn-outline-light fw-semibold px-4 py-3 rounded-4 d-flex align-items-center justify-content-center gap-2">
@@ -214,10 +314,10 @@
                     </div>
                 </div>
 
-                <!-- div class="col-lg-6 d-flex justify-content-center" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative w-100" style="max-width: 420px; aspect-ratio: 4/5;">
+                <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative w-100" style="max-width: 380px; aspect-ratio: 4/5; margin: 0 auto;">
                         <img id="heroMainImage" src="" alt="Hero Image" class="w-100 h-100 object-fit-cover">
-                        <div class="position-absolute bottom-0 start-0 end-0 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);">
+                        <div class="position-absolute bottom-0 start-0 end-0 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);">
                             <div class="bg-dark bg-opacity-75 backdrop-blur p-3 rounded-3 border border-secondary shadow">
                                 <div class="d-flex justify-content-between align-items-center mb-1">
                                     <span class="font-serif fw-bold text-white fs-6">Spanish Latte 1L</span>
@@ -227,7 +327,7 @@
                             </div>
                         </div>
                     </div>
-                </div -->
+                </div>
             </div>
         </div>
     </section>
@@ -275,7 +375,7 @@
         </div>
     </section>
 
-    <!-- Menu Varian Produk -->
+    <!-- Menu Varian Produk - dengan tombol navigasi desktop -->
     <section id="menu" class="py-5 overflow-hidden" style="background-color: var(--coffee-50);">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
@@ -285,9 +385,14 @@
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
 
-            <div class="swiper productSlider pb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="swiper-wrapper" id="productSliderWrapper"></div>
-                <div class="swiper-pagination mt-4"></div>
+            <div class="product-slider-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper productSlider pb-5">
+                    <div class="swiper-wrapper" id="productSliderWrapper"></div>
+                    <div class="swiper-pagination mt-4 position-relative"></div>
+                </div>
+                <!-- Tombol navigasi desktop -->
+                <div class="swiper-button-prev d-none d-md-flex"></div>
+                <div class="swiper-button-next d-none d-md-flex"></div>
             </div>
         </div>
     </section>
@@ -500,12 +605,12 @@
         let marker = null;
         let currentLat = -6.8796; 
         let currentLng = 109.1256;
+        let productSwiper = null;
 
         document.addEventListener("DOMContentLoaded", () => {
             const modalEl = document.getElementById('orderModal');
             orderModalInstance = new bootstrap.Modal(modalEl);
 
-            // PERBAIKAN BUG MAP: Render ulang map secara sempurna saat modal Bootstrap selesai terbuka
             modalEl.addEventListener('shown.bs.modal', () => {
                 initOrUpdateMap();
             });
@@ -537,7 +642,7 @@
                         if (siteConfig.hero.background_image) {
                             const heroSection = document.getElementById('beranda');
                             if (heroSection) {
-                                heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.60)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+                                heroSection.style.background = `linear-gradient(rgba(0, 30, 20, 0.7), rgba(0, 30, 20, 0.65)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
                             }
                         }
                         if (siteConfig.hero.hero_image) {
@@ -602,7 +707,6 @@
                 slide.className = 'swiper-slide h-auto';
                 const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
                 
-                // Menghindari karakter kutip error saat passing nama produk ke function
                 const safeName = item.name.replace(/'/g, "\\'");
                 
                 slide.innerHTML = `
@@ -629,12 +733,17 @@
                 wrapper.appendChild(slide);
             });
 
-            new Swiper('.productSlider', {
+            // Inisialisasi Swiper dengan tombol navigasi
+            productSwiper = new Swiper('.productSlider', {
                 slidesPerView: 2,
                 spaceBetween: 12,
                 loop: true,
                 autoplay: { delay: 4000, disableOnInteraction: false },
                 pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
                 breakpoints: {
                     0: { slidesPerView: 2, spaceBetween: 12 },
                     768: { slidesPerView: 3, spaceBetween: 16 },
@@ -720,7 +829,6 @@
                 }
             }
 
-            // Jika dipanggil tanpa selectedName, otomatis pilih opsi pertama
             if (!selectedName) {
                 optionsHtml = optionsHtml.replace('value="" disabled', 'value="" disabled selected');
             }
