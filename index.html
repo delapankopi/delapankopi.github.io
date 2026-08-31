@@ -1195,15 +1195,19 @@
                 });
             }
 
-            // ===== PERBAIKAN: Auto close navbar di mobile (TANPA menutup dropdown) =====
+            // ===== PERBAIKAN: Auto close navbar di mobile (TERMASUK dropdown item) =====
             const navbarCollapse = document.getElementById('navbarNav');
             const navbarToggler = document.querySelector('.navbar-toggler');
             
-            // Hanya untuk link utama (bukan dropdown toggle dan bukan dropdown item)
-            const navLinks = document.querySelectorAll('.navbar-nav > .nav-item > .nav-link:not([data-bs-toggle="dropdown"])');
+            // Semua link termasuk dropdown item, KECUALI dropdown toggle
+            const allNavLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
             
-            navLinks.forEach(link => {
+            allNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
+                    // Abaikan jika ini adalah dropdown toggle (yang membuka dropdown)
+                    if (this.getAttribute('data-bs-toggle') === 'dropdown') return;
+                    
+                    // Tutup navbar hanya di mobile
                     if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
                         const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                         if (bsCollapse) {
