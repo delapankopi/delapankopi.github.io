@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delapan Kopi - Pusat Kopi Botolan 1 Liter & Menu Jar / Dispenser Acara di Tegal</title>
+    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img//favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img//favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
     <link rel="manifest" href="/assets/img/site.webmanifest">
     
     <!-- Meta SEO & Open Graph (OG) Optimization -->
@@ -66,7 +67,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section Default (diatur dinamis via JSON) */
+        /* Hero Section Default */
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.90)), center/cover no-repeat;
             padding-top: 140px;
@@ -91,7 +92,7 @@
             background-color: var(--sb-green) !important;
         }
 
-        /* Floating WhatsApp tanpa Underline */
+        /* Floating WhatsApp */
         .floating-wa {
             position: fixed;
             bottom: 25px;
@@ -115,7 +116,7 @@
             color: white;
         }
 
-        /* Leaflet Map Styling dalam Modal */
+        /* Leaflet Map Styling */
         #map {
             height: 200px;
             width: 100%;
@@ -132,7 +133,7 @@
 </head>
 <body>
 
-    <!-- Tombol Mengambang WhatsApp untuk Pertanyaan -->
+    <!-- Tombol Mengambang WhatsApp -->
     <a id="floatingWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="floating-wa text-decoration-none" aria-label="Tanya via WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
@@ -178,11 +179,9 @@
                         <span class="spinner-grow spinner-grow-sm text-success" role="status"></span>
                         <span>Freshly Brewed & Bottled Daily</span>
                     </div>
-                    <!-- SEO Optimized Heading -->
                     <h1 id="heroHeading" class="font-serif display-5 fw-bold lh-sm mb-4">
                         Pusat Kopi Botolan 1 Liter & Jar / Dispenser Acara Terbaik di Tegal
                     </h1>
-                    <!-- Subtitle -->
                     <p id="heroSubtitle" class="text-white-50 fs-6 mb-4 fw-light">
                         Pilihan sempurna untuk stok di rumah, teman WFH, arisan, pernikahan, maupun acara spesial Anda. Tersedia juga paket jar / dispenser besar kapasitas 8L & 16L.
                     </p>
@@ -214,7 +213,7 @@
         </div>
     </section>
 
-    <!-- Keunggulan Home Industry -->
+    <!-- Keunggulan -->
     <section id="keunggulan" class="py-5 bg-white">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
@@ -257,7 +256,7 @@
         </div>
     </section>
 
-    <!-- Menu Varian Produk (Slider Botolan 1L dengan Foto Dinamis dari JSON) -->
+    <!-- Menu Varian Produk -->
     <section id="menu" class="py-5" style="background-color: var(--coffee-50);">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
@@ -267,18 +266,14 @@
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
 
-            <!-- Wadah Slider Swiper -->
             <div class="swiper productSlider pb-5" data-aos="fade-up" data-aos-delay="200">
-                <div class="swiper-wrapper" id="productSliderWrapper">
-                    <!-- Produk dirender otomatis via JavaScript dari content.json -->
-                </div>
-                <!-- Indikator Navigasi Slider -->
+                <div class="swiper-wrapper" id="productSliderWrapper"></div>
                 <div class="swiper-pagination mt-4"></div>
             </div>
         </div>
     </section>
 
-    <!-- Menu Khusus Dispenser Jar untuk Acara -->
+    <!-- Menu Khusus Dispenser Jar -->
     <section id="menu-jar" class="py-5 bg-white">
         <div class="container py-4">
             <div class="text-center mx-auto mb-5" style="max-width: 700px;" data-aos="fade-up">
@@ -409,20 +404,20 @@
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
                                     <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
-                                    <span class="text-muted d-block" style="font-size: 11px;">(Geser Pin / Deteksi GPS)</span>
+                                </div>
+                            </div>
+                            <div id="map" class="mb-2 shadow-sm"></div>
+                            <small class="text-muted d-block" style="font-size: 11px;">Koordinat dipilih: <span id="coordDisplay">-6.8796, 109.1256</span></small>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <label class="form-label fw-semibold small mb-0">Tentukan Lokasi Pengiriman</label>
+                                    <span class="text-muted d-block" style="font-size: 11px;">Ketuk Tombol Deteksi Lokasi dan Geser Pin</span>
                                 </div>
                                 <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
                                     <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
                                 </button>
                             </div>
-                            <div id="map" class="mb-2 shadow-sm"></div>
-                            <small class="text-muted d-block" style="font-size: 11px;">Koordinat dipilih: <span id="coordDisplay">-6.8796, 109.1256</span></small>
-                            <div>
-                                <span class="text-muted d-block" style="font-size: 11px;">(Geser Pin / Deteksi GPS)</span>
-                            </div>
-                            <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
-                                    <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
-                            </button>
+                        
                         </div>
 
                         <div class="mb-4">
@@ -478,24 +473,22 @@
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS (Animate On Scroll) JS -->
+    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Leaflet JS untuk Peta -->
+    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!-- Script Penggerak & Sinkronisasi JSON -->
     <script>
         let siteConfig = {};
 
-        // Ambil data otomatis dari content.json
         fetch('content.json')
             .then(response => response.json())
             .then(data => {
                 siteConfig = data;
                 
-                // Terapkan Tema Warna (CSS Variables) dari content.json
                 if (siteConfig.theme_colors) {
                     const root = document.documentElement;
                     if (siteConfig.theme_colors.primary_green) root.style.setProperty('--sb-green', siteConfig.theme_colors.primary_green);
@@ -503,7 +496,6 @@
                     if (siteConfig.theme_colors.light_bg) root.style.setProperty('--coffee-50', siteConfig.theme_colors.light_bg);
                 }
 
-                // Terapkan Logo (Navbar & Footer) dari content.json
                 if (siteConfig.logo) {
                     const logoContainers = document.querySelectorAll('.brand-logo-container');
                     logoContainers.forEach(container => {
@@ -515,7 +507,6 @@
                     });
                 }
 
-                // Terapkan Konfigurasi Hero (Background, Foto Utama, Heading, Subtitle)
                 if (siteConfig.hero) {
                     if (siteConfig.hero.background_image) {
                         const heroSection = document.getElementById('beranda');
@@ -537,7 +528,6 @@
                     }
                 }
 
-                // Terapkan data teks & kontak
                 document.getElementById('navBrand').innerText = siteConfig.brand;
                 document.getElementById('navTagline').innerText = siteConfig.tagline;
                 document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
@@ -553,10 +543,10 @@
                 const waFormatted = `https://wa.me/${siteConfig.whatsapp}`;
                 document.getElementById('floatingWaBtn').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20bertanya%20seputar%20produk%20Delapan%20Kopi.%20%F0%9F%91%8B`;
                 document.getElementById('footerWa').href = waFormatted;
-                document.getElementById('footerWa').innerText = `+${siteConfig.whatsapp.replace(/(\d{2})(\d{3})(\d{4})(\d+)/, '$1 $2-$3-$4')}`;
+                // Perbaikan: Tampilan teks nomor HP disesuaikan lebih aman
+                document.getElementById('footerWa').innerText = `+${siteConfig.whatsapp}`;
                 document.getElementById('socialWa').href = waFormatted;
 
-                // Bind Social Media Links
                 document.getElementById('footerIg').href = siteConfig.instagram;
                 document.getElementById('footerFb').href = siteConfig.facebook;
                 document.getElementById('footerTiktok').href = siteConfig.tiktok;
@@ -564,7 +554,6 @@
                 document.getElementById('jarBtn8L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%20Jar%208%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
                 document.getElementById('jarBtn16L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%20Jar%2016%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
 
-                // Render Slider Produk dengan foto dinamis dari JSON
                 renderProducts();
             })
             .catch(error => console.error('Gagal memuat content.json:', error));
@@ -763,14 +752,17 @@
             document.getElementById('grandTotalDisplay').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
         }
 
+        // Perbaikan: Update variabel global dan tampilan koordinat secara utuh saat Geolocation berhasil
         function detectUserLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
                     currentLat = position.coords.latitude.toFixed(6);
                     currentLng = position.coords.longitude.toFixed(6);
                     const latLng = [currentLat, currentLng];
-                    map.setView(latLng, 16);
-                    marker.setLatLng(latLng);
+                    if (map && marker) {
+                        map.setView(latLng, 16);
+                        marker.setLatLng(latLng);
+                    }
                     document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
                 }, (error) => {
                     alert("Gagal mendeteksi lokasi. Pastikan izin GPS aktif.");
