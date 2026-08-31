@@ -746,7 +746,7 @@
                 }
 
                 // ==============================================
-                // PERBAIKAN: UPDATE HERO BEST SELLER DARI JSON
+                // UPDATE HERO BEST SELLER DARI JSON
                 // ==============================================
                 updateHeroBestSeller();
 
@@ -786,7 +786,6 @@
     // FUNGSI UPDATE HERO BEST SELLER DARI JSON
     // ==============================================
     function updateHeroBestSeller() {
-        // Ambil produk pertama dari bestSeller sebagai hero
         const bestSeller = siteConfig.products?.bestSeller?.[0];
         if (!bestSeller) {
             console.warn('Tidak ada produk best seller untuk hero');
@@ -795,39 +794,29 @@
 
         console.log('Update Hero Best Seller:', bestSeller);
 
-        // 1. Update gambar hero (menggunakan ID heroMainImage)
         const heroImgEl = document.getElementById('heroMainImage');
         if (heroImgEl && bestSeller.image) {
             heroImgEl.src = bestSeller.image;
             heroImgEl.alt = bestSeller.name;
-            console.log('Hero image updated:', bestSeller.image);
         }
 
-        // 2. Update nama produk di hero (menggunakan class selector yang lebih spesifik)
-        // Cari elemen span dengan class font-serif fw-bold text-white fs-6 di dalam hero section
         const heroNameEl = document.querySelector('#beranda .card .font-serif.fw-bold.text-white.fs-6');
         if (heroNameEl && bestSeller.name) {
             heroNameEl.textContent = bestSeller.name;
-            console.log('Hero name updated:', bestSeller.name);
         }
 
-        // 3. Update deskripsi produk di hero (menggunakan class selector yang lebih spesifik)
         const heroDescEl = document.querySelector('#beranda .card .text-white-50.small.mb-0');
         if (heroDescEl && bestSeller.description) {
-            // Ambil deskripsi singkat untuk hero (maksimal 60 karakter)
             let shortDesc = bestSeller.description;
             if (shortDesc.length > 60) {
                 shortDesc = shortDesc.substring(0, 60) + '...';
             }
             heroDescEl.textContent = shortDesc;
-            console.log('Hero description updated:', shortDesc);
         }
 
-        // 4. Update badge "Best Seller" jika ada
         const badgeEl = document.querySelector('#beranda .card .badge.bg-success.bg-opacity-25');
         if (badgeEl) {
             badgeEl.textContent = '★ Best Seller';
-            console.log('Hero badge updated');
         }
     }
 
@@ -852,13 +841,8 @@
             const slide = document.createElement('div');
             slide.className = 'swiper-slide h-auto';
             
-            // Gunakan gambar dari JSON atau fallback
             const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
-            
-            // Escape nama produk untuk aman di atribut HTML
             const safeName = item.name.replace(/'/g, "\\'");
-            
-            // Ambil deskripsi dari JSON, atau gunakan fallback
             const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
             slide.innerHTML = `
@@ -869,11 +853,9 @@
                             <span class="position-absolute top-0 end-0 m-2 badge ${item.badgeClass} text-white px-2 py-1 rounded-pill small">${item.badge}</span>
                         </div>
                         <div class="p-3">
-                            <!-- SEMUA ELEMEN MENGGUNAKAN SPAN -->
                             <span class="text-muted d-block text-uppercase fw-bold" style="font-size: 9px; letter-spacing: 1px;">${item.badge}</span>
                             <span class="font-serif fw-bold fs-6 text-dark d-block mb-1">${item.name}</span>
                             <span class="fw-bold text-success d-block mb-2 fs-6">${item.price}</span>
-                            <!-- Deskripsi produk dalam span dengan batasan 3 baris -->
                             <span class="text-muted small d-block lh-sm" style="font-size: 11px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px;">${description}</span>
                         </div>
                     </div>
@@ -887,23 +869,49 @@
             wrapper.appendChild(slide);
         });
 
-        // Inisialisasi Swiper dengan tombol navigasi
+        // Hancurkan Swiper sebelumnya jika ada
+        if (productSwiper) {
+            productSwiper.destroy(true, true);
+            productSwiper = null;
+        }
+
+        // Inisialisasi Swiper dengan pengaturan yang benar
         productSwiper = new Swiper('.productSlider', {
-            slidesPerView: 2,
+            slidesPerView: 'auto',
             spaceBetween: 12,
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: '.swiper-pagination', clickable: true },
+            loop: allItems.length > 5,
+            autoplay: { 
+                delay: 4000, 
+                disableOnInteraction: false 
+            },
+            pagination: { 
+                el: '.swiper-pagination', 
+                clickable: true 
+            },
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
-                0: { slidesPerView: 2, spaceBetween: 12 },
-                768: { slidesPerView: 3, spaceBetween: 16 },
-                992: { slidesPerView: 5, spaceBetween: 24 }
-            }
+                0: { 
+                    slidesPerView: 2, 
+                    spaceBetween: 12 
+                },
+                768: { 
+                    slidesPerView: 3, 
+                    spaceBetween: 16 
+                },
+                992: { 
+                    slidesPerView: 5, 
+                    spaceBetween: 24 
+                }
+            },
+            // Pastikan semua slide terlihat
+            watchSlidesProgress: true,
+            watchSlidesVisibility: true
         });
+
+        console.log('Swiper initialized dengan', allItems.length, 'produk');
     }
 
     // ==============================================
