@@ -38,7 +38,7 @@
         "name": "Spanish Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/spanish_latte.webp" 
       }
     ],
     "coffeeLatte": [
@@ -46,43 +46,49 @@
         "name": "Almond Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/almond_latte.webp" 
+      },
+      { 
+        "name": "Aren Latte 1L", 
+        "price": "Rp 80.000", 
+        "rawPrice": 80000, 
+        "image": "assets/img/products/aren_latte.webp" 
       },
       { 
         "name": "Blewah Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/blewah_latte.webp" 
       },
       { 
         "name": "Butter Caramel Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/butter_caramel_latte.webp" 
       },
       { 
-        "name": "Latte Low Sugar 1L", 
+        "name": "Creamy Latte Low Sugar 1L", 
         "price": "Rp 75.000", 
         "rawPrice": 75000, 
-        "image": "https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/creamy_latte_low_sugar.webp" 
       },
       { 
-        "name": "Matcha Latte 1L", 
+        "name": "Longblack 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/longblack.webp" 
       },
       { 
         "name": "Pandan Aren Latte 1L", 
         "price": "Rp 80.000", 
         "rawPrice": 80000, 
-        "image": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/pandan_aren_latte.webp"" 
       },
       { 
         "name": "Praline Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/praline_latte.webp"" 
       }
     ],
     "nonCoffee": [
@@ -90,13 +96,13 @@
         "name": "Double Chocolate 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/double_chocolate.webp" 
       },
       { 
         "name": "Matcha Latte 1L", 
         "price": "Rp 85.000", 
         "rawPrice": 85000, 
-        "image": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&q=80&w=600" 
+        "image": "assets/img/products/matcha_latte.web" 
       }
     ]
   }
