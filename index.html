@@ -1525,8 +1525,8 @@
 
             const allItems = [
                 ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'badge-bestseller', categoryName: 'Favorit' })),
-                ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'badge-coffee', categoryName: 'Kopi 1 Liter' })),
-                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'badge-noncoffee', categoryName: 'Non-Kopi 1 Liter' }))
+                ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'badge-coffee', categoryName: 'Kopi' })),
+                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'badge-noncoffee', categoryName: 'Non-Kopi' }))
             ];
 
             allItems.forEach(item => {
