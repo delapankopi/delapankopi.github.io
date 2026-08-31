@@ -47,8 +47,9 @@
             --sb-green: #006241;
             --sb-green-dark: #003825;
             --sb-green-light: #008556;
-            --coffee-50: #f2f7f4;
-            --hero-overlay: rgba(0, 30, 20, 0.6);
+            --sb-gold: #d4a373;
+            --coffee-50: #f4f7f5;
+            --hero-overlay: rgba(0, 30, 20, 0.65);
         }
 
         html, body {
@@ -173,171 +174,277 @@
             box-shadow: 0 8px 25px rgba(0, 98, 65, 0.4);
         }
 
-        .card-custom {
-            border: 1px solid rgba(0, 98, 65, 0.2);
-            border-radius: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .card-custom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 1rem 3rem rgba(0, 56, 37, 0.15);
-        }
-
-        .swiper-pagination-bullet-active {
-            background-color: var(--sb-green) !important;
+        /* ----------------------------------------------------
+           STYLE TERBARU DENGAN ELEGAN & MODERN UNTUK SLIDER
+        ---------------------------------------------------- */
+        .product-section {
+            background: linear-gradient(180deg, #f2f7f4 0%, #ffffff 100%);
+            padding: 80px 0;
+            position: relative;
         }
 
         .product-slider-wrapper {
             position: relative;
-            padding: 0 45px;
+            padding: 0 50px;
         }
 
         .productSlider {
-            padding: 15px 5px 45px 5px !important;
-            overflow: visible !important;
+            padding: 20px 10px 55px 10px !important;
+            overflow: hidden !important;
         }
 
-        .product-slider-wrapper .swiper-button-next,
-        .product-slider-wrapper .swiper-button-prev {
-            color: var(--sb-green);
-            background: rgba(255, 255, 255, 0.95);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-            transition: all 0.3s;
-            border: 1px solid rgba(0, 98, 65, 0.15);
-            top: 45%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-
-        .product-slider-wrapper .swiper-button-prev {
-            left: 0px;
-        }
-
-        .product-slider-wrapper .swiper-button-next {
-            right: 0px;
-        }
-
-        .product-slider-wrapper .swiper-button-next::after,
-        .product-slider-wrapper .swiper-button-prev::after {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .product-slider-wrapper .swiper-button-next:hover,
-        .product-slider-wrapper .swiper-button-prev:hover {
-            background: var(--sb-green);
-            color: #fff;
-            border-color: var(--sb-green);
-            box-shadow: 0 6px 20px rgba(0, 98, 65, 0.3);
+        .swiper-wrapper {
+            align-items: stretch !important;
         }
 
         .swiper-slide {
             height: auto !important;
             display: flex;
-            justify-content: center;
         }
 
-        .product-slider-wrapper .swiper-wrapper {
-            align-items: stretch !important;
-        }
-
-        .product-slider-wrapper .card-custom {
-            height: 100% !important;
-            width: 100%;
-            display: flex !important;
-            flex-direction: column !important;
+        /* Desain Kartu Produk Superior */
+        .product-card {
+            background: #ffffff;
             border-radius: 1.25rem;
-            overflow: hidden;
-            background: #fff;
-        }
-
-        .product-slider-wrapper .card-custom > div:first-child {
-            flex: 1 1 auto;
+            border: 1px solid rgba(0, 98, 65, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 56, 37, 0.04);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
-        .product-slider-wrapper .card-custom .position-relative {
-            height: 180px !important;
-            flex-shrink: 0;
-            background-color: #f8f9fa;
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(0, 56, 37, 0.12);
+            border-color: rgba(0, 98, 65, 0.3);
+        }
+
+        .product-img-holder {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f8faf9 0%, #eef3f0 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            width: 100%;
+            padding: 15px;
         }
 
-        .product-slider-wrapper .card-custom .position-relative img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain !important;
-            padding: 10px;
-            display: block;
+        .product-img-holder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
         }
 
-        .product-slider-wrapper .card-custom .font-serif.fw-bold.fs-6 {
-            font-size: 0.95rem !important;
+        .product-card:hover .product-img-holder img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            text-uppercase: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .badge-bestseller {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: #ffffff;
+        }
+
+        .badge-coffee {
+            background: linear-gradient(135deg, #006241, #003825);
+            color: #ffffff;
+        }
+
+        .badge-noncoffee {
+            background: linear-gradient(135deg, #0288d1, #01579b);
+            color: #ffffff;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category-tag {
+            font-size: 0.725rem;
+            font-weight: 700;
+            color: var(--sb-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #1a2a25;
             line-height: 1.3;
-            margin-bottom: 0.25rem;
+            margin-bottom: 6px;
         }
 
-        .product-slider-wrapper .card-custom .text-muted.small.d-block.lh-sm {
-            font-size: 0.8rem !important;
-            line-height: 1.4 !important;
+        .product-price {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--sb-green);
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            font-size: 0.8rem;
+            color: #6a7a75;
+            line-height: 1.45;
+            margin-bottom: 18px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
+            flex-grow: 1;
         }
 
+        .btn-order-product {
+            background-color: var(--sb-green);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 98, 65, 0.2);
+            width: 100%;
+        }
+
+        .btn-order-product:hover {
+            background-color: var(--sb-green-light);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(0, 98, 65, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Navigasi Panah Swiper kustom */
+        .product-slider-wrapper .swiper-button-next,
+        .product-slider-wrapper .swiper-button-prev {
+            color: var(--sb-green);
+            background: #ffffff;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            box-shadow: 0 6px 20px rgba(0, 38, 25, 0.12);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 98, 65, 0.15);
+            top: 45%;
+        }
+
+        .product-slider-wrapper .swiper-button-prev {
+            left: 2px;
+        }
+
+        .product-slider-wrapper .swiper-button-next {
+            right: 2px;
+        }
+
+        .product-slider-wrapper .swiper-button-next::after,
+        .product-slider-wrapper .swiper-button-prev::after {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .product-slider-wrapper .swiper-button-next:hover,
+        .product-slider-wrapper .swiper-button-prev:hover {
+            background: var(--sb-green);
+            color: #ffffff;
+            border-color: var(--sb-green);
+            box-shadow: 0 8px 22px rgba(0, 98, 65, 0.35);
+        }
+
+        /* Swiper Pagination Bullets */
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: #a3c2b5;
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 26px;
+            border-radius: 12px;
+            background: var(--sb-green) !important;
+            opacity: 1;
+        }
+
+        /* Penyesuaian Responsif Slider */
         @media (max-width: 576px) {
+            .product-section {
+                padding: 50px 0;
+            }
             .product-slider-wrapper {
                 padding: 0;
             }
             .productSlider {
-                overflow: hidden !important;
-                padding-bottom: 40px !important;
+                padding: 10px 5px 45px 5px !important;
+            }
+            .product-img-holder {
+                height: 160px;
+            }
+            .product-info {
+                padding: 15px;
+            }
+            .product-title {
+                font-size: 0.95rem;
+            }
+            .product-price {
+                font-size: 0.9rem;
+            }
+            .product-desc {
+                font-size: 0.75rem;
+                margin-bottom: 12px;
             }
             .product-slider-wrapper .swiper-button-next,
             .product-slider-wrapper .swiper-button-prev {
                 display: none !important;
             }
-            .product-slider-wrapper .card-custom .position-relative {
-                height: 140px !important;
-            }
-            .product-slider-wrapper .card-custom .font-serif.fw-bold.fs-6 {
-                font-size: 0.85rem !important;
-            }
-            .product-slider-wrapper .card-custom .text-muted.small.d-block.lh-sm {
-                font-size: 0.75rem !important;
-                -webkit-line-clamp: 2;
-            }
         }
 
         @media (min-width: 577px) and (max-width: 768px) {
             .product-slider-wrapper {
-                padding: 0 35px;
+                padding: 0 25px;
             }
             .product-slider-wrapper .swiper-button-next,
             .product-slider-wrapper .swiper-button-prev {
-                width: 34px;
-                height: 34px;
+                width: 38px;
+                height: 38px;
             }
             .product-slider-wrapper .swiper-button-next::after,
             .product-slider-wrapper .swiper-button-prev::after {
                 font-size: 14px;
             }
-            .product-slider-wrapper .card-custom .position-relative {
-                height: 160px !important;
-            }
         }
 
+        /* Style Lainnya */
         .floating-wa {
             position: fixed;
             bottom: 25px;
@@ -383,28 +490,6 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff !important;
-        }
-
-        .hero-section .badge .text-success {
-            color: #8bc34a !important;
-        }
-
-        .hero-section .text-shadow {
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .btn-detect-location.loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .btn-detect-location.loading i {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .location-toast {
@@ -483,10 +568,6 @@
             transition: color 0.2s;
         }
 
-        .location-toast .toast-close:hover {
-            color: #6a7a75;
-        }
-
         .location-tooltip {
             display: none;
             background: #fff;
@@ -501,16 +582,6 @@
 
         .location-tooltip.show {
             display: block;
-        }
-
-        .location-tooltip .success {
-            color: #198754;
-            font-weight: 600;
-        }
-
-        .location-tooltip .error {
-            color: #dc3545;
-            font-weight: 600;
         }
 
         .pulse-marker {
@@ -555,12 +626,6 @@
                 max-width: 340px;
                 padding: 12px 16px;
                 width: 92%;
-            }
-            .location-toast .toast-title {
-                font-size: 0.78rem;
-            }
-            .location-toast .toast-message {
-                font-size: 0.7rem;
             }
         }
     </style>
@@ -714,19 +779,21 @@
         </div>
     </section>
 
-    <!-- Menu Varian Produk -->
-    <section id="menu" class="py-5 overflow-hidden" style="background-color: var(--coffee-50);">
-        <div class="container py-4">
+    <!-- Menu Varian Produk Slider (PERBAIKAN TAMPILAN MODEREN SLIDER) -->
+    <section id="menu" class="product-section">
+        <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
-                <span class="text-uppercase fw-bold tracking-widest" style="font-size: 11px; color: var(--sb-green);">Katalog Produk</span>
-                <h2 class="font-serif fw-bold fs-2 mt-2">Daftar Menu & Varian Botol 1L</h2>
-                <p class="text-muted small mt-2">Geser untuk melihat menu pilihan favorit asli Delapan Kopi.</p>
+                <span class="text-uppercase fw-bold tracking-widest text-success" style="font-size: 11px;">Katalog Pilihan</span>
+                <h2 class="font-serif fw-bold fs-2 mt-1">Daftar Menu & Varian Botol 1L</h2>
+                <p class="text-muted small mt-2">Geser kartu untuk menjelajahi sajian kopi & minuman segar racikan khas Delapan Kopi.</p>
                 <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
             </div>
 
-            <div class="product-slider-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="product-slider-wrapper" data-aos="fade-up" data-aos-delay="150">
                 <div class="swiper productSlider">
-                    <div class="swiper-wrapper" id="productSliderWrapper"></div>
+                    <div class="swiper-wrapper" id="productSliderWrapper">
+                        <!-- Slide produk akan dimuat secara dinamis via JS -->
+                    </div>
                     <div class="swiper-pagination"></div>
                 </div>
                 <div class="swiper-button-prev d-none d-md-flex"></div>
@@ -764,7 +831,7 @@
                 <div class="col-lg-7" data-aos="fade-left">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <div class="card card-custom bg-light h-100 p-4 border shadow-sm d-flex flex-column justify-content-between">
+                            <div class="card bg-light h-100 p-4 border rounded-4 shadow-sm d-flex flex-column justify-content-between">
                                 <div>
                                     <span class="badge bg-success bg-opacity-25 text-success fw-bold px-2 py-1 rounded-pill small mb-2">Paket Arisan / Sedang</span>
                                     <h4 class="font-serif fs-5 fw-bold mb-1">Dispenser 8 Liter</h4>
@@ -778,7 +845,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="card card-custom bg-light h-100 p-4 border shadow-sm d-flex flex-column justify-content-between">
+                            <div class="card bg-light h-100 p-4 border rounded-4 shadow-sm d-flex flex-column justify-content-between">
                                 <div>
                                     <span class="badge bg-dark text-white fw-bold px-2 py-1 rounded-pill small mb-2">Paket Resepsi / Besar</span>
                                     <h4 class="font-serif fs-5 fw-bold mb-1">Dispenser 16 Liter</h4>
@@ -1088,15 +1155,16 @@
             }
         }
 
+        /* Render Produk dengan Desain Kartu Slider Baru yang Modern */
         function renderProducts() {
             const wrapper = document.getElementById('productSliderWrapper');
             if (!wrapper || !siteConfig.products) return;
             wrapper.innerHTML = '';
 
             const allItems = [
-                ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
-                ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
-                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
+                ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'badge-bestseller', categoryName: 'Favorit' })),
+                ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'badge-coffee', categoryName: 'Kopi 1 Liter' })),
+                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'badge-noncoffee', categoryName: 'Non-Kopi 1 Liter' }))
             ];
 
             allItems.forEach(item => {
@@ -1108,22 +1176,18 @@
                 const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
                 slide.innerHTML = `
-                    <div class="card card-custom shadow-sm">
-                        <div>
-                            <div class="position-relative">
-                                <img src="${imgSrc}" alt="${item.name}" loading="lazy">
-                                <span class="position-absolute top-0 end-0 m-2 badge ${item.badgeClass} text-white px-2 py-1 rounded-pill small">${item.badge}</span>
-                            </div>
-                            <div class="p-3 d-flex flex-column" style="flex: 1;">
-                                <span class="text-muted d-block text-uppercase fw-bold mb-1" style="font-size: 9px; letter-spacing: 1px;">${item.badge}</span>
-                                <span class="font-serif fw-bold fs-6 text-dark d-block">${item.name}</span>
-                                <span class="fw-bold text-success d-block mb-2 fs-6">${item.price}</span>
-                                <span class="text-muted small d-block lh-sm">${description}</span>
-                            </div>
+                    <div class="product-card">
+                        <div class="product-img-holder">
+                            <span class="product-badge ${item.badgeClass}">${item.badge}</span>
+                            <img src="${imgSrc}" alt="${item.name}" loading="lazy">
                         </div>
-                        <div class="p-3 pt-0">
-                            <button type="button" onclick="openOrderModal('${safeName}')" class="btn btn-success w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2 shadow-sm small">
-                                <i class="fa-solid fa-bag-shopping"></i> Pesan
+                        <div class="product-info">
+                            <span class="product-category-tag">${item.categoryName}</span>
+                            <h3 class="product-title">${item.name}</h3>
+                            <div class="product-price">${item.price}</div>
+                            <p class="product-desc">${description}</p>
+                            <button type="button" onclick="openOrderModal('${safeName}')" class="btn-order-product">
+                                <i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang
                             </button>
                         </div>
                     </div>
@@ -1138,13 +1202,14 @@
 
             setTimeout(() => {
                 productSwiper = new Swiper('.productSlider', {
-                    slidesPerView: 1.3,
-                    spaceBetween: 14,
+                    slidesPerView: 1.2,
+                    spaceBetween: 16,
                     loop: allItems.length > 4,
-                    centeredSlides: false,
+                    grabCursor: true,
                     autoplay: { 
-                        delay: 4000, 
-                        disableOnInteraction: false 
+                        delay: 4500, 
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
                     },
                     pagination: { 
                         el: '.swiper-pagination', 
@@ -1155,9 +1220,9 @@
                         prevEl: '.swiper-button-prev',
                     },
                     breakpoints: {
-                        576: { slidesPerView: 2, spaceBetween: 16 },
+                        576: { slidesPerView: 2, spaceBetween: 18 },
                         768: { slidesPerView: 3, spaceBetween: 20 },
-                        992: { slidesPerView: 4, spaceBetween: 24 }
+                        1200: { slidesPerView: 4, spaceBetween: 24 }
                     }
                 });
             }, 100);
@@ -1203,7 +1268,7 @@
                         showToast('success', '✅ Lokasi Terdeteksi!', `Koordinat: ${currentLat}, ${currentLng}`);
                         
                         if (tooltip) {
-                            tooltip.innerHTML = '<i class="fa-solid fa-check-circle text-success me-1"></i> <span class="success">Lokasi berhasil dideteksi!</span>';
+                            tooltip.innerHTML = '<i class="fa-solid fa-check-circle text-success me-1"></i> <span class="text-success fw-bold">Lokasi berhasil dideteksi!</span>';
                             setTimeout(() => { tooltip.classList.remove('show'); }, 3000);
                         }
                         
@@ -1230,7 +1295,7 @@
                         showToast('error', '❌ Gagal Deteksi', errorMessage);
                         
                         if (tooltip) {
-                            tooltip.innerHTML = '<i class="fa-solid fa-circle-exclamation text-danger me-1"></i> <span class="error">' + errorMessage + '</span>';
+                            tooltip.innerHTML = '<i class="fa-solid fa-circle-exclamation text-danger me-1"></i> <span class="text-danger fw-bold">' + errorMessage + '</span>';
                             setTimeout(() => { tooltip.classList.remove('show'); }, 5000);
                         }
                         
