@@ -895,7 +895,7 @@
                 }
 
                 if (siteConfig.products.coffeeLatte && siteConfig.products.coffeeLatte.length > 0) {
-                    optionsHtml += '<optgroup label="-- COFFEE LATTE --">';
+                    optionsHtml += '<optgroup label="-- COFFEE --">';
                     siteConfig.products.coffeeLatte.forEach(p => {
                         const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
                         const isSelected = (p.name === selectedName) ? 'selected' : '';
