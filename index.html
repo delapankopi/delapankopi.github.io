@@ -75,6 +75,98 @@
             padding-bottom: 12px;
         }
 
+        /* ===== PERBAIKAN: Dropdown konsisten dengan navbar ===== */
+        .navbar-custom .dropdown-menu {
+            background-color: rgba(0, 56, 37, 0.98) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-custom .dropdown-item {
+            color: rgba(255, 255, 255, 0.7) !important;
+            transition: all 0.3s;
+            padding: 10px 20px;
+        }
+
+        .navbar-custom .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+        }
+
+        .navbar-custom .dropdown-item:active {
+            background-color: var(--sb-green) !important;
+            color: #ffffff !important;
+        }
+
+        .navbar-custom .dropdown-divider {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* ===== PERBAIKAN: Burger menu jadi X ===== */
+        .navbar-toggler {
+            border: none !important;
+            padding: 8px 10px !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none !important;
+        }
+
+        .navbar-toggler-icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-toggler-icon-wrapper span {
+            display: block;
+            width: 100%;
+            height: 2.5px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon-wrapper span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon-wrapper span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon-wrapper span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* Responsif dropdown di mobile */
+        @media (max-width: 991.98px) {
+            .navbar-custom .dropdown-menu {
+                background-color: rgba(0, 56, 37, 0.95) !important;
+                border: none;
+                border-radius: 0;
+                padding-left: 20px;
+            }
+            
+            .navbar-custom .dropdown-item {
+                color: rgba(255, 255, 255, 0.6) !important;
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+            
+            .navbar-custom .dropdown-item:hover {
+                background-color: transparent !important;
+                color: #ffffff !important;
+            }
+        }
+
         .navbar-brand .brand-logo-container {
             width: 36px !important;
             height: 36px !important;
@@ -172,6 +264,13 @@
             border-color: var(--sb-green-light);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 98, 65, 0.4);
+        }
+
+        /* ===== PERBAIKAN: Hero card tampil di semua ukuran ===== */
+        .hero-card {
+            max-width: 380px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         /* ----------------------------------------------------
@@ -309,7 +408,6 @@
             margin-bottom: 8px;
         }
 
-        /* ===== PERBAIKAN: Deskripsi tidak terpotong ===== */
         .product-desc {
             font-size: 0.8rem;
             color: #6a7a75;
@@ -396,7 +494,7 @@
         }
 
         /* ============================================================
-           PENYESUAIAN KHUSUS SMARTPHONE - TAMPIL 2 SLIDE RAPI
+           PENYESUAIAN KHUSUS SMARTPHONE
            ============================================================ */
         @media (max-width: 576px) {
             .product-section {
@@ -423,7 +521,6 @@
                 font-size: 0.8rem;
                 margin-bottom: 4px;
             }
-            /* ===== PERBAIKAN: Deskripsi tidak terpotong di HP ===== */
             .product-desc {
                 font-size: 0.7rem;
                 margin-bottom: 8px;
@@ -461,9 +558,55 @@
                 top: 8px;
                 right: 8px;
             }
+            /* Perbaikan hero di mobile */
+            .hero-section {
+                padding-top: 100px;
+                padding-bottom: 60px;
+                min-height: auto;
+            }
+            .hero-section h1 {
+                font-size: 1.8rem !important;
+            }
+            .hero-section .fs-5 {
+                font-size: 1rem !important;
+            }
+            .hero-card {
+                max-width: 280px;
+            }
+            .navbar-brand .brand-logo-container {
+                width: 30px !important;
+                height: 30px !important;
+            }
+            .navbar-brand .brand-logo-container span {
+                font-size: 14px !important;
+            }
+            #navBrand {
+                font-size: 15px !important;
+            }
+            #navTagline {
+                font-size: 7px !important;
+            }
+            .navbar-brand {
+                gap: 8px !important;
+            }
+            footer .brand-logo-container {
+                width: 24px !important;
+                height: 24px !important;
+            }
+            footer .brand-logo-container span {
+                font-size: 12px !important;
+            }
+            footer .font-serif.fs-5 {
+                font-size: 14px !important;
+            }
+            .location-toast {
+                top: 60px;
+                max-width: 340px;
+                padding: 12px 16px;
+                width: 92%;
+            }
         }
 
-        /* Tablet kecil (577px - 768px) - tetap tampil 2 slide */
         @media (min-width: 577px) and (max-width: 768px) {
             .product-slider-wrapper {
                 padding: 0 20px;
@@ -479,6 +622,9 @@
             .product-slider-wrapper .swiper-button-next::after,
             .product-slider-wrapper .swiper-button-prev::after {
                 font-size: 13px;
+            }
+            .hero-card {
+                max-width: 320px;
             }
         }
 
@@ -631,41 +777,6 @@
             50% { transform: scale(1.3); opacity: 0.7; }
             100% { transform: scale(1); opacity: 1; }
         }
-
-        @media (max-width: 576px) {
-            .navbar-brand .brand-logo-container {
-                width: 30px !important;
-                height: 30px !important;
-            }
-            .navbar-brand .brand-logo-container span {
-                font-size: 14px !important;
-            }
-            #navBrand {
-                font-size: 15px !important;
-            }
-            #navTagline {
-                font-size: 7px !important;
-            }
-            .navbar-brand {
-                gap: 8px !important;
-            }
-            footer .brand-logo-container {
-                width: 24px !important;
-                height: 24px !important;
-            }
-            footer .brand-logo-container span {
-                font-size: 12px !important;
-            }
-            footer .font-serif.fs-5 {
-                font-size: 14px !important;
-            }
-            .location-toast {
-                top: 60px;
-                max-width: 340px;
-                padding: 12px 16px;
-                width: 92%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -703,8 +814,13 @@
                     <span id="navTagline" class="text-warning text-uppercase fw-semibold d-block mt-1">Satu Liter Kebaikan Nusantara</span>
                 </div>
             </a>
+            <!-- ===== PERBAIKAN: Burger menu custom ===== -->
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa-solid fa-bars text-white fs-4"></i>
+                <div class="navbar-toggler-icon-wrapper">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-lg-center gap-lg-4 my-3 my-lg-0">
@@ -714,9 +830,9 @@
                         <a class="nav-link dropdown-toggle text-white-50" href="#" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Daftar Menu & Paket Dispenser
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark rounded-3 shadow border-secondary" aria-labelledby="navbarDropdownMenu">
+                        <ul class="dropdown-menu rounded-3 shadow" aria-labelledby="navbarDropdownMenu">
                             <li><a class="dropdown-item py-2" href="#menu"><i class="fa-solid fa-mug-hot me-2 text-warning"></i>Daftar Menu</a></li>
-                            <li><hr class="dropdown-divider border-secondary my-1"></li>
+                            <li><hr class="dropdown-divider my-1"></li>
                             <li><a class="dropdown-item py-2" href="#menu-jar"><i class="fa-solid fa-whiskey-glass me-2 text-success"></i>Paket Dispenser Acara</a></li>
                         </ul>
                     </li>
@@ -756,9 +872,10 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative w-100" style="max-width: 380px; aspect-ratio: 4/5; margin: 0 auto;">
-                        <img id="heroMainImage" src="" alt="Hero Image" class="w-100 h-100 object-fit-cover">
+                <!-- ===== PERBAIKAN: Hero card tampil di semua ukuran ===== -->
+                <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="card bg-dark border-secondary rounded-4 shadow-lg overflow-hidden position-relative hero-card">
+                        <img id="heroMainImage" src="" alt="Hero Image" class="w-100" style="aspect-ratio: 4/5; object-fit: cover;">
                         <div class="position-absolute bottom-0 start-0 end-0 p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);">
                             <div class="bg-dark bg-opacity-75 backdrop-blur p-3 rounded-3 border border-secondary shadow">
                                 <div class="d-flex justify-content-between align-items-center mb-1">
@@ -784,40 +901,40 @@
             </div>
 
             <div class="row g-4">
-    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
-            <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
-                <i class="fa-solid fa-bottle-water fs-5"></i>
-            </div>
-            <h3 class="font-serif fs-5 fw-bold mb-2">Higienis & Steril</h3>
-            <p class="text-muted small lh-base mb-0">Botol, wadah jar, dan keran disterilisasi ketat serta dikemas menggunakan standar kebersihan dapur profesional.</p>
-        </div>
-    </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
+                            <i class="fa-solid fa-bottle-water fs-5"></i>
+                        </div>
+                        <h3 class="font-serif fs-5 fw-bold mb-2">Higienis & Steril</h3>
+                        <p class="text-muted small lh-base mb-0">Botol, wadah jar, dan keran disterilisasi ketat serta dikemas menggunakan standar kebersihan dapur profesional.</p>
+                    </div>
+                </div>
 
-    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
-            <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
-                <i class="fa-solid fa-seedling fs-5"></i>
-            </div>
-            <h3 class="font-serif fs-5 fw-bold mb-2">Bahan Baku Premium</h3>
-            <p class="text-muted small lh-base mb-0">Memakai biji kopi pilihan, ekstrak daun pandan asli, susu segar murni, serta pemanis berkualitas tinggi.</p>
-        </div>
-    </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
+                            <i class="fa-solid fa-seedling fs-5"></i>
+                        </div>
+                        <h3 class="font-serif fs-5 fw-bold mb-2">Bahan Baku Premium</h3>
+                        <p class="text-muted small lh-base mb-0">Memakai biji kopi pilihan, ekstrak daun pandan asli, susu segar murni, serta pemanis berkualitas tinggi.</p>
+                    </div>
+                </div>
 
-    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
-            <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
-                <i class="fa-solid fa-wallet fs-5"></i>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-4 rounded-4 h-100 bg-light border border-light-subtle shadow-sm text-center d-flex flex-column align-items-center">
+                        <div class="d-flex align-items-center justify-content-center rounded-3 text-white mb-4 shadow" style="width: 50px; height: 50px; background-color: var(--sb-green); flex-shrink: 0;">
+                            <i class="fa-solid fa-wallet fs-5"></i>
+                        </div>
+                        <h3 class="font-serif fs-5 fw-bold mb-2">Solusi Berbagai Acara</h3>
+                        <p class="text-muted small lh-base mb-0">Tersedia kemasan 1 liter untuk stok harian dan paket kemasan dispenser besar (8L/16L) yang sangat praktis untuk jamuan prasmanan.</p>
+                    </div>
+                </div>
             </div>
-            <h3 class="font-serif fs-5 fw-bold mb-2">Solusi Berbagai Acara</h3>
-            <p class="text-muted small lh-base mb-0">Tersedia kemasan 1 liter untuk stok harian dan paket kemasan dispenser besar (8L/16L) yang sangat praktis untuk jamuan prasmanan.</p>
-        </div>
-    </div>
-</div>
         </div>
     </section>
 
-    <!-- Menu Varian Produk Slider (TAMPIL 2 SLIDE DI SMARTPHONE) -->
+    <!-- Menu Varian Produk Slider -->
     <section id="menu" class="product-section">
         <div class="container">
             <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
@@ -1078,6 +1195,27 @@
                 });
             }
 
+            // ===== PERBAIKAN: Auto close navbar di mobile =====
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
+            const navbarCollapse = document.getElementById('navbarNav');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                        if (bsCollapse) {
+                            bsCollapse.hide();
+                        } else {
+                            navbarCollapse.classList.remove('show');
+                        }
+                        if (navbarToggler) {
+                            navbarToggler.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                });
+            });
+
             fetch('content.json')
                 .then(response => response.json())
                 .then(data => {
@@ -1163,6 +1301,7 @@
             AOS.init({ duration: 800, once: true, offset: 100 });
         });
 
+        // ===== PERBAIKAN: Deskripsi best seller FULL tanpa potongan =====
         function updateHeroBestSeller() {
             const bestSeller = siteConfig.products?.bestSeller?.[0];
             if (!bestSeller) return;
@@ -1180,11 +1319,8 @@
 
             const heroDescEl = document.querySelector('#beranda .card .text-white-50.small.mb-0');
             if (heroDescEl && bestSeller.description) {
-                let shortDesc = bestSeller.description;
-                if (shortDesc.length > 150) {
-                    shortDesc = shortDesc.substring(0, 150) + '...';
-                }
-                heroDescEl.textContent = shortDesc;
+                // Tampilkan FULL tanpa dipotong
+                heroDescEl.textContent = bestSeller.description;
             }
 
             const badgeEl = document.querySelector('#beranda .card .badge.bg-success.bg-opacity-25');
@@ -1258,7 +1394,6 @@
                         prevEl: '.swiper-button-prev',
                     },
                     breakpoints: {
-                        // Tampil 2 slide di HP
                         0: { 
                             slidesPerView: 2, 
                             spaceBetween: 10,
