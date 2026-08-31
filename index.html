@@ -683,7 +683,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Script Penggerak & Sinkronisasi JSON - REVISI LENGKAP DENGAN SPAN + HERO BEST SELLER -->
+<!-- Script Penggerak & Sinkronisasi JSON - REVISI FINAL -->
 <script>
     let siteConfig = {};
     let orderModalInstance = null;
@@ -788,36 +788,51 @@
     function updateHeroBestSeller() {
         // Ambil produk pertama dari bestSeller sebagai hero
         const bestSeller = siteConfig.products?.bestSeller?.[0];
-        if (!bestSeller) return;
+        if (!bestSeller) {
+            console.warn('Tidak ada produk best seller untuk hero');
+            return;
+        }
 
-        // Update gambar hero
+        console.log('Update Hero Best Seller:', bestSeller);
+
+        // 1. Update gambar hero (menggunakan ID heroMainImage)
         const heroImgEl = document.getElementById('heroMainImage');
         if (heroImgEl && bestSeller.image) {
             heroImgEl.src = bestSeller.image;
             heroImgEl.alt = bestSeller.name;
+            console.log('Hero image updated:', bestSeller.image);
         }
 
-        // Update nama produk di hero
-        const heroNameEl = document.querySelector('.hero-section .font-serif.fw-bold.text-white.fs-6');
+        // 2. Update nama produk di hero (menggunakan class selector yang lebih spesifik)
+        // Cari elemen span dengan class font-serif fw-bold text-white fs-6 di dalam hero section
+        const heroNameEl = document.querySelector('#beranda .card .font-serif.fw-bold.text-white.fs-6');
         if (heroNameEl && bestSeller.name) {
             heroNameEl.textContent = bestSeller.name;
+            console.log('Hero name updated:', bestSeller.name);
         }
 
-        // Update badge best seller (sudah ada)
-        // Update deskripsi produk di hero
-        const heroDescEl = document.querySelector('.hero-section .text-white-50.small.mb-0');
+        // 3. Update deskripsi produk di hero (menggunakan class selector yang lebih spesifik)
+        const heroDescEl = document.querySelector('#beranda .card .text-white-50.small.mb-0');
         if (heroDescEl && bestSeller.description) {
-            // Ambil deskripsi singkat untuk hero (maksimal 50 karakter atau potong)
+            // Ambil deskripsi singkat untuk hero (maksimal 60 karakter)
             let shortDesc = bestSeller.description;
-            if (shortDesc.length > 50) {
-                shortDesc = shortDesc.substring(0, 50) + '...';
+            if (shortDesc.length > 60) {
+                shortDesc = shortDesc.substring(0, 60) + '...';
             }
             heroDescEl.textContent = shortDesc;
+            console.log('Hero description updated:', shortDesc);
+        }
+
+        // 4. Update badge "Best Seller" jika ada
+        const badgeEl = document.querySelector('#beranda .card .badge.bg-success.bg-opacity-25');
+        if (badgeEl) {
+            badgeEl.textContent = '★ Best Seller';
+            console.log('Hero badge updated');
         }
     }
 
     // ==============================================
-    // FUNGSI RENDER PRODUCTS - SEMUA ELEMEN MENGGUNAKAN SPAN
+    // FUNGSI RENDER PRODUCTS - SEMUA PRODUK TAMPIL
     // ==============================================
     function renderProducts() {
         const wrapper = document.getElementById('productSliderWrapper');
@@ -830,6 +845,8 @@
             ...(siteConfig.products.coffeeLatte || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
             ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'bg-info text-dark' }))
         ];
+
+        console.log('Total produk yang dirender:', allItems.length);
 
         allItems.forEach(item => {
             const slide = document.createElement('div');
