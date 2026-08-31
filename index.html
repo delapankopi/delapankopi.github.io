@@ -240,7 +240,6 @@
         .swiper-slide {
             height: auto !important;
             width: auto !important;
-            max-width: 280px;
             flex-shrink: 0;
         }
 
@@ -270,12 +269,17 @@
         .product-slider-wrapper .card-custom .position-relative {
             height: 180px !important;
             flex-shrink: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .product-slider-wrapper .card-custom .position-relative img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain !important;
+            padding: 8px;
         }
 
         .product-slider-wrapper .card-custom .font-serif.fw-bold.fs-6 {
@@ -894,7 +898,7 @@
 
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <label class="form-label fw-semibold small mb-0">Ketuk Deteksi Lokasi Pengiriman</label>
-                                <button type="button" onclick="detectUserLocation()" class="btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
+                                <button type="button" onclick="detectUserLocation()" class="btn-detect-location btn btn-outline-success btn-sm py-1 px-3 rounded-pill" style="font-size: 11px;">
                                     <i class="fa-solid fa-location-crosshairs me-1"></i> Deteksi Lokasi
                                 </button>
                             </div>
@@ -1048,17 +1052,26 @@
                     }
                     
                     const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
-                    document.getElementById('floatingWaBtn').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20bertanya%20seputar%20produk%20Delapan%20Kopi.%20%F0%9F%91%8B`;
+                    
+                    // Floating WhatsApp
+                    const floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
+                    document.getElementById('floatingWaBtn').href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
+                    
                     document.getElementById('footerWa').href = waFormatted;
                     document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
                     document.getElementById('socialWa').href = waFormatted;
 
+                    // Jar 8L
+                    const jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+                    document.getElementById('jarBtn8L').href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
+                    
+                    // Jar 16L
+                    const jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+                    document.getElementById('jarBtn16L').href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
+
                     if (siteConfig.instagram) document.getElementById('footerIg').href = siteConfig.instagram;
                     if (siteConfig.facebook) document.getElementById('footerFb').href = siteConfig.facebook;
                     if (siteConfig.tiktok) document.getElementById('footerTiktok').href = siteConfig.tiktok;
-
-                    document.getElementById('jarBtn8L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%208%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
-                    document.getElementById('jarBtn16L').href = `${waFormatted}?text=Halo%20kak%2C%20saya%20ingin%20konsultasi%20dan%20pesan%20paket%20*Dispenser%2016%20Liter*%20untuk%20acara%20saya.%20Mohon%20info%20detailnya%20ya!%20%F0%9F%99%8F`;
 
                     renderProducts();
                 })
@@ -1108,7 +1121,6 @@
             if (!wrapper || !siteConfig.products) return;
             wrapper.innerHTML = '';
 
-            // PERBAIKAN: Gunakan 'coffee' bukan 'coffeeLatte' sesuai JSON
             const allItems = [
                 ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'bg-success' })),
                 ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'bg-secondary' })),
@@ -1129,7 +1141,7 @@
                     <div class="card card-custom bg-white h-100 d-flex flex-column overflow-hidden shadow-sm">
                         <div>
                             <div class="position-relative overflow-hidden">
-                                <img src="${imgSrc}" alt="${item.name}" class="w-100 h-100 object-fit-cover" loading="lazy">
+                                <img src="${imgSrc}" alt="${item.name}" class="w-100 h-100" loading="lazy">
                                 <span class="position-absolute top-0 end-0 m-2 badge ${item.badgeClass} text-white px-2 py-1 rounded-pill small">${item.badge}</span>
                             </div>
                             <div class="p-3 d-flex flex-column" style="flex: 1;">
@@ -1149,18 +1161,16 @@
                 wrapper.appendChild(slide);
             });
 
-            // Hancurkan Swiper sebelumnya jika ada
             if (productSwiper) {
                 productSwiper.destroy(true, true);
                 productSwiper = null;
             }
 
-            // Inisialisasi Swiper
             setTimeout(() => {
                 productSwiper = new Swiper('.productSlider', {
                     slidesPerView: 'auto',
                     spaceBetween: 16,
-                    loop: allItems.length > 4,
+                    loop: allItems.length > 5,
                     centeredSlides: false,
                     autoplay: { 
                         delay: 4000, 
@@ -1177,23 +1187,28 @@
                     breakpoints: {
                         0: { 
                             slidesPerView: 2, 
-                            spaceBetween: 12 
+                            spaceBetween: 12,
+                            slidesPerGroup: 1
                         },
                         576: { 
-                            slidesPerView: 2.5, 
-                            spaceBetween: 14 
+                            slidesPerView: 2.2, 
+                            spaceBetween: 14,
+                            slidesPerGroup: 1
                         },
                         768: { 
                             slidesPerView: 3, 
-                            spaceBetween: 16 
+                            spaceBetween: 16,
+                            slidesPerGroup: 1
                         },
                         992: { 
                             slidesPerView: 4, 
-                            spaceBetween: 20 
+                            spaceBetween: 20,
+                            slidesPerGroup: 1
                         },
                         1200: { 
-                            slidesPerView: 5, 
-                            spaceBetween: 24 
+                            slidesPerView: 4, 
+                            spaceBetween: 24,
+                            slidesPerGroup: 1
                         }
                     },
                     watchSlidesProgress: true,
@@ -1204,10 +1219,15 @@
         }
 
         // ==============================================
-        // FUNGSI DETEKSI LOKASI - DIPERBAIKI DENGAN TOAST
+        // FUNGSI DETEKSI LOKASI - DIPERBAIKI
         // ==============================================
         function detectUserLocation() {
             const btn = document.querySelector('.btn-detect-location');
+            if (!btn) {
+                console.error('Tombol deteksi lokasi tidak ditemukan');
+                return;
+            }
+            
             const originalHtml = btn.innerHTML;
             
             // Tampilkan loading
@@ -1233,7 +1253,6 @@
                         if (map && marker) {
                             map.setView(latLng, 16);
                             marker.setLatLng(latLng);
-                            // Animasi pulse pada marker
                             const markerElement = marker.getElement();
                             if (markerElement) {
                                 markerElement.classList.add('pulse-marker');
@@ -1245,7 +1264,6 @@
                         
                         document.getElementById('coordDisplay').innerText = `${currentLat}, ${currentLng}`;
                         
-                        // Toast sukses
                         showToast('success', '✅ Lokasi Terdeteksi!', `Koordinat: ${currentLat}, ${currentLng}`);
                         
                         if (tooltip) {
@@ -1542,7 +1560,16 @@
                 return;
             }
 
-            const textMessage = `Halo kak 👋\n\nIzin pesan produk berikut:\n${itemsText.trim()}\n\n*Estimasi Total:* *Rp ${grandTotal.toLocaleString('id-ID')}*\n\n*Nama Pemesan:* ${name}\n*Detail Alamat:* ${address}\n*Titik Google Maps:* ${mapsLink}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏`;
+            // Gunakan template dari content.json
+            const template = siteConfig.whatsapp_messages?.order_template || 
+                "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
+            
+            const textMessage = template
+                .replace(/{items}/g, itemsText.trim())
+                .replace(/{total}/g, grandTotal.toLocaleString('id-ID'))
+                .replace(/{name}/g, name)
+                .replace(/{address}/g, address)
+                .replace(/{maps}/g, mapsLink);
 
             const encodedMessage = encodeURIComponent(textMessage);
             const whatsappUrl = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}?text=${encodedMessage}`;
