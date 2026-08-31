@@ -683,7 +683,7 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Script Penggerak & Sinkronisasi JSON - REVISI LENGKAP DENGAN SPAN -->
+<!-- Script Penggerak & Sinkronisasi JSON - REVISI LENGKAP DENGAN SPAN + HERO BEST SELLER -->
 <script>
     let siteConfig = {};
     let orderModalInstance = null;
@@ -745,6 +745,11 @@
                     }
                 }
 
+                // ==============================================
+                // PERBAIKAN: UPDATE HERO BEST SELLER DARI JSON
+                // ==============================================
+                updateHeroBestSeller();
+
                 if (siteConfig.brand) document.getElementById('navBrand').innerText = siteConfig.brand;
                 if (siteConfig.tagline) document.getElementById('navTagline').innerText = siteConfig.tagline;
                 if (siteConfig.address) document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
@@ -776,6 +781,40 @@
 
         AOS.init({ duration: 800, once: true, offset: 100 });
     });
+
+    // ==============================================
+    // FUNGSI UPDATE HERO BEST SELLER DARI JSON
+    // ==============================================
+    function updateHeroBestSeller() {
+        // Ambil produk pertama dari bestSeller sebagai hero
+        const bestSeller = siteConfig.products?.bestSeller?.[0];
+        if (!bestSeller) return;
+
+        // Update gambar hero
+        const heroImgEl = document.getElementById('heroMainImage');
+        if (heroImgEl && bestSeller.image) {
+            heroImgEl.src = bestSeller.image;
+            heroImgEl.alt = bestSeller.name;
+        }
+
+        // Update nama produk di hero
+        const heroNameEl = document.querySelector('.hero-section .font-serif.fw-bold.text-white.fs-6');
+        if (heroNameEl && bestSeller.name) {
+            heroNameEl.textContent = bestSeller.name;
+        }
+
+        // Update badge best seller (sudah ada)
+        // Update deskripsi produk di hero
+        const heroDescEl = document.querySelector('.hero-section .text-white-50.small.mb-0');
+        if (heroDescEl && bestSeller.description) {
+            // Ambil deskripsi singkat untuk hero (maksimal 50 karakter atau potong)
+            let shortDesc = bestSeller.description;
+            if (shortDesc.length > 50) {
+                shortDesc = shortDesc.substring(0, 50) + '...';
+            }
+            heroDescEl.textContent = shortDesc;
+        }
+    }
 
     // ==============================================
     // FUNGSI RENDER PRODUCTS - SEMUA ELEMEN MENGGUNAKAN SPAN
