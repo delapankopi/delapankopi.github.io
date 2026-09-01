@@ -1438,11 +1438,11 @@
 
                     if (siteConfig.hero) {
                         if (siteConfig.hero.background_image) {
-                            const heroSection = document.getElementById('beranda');
-                            if (heroSection) {
-                                heroSection.style.background = `linear-gradient(rgba(0, 30, 20, 0.7), rgba(0, 30, 20, 0.65)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
-                            }
-                        }
+    const heroSection = document.getElementById('beranda');
+    if (heroSection) {
+        heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+    }
+}
                         if (siteConfig.hero.hero_image) {
                             const heroImgEl = document.getElementById('heroMainImage');
                             if (heroImgEl) heroImgEl.src = siteConfig.hero.hero_image;
