@@ -52,8 +52,8 @@
       },
       { 
         "name": "Aren Latte", 
-        "price": "Rp 47.000", 
-        "rawPrice": 47000, 
+        "price": "Rp 70.000", 
+        "rawPrice": 70000, 
         "image": "assets/img/products/aren_latte.webp",
         "description": "Cita rasa khas Nusantara dengan gula aren asli yang dipadukan bersama espresso dan susu segar. Manis legit dengan aroma karamel alami."
       },
@@ -80,8 +80,8 @@
       },
       { 
         "name": "Longblack", 
-        "price": "Rp 47.000", 
-        "rawPrice": 47000, 
+        "price": "Rp 40.000", 
+        "rawPrice": 40000, 
         "image": "assets/img/products/longblack.webp",
         "description": "Black coffee dengan perpaduan dua shot espresso dan air berkualitas. Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati."
       },
