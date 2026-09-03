@@ -412,7 +412,7 @@ function renderTestimonials() {
         // Jika avatar kosong, gunakan gambar placeholder
         var imgSrc = item.avatar && item.avatar.trim() !== '' 
             ? item.avatar 
-            : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
+            : 'assets/img/default.webp';
 
         var slide = document.createElement('div');
         slide.className = 'swiper-slide';
