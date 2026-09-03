@@ -324,33 +324,40 @@ body {
     color: #ffffff;
 }
 
-/* Category Tag di card */
+/* ============================================================
+   PRODUCT CATEGORY BADGE - MINIMALIS
+   ============================================================ */
+
 .product-category-tag {
     font-size: 0.6rem;
     font-weight: 600;
-    padding: 3px 12px;
+    padding: 2px 10px;
     border-radius: 50px;
     display: inline-block;
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    background: #eef3f0;
-    color: #1a2a25;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+    background: transparent;
+    color: #8a9a95;
+    border: 1px solid rgba(0, 98, 65, 0.12);
+    width: fit-content;
 }
 
 .product-category-tag.badge-bestseller {
     background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #ffffff;
+    border: none;
 }
 
 .product-category-tag.badge-coffee {
-    background: var(--sb-green);
-    color: #ffffff;
+    background: rgba(0, 98, 65, 0.08);
+    color: var(--sb-green);
+    border: 1px solid rgba(0, 98, 65, 0.15);
 }
 
 .product-category-tag.badge-noncoffee {
-    background: #0288d1;
-    color: #ffffff;
+    background: rgba(2, 136, 209, 0.08);
+    color: #0288d1;
+    border: 1px solid rgba(2, 136, 209, 0.15);
 }
 
 /* Product Info */
