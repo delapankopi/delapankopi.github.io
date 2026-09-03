@@ -240,19 +240,19 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD (selalu tampil) =====
+        // ===== BADGE KATEGORI DI CARD =====
         let categoryBadgeClass = '';
-        let categoryIcon = '';
+        let categoryLabel = '';
         
         if (item.categoryName === 'Favorit') {
             categoryBadgeClass = 'badge-bestseller';
-            categoryIcon = '⭐';
-        } else if (item.categoryName === 'Kopi') {
+            categoryLabel = '⭐';
+        } else if (item.categoryName === 'Basic Coffee') {
             categoryBadgeClass = 'badge-coffee';
-            categoryIcon = '☕';
-        } else if (item.categoryName === 'Non-Kopi') {
+            categoryLabel = '☕';
+        } else if (item.categoryName === 'Non-Coffee') {
             categoryBadgeClass = 'badge-noncoffee';
-            categoryIcon = '🥤';
+            categoryLabel = '🥤';
         }
 
         slide.innerHTML = `
