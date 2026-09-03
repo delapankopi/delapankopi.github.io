@@ -315,17 +315,39 @@ body {
 }
 
 .badge-bestseller {
-    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #ffffff;
 }
 
-.badge-coffee {
-    background: linear-gradient(135deg, #006241, #003825);
+.badge-new {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: #ffffff;
 }
 
-.badge-noncoffee {
-    background: linear-gradient(135deg, #0288d1, #01579b);
+/* Category Tag di card - style baru */
+.product-category-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.product-category-tag.badge-bestseller {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #ffffff;
+}
+
+.product-category-tag.badge-coffee {
+    background: var(--sb-green);
+    color: #ffffff;
+}
+
+.product-category-tag.badge-noncoffee {
+    background: #0288d1;
     color: #ffffff;
 }
 
