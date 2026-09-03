@@ -206,9 +206,21 @@ function renderProducts() {
     wrapper.innerHTML = '';
 
     const allItems = [
-        ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'badge-bestseller', categoryName: 'Favorit' })),
-        ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'badge-coffee', categoryName: 'Kopi' })),
-        ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'badge-noncoffee', categoryName: 'Non-Kopi' }))
+        ...(siteConfig.products.bestSeller || []).map(p => ({ 
+            ...p, 
+            categoryName: 'Favorit',
+            isBestSeller: p.isBestSeller !== undefined ? p.isBestSeller : true 
+        })),
+        ...(siteConfig.products.coffee || []).map(p => ({ 
+            ...p, 
+            categoryName: 'Kopi',
+            isBestSeller: p.isBestSeller || false
+        })),
+        ...(siteConfig.products.nonCoffee || []).map(p => ({ 
+            ...p, 
+            categoryName: 'Non-Kopi',
+            isBestSeller: p.isBestSeller || false
+        }))
     ];
 
     allItems.forEach(item => {
@@ -219,14 +231,38 @@ function renderProducts() {
         const safeName = item.name.replace(/'/g, "\\'");
         const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
+        // ===== BADGE DI ATAS GAMBAR (hanya Best Seller atau New) =====
+        let imageBadgeHtml = '';
+        
+        if (item.isBestSeller) {
+            imageBadgeHtml = `<span class="product-badge badge-bestseller">⭐ Best Seller</span>`;
+        } else if (item.isNew) {
+            imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
+        }
+
+        // ===== BADGE KATEGORI DI CARD (selalu tampil) =====
+        let categoryBadgeClass = '';
+        let categoryIcon = '';
+        
+        if (item.categoryName === 'Favorit') {
+            categoryBadgeClass = 'badge-bestseller';
+            categoryIcon = '⭐';
+        } else if (item.categoryName === 'Kopi') {
+            categoryBadgeClass = 'badge-coffee';
+            categoryIcon = '☕';
+        } else if (item.categoryName === 'Non-Kopi') {
+            categoryBadgeClass = 'badge-noncoffee';
+            categoryIcon = '🥤';
+        }
+
         slide.innerHTML = `
             <div class="product-card">
                 <div class="product-img-holder">
-                    <span class="product-badge ${item.badgeClass}">${item.badge}</span>
+                    ${imageBadgeHtml}
                     <img src="${imgSrc}" alt="${item.name}" loading="lazy">
                 </div>
                 <div class="product-info">
-                    <span class="product-category-tag">${item.categoryName}</span>
+                    <span class="product-category-tag ${categoryBadgeClass}">${categoryIcon} ${item.categoryName}</span>
                     <h3 class="product-title">${item.name}</h3>
                     <div class="product-price">${item.price}</div>
                     <p class="product-desc">${description}</p>
