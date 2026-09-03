@@ -202,6 +202,7 @@ function renderProducts() {
     if (!wrapper || !siteConfig.products) return;
     wrapper.innerHTML = '';
 
+    // Gabungkan semua produk dari bestSeller, coffee, dan nonCoffee
     const allItems = [
         ...(siteConfig.products.bestSeller || []).map(p => ({ 
             ...p, 
@@ -240,7 +241,7 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD (minimalis, hanya ikon) =====
+        // ===== BADGE KATEGORI DI CARD (hanya ikon, minimalis) =====
         let categoryBadgeClass = '';
         let categoryLabel = '';
 
@@ -275,6 +276,7 @@ function renderProducts() {
         wrapper.appendChild(slide);
     });
 
+    // Inisialisasi Swiper
     if (productSwiper) {
         productSwiper.destroy(true, true);
         productSwiper = null;
