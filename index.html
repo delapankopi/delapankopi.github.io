@@ -334,6 +334,29 @@
         </div>
     </section>
 
+    <!-- Testimoni Slider -->
+    <section id="testimoni" class="py-5 bg-light overflow-hidden">
+        <div class="container py-4">
+            <div class="text-center mx-auto mb-5" style="max-width: 600px;" data-aos="fade-up">
+                <span class="text-uppercase fw-bold tracking-widest text-success" style="font-size: 11px; letter-spacing: 2px;">Testimoni Pelanggan</span>
+                <h2 class="font-serif fw-bold fs-2 mt-2">Apa Kata Mereka?</h2>
+                <p class="text-muted small mt-2">Ulasan dari pelanggan yang sudah menikmati kopi botolan Delapan Kopi.</p>
+                <div class="mx-auto mt-3 rounded-pill" style="width: 50px; height: 3px; background-color: var(--sb-green);"></div>
+            </div>
+
+            <div class="testimoni-slider-wrapper" data-aos="fade-up" data-aos-delay="150">
+                <div class="swiper testimoniSlider">
+                    <div class="swiper-wrapper" id="testimoniSliderWrapper">
+                        <!-- Testimoni akan dimuat dari content.json via JS -->
+                    </div>
+                    <div class="swiper-pagination testimoni-pagination"></div>
+                </div>
+                <div class="swiper-button-prev testimoni-prev d-none d-md-flex"></div>
+                <div class="swiper-button-next testimoni-next d-none d-md-flex"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== MODAL FORM ORDER (DIPERBAIKI) ===== -->
     <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
