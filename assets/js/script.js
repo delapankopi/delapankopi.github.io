@@ -9,6 +9,7 @@ let marker = null;
 let currentLat = -6.8796;
 let currentLng = 109.1256;
 let productSwiper = null;
+let testimoniSwiper = null;
 
 // ============================================================
 // DOMContentLoaded - INISIALISASI
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             applyWhatsAppLinks();
             applySocialMediaLinks();
             renderProducts();
+            renderTestimonials(); // <-- TAMBAHKAN BARIS INI
         })
         .catch(error => console.error('Gagal memuat content.json:', error));
 
@@ -271,6 +273,100 @@ function renderProducts() {
             }
         });
     }, 100);
+}
+
+// ============================================================
+// RENDER TESTIMONI (SLIDER)
+// ============================================================
+
+function renderTestimonials() {
+    const wrapper = document.getElementById('testimoniSliderWrapper');
+    if (!wrapper || !siteConfig.testimonials || siteConfig.testimonials.length === 0) {
+        // Sembunyikan section jika tidak ada testimoni
+        const section = document.getElementById('testimoni');
+        if (section) section.style.display = 'none';
+        return;
+    }
+
+    wrapper.innerHTML = '';
+
+    siteConfig.testimonials.forEach(item => {
+        const starsHtml = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+        const avatarSrc = item.avatar && item.avatar.trim() !== '' 
+            ? item.avatar 
+            : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(item.name) + '&background=006241&color=fff&size=100';
+
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `
+            <div class="testimoni-card">
+                <div class="stars">${starsHtml}</div>
+                <p class="testimoni-text">${item.text}</p>
+                <div class="testimoni-author">
+                    <img src="${avatarSrc}" alt="${item.name}" class="testimoni-avatar" loading="lazy">
+                    <div>
+                        <p class="testimoni-name">${item.name}</p>
+                        <p class="testimoni-role">${item.role || ''}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        wrapper.appendChild(slide);
+    });
+
+    // Destroy existing swiper instance
+    if (testimoniSwiper) {
+        testimoniSwiper.destroy(true, true);
+        testimoniSwiper = null;
+    }
+
+    // Initialize new swiper
+    setTimeout(() => {
+        const totalTestimonials = siteConfig.testimonials.length;
+        
+        testimoniSwiper = new Swiper('.testimoniSlider', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: totalTestimonials > 3,
+            grabCursor: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            pagination: {
+                el: '.testimoni-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.testimoni-next',
+                prevEl: '.testimoni-prev',
+            },
+            breakpoints: {
+                0: { 
+                    slidesPerView: 1, 
+                    spaceBetween: 12,
+                    loop: totalTestimonials > 1
+                },
+                576: { 
+                    slidesPerView: 1.2, 
+                    spaceBetween: 16,
+                    loop: totalTestimonials > 2
+                },
+                768: { 
+                    slidesPerView: 2, 
+                    spaceBetween: 20,
+                    loop: totalTestimonials > 2
+                },
+                992: { 
+                    slidesPerView: Math.min(3, totalTestimonials), 
+                    spaceBetween: 24,
+                    loop: totalTestimonials > 3
+                }
+            }
+        });
+    }, 150);
 }
 
 // ============================================================
