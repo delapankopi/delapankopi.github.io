@@ -182,5 +182,15 @@
       "rating": 4,
       "text": "Cocok banget buat anak kos kayak saya. Kopi fresh tinggal minum, ga perlu repot seduh. Harga terjangkau dan rasa cafe-quality!"
     }
-  ]
+  ],
+  "whatsapp_messages": {
+    "floating_button": "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋",
+    "jar_8l": "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏",
+    "jar_16l": "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏",
+    "order_template": "Halo kak 👋\n\nSaya ingin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏",
+    "product_inquiry": "Halo kak, saya tertarik dengan produk *{product_name}*. Mohon info lebih lanjut ya! 😊",
+    "general_inquiry": "Halo kak, saya ingin bertanya seputar menu dan harga Delapan Kopi. Terima kasih! ☕",
+    "event_inquiry": "Halo kak, saya ingin konsultasi untuk acara {event_type}. Butuh paket minuman untuk ±{jumlah} orang. Mohon rekomendasinya! 🎉",
+    "custom_order": "Halo kak, saya ingin order custom untuk acara. Mohon dibantu ya! 🙏"
+  }
 }
