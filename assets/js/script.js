@@ -12,6 +12,48 @@ let productSwiper = null;
 let testimoniSwiper = null;
 
 // ============================================================
+// WHATSAPP MESSAGES - SEMUA PESAN DARI content.json
+// ============================================================
+
+function getWhatsAppUrl(messageKey, params) {
+    var waNumber = siteConfig.whatsapp || '6285786012464';
+    var messages = siteConfig.whatsapp_messages || {};
+    var message = '';
+
+    // Pilih pesan berdasarkan key
+    if (messageKey === 'floating_button') {
+        message = messages.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
+    } else if (messageKey === 'jar_8l') {
+        message = messages.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. 🙏";
+    } else if (messageKey === 'jar_16l') {
+        message = messages.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. 🙏";
+    } else if (messageKey === 'order_template') {
+        message = messages.order_template || "Halo kak 👋\n\nSaya ingin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
+    } else if (messageKey === 'product_inquiry') {
+        message = messages.product_inquiry || "Halo kak, saya tertarik dengan produk *{product_name}*. Mohon info lebih lanjut ya! 😊";
+    } else if (messageKey === 'general_inquiry') {
+        message = messages.general_inquiry || "Halo kak, saya ingin bertanya seputar menu dan harga Delapan Kopi. Terima kasih! ☕";
+    } else if (messageKey === 'event_inquiry') {
+        message = messages.event_inquiry || "Halo kak, saya ingin konsultasi untuk acara {event_type}. Butuh paket minuman untuk ±{jumlah} orang. Mohon rekomendasinya! 🎉";
+    } else if (messageKey === 'custom_order') {
+        message = messages.custom_order || "Halo kak, saya ingin order custom untuk acara. Mohon dibantu ya! 🙏";
+    } else {
+        message = messages.general_inquiry || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
+    }
+
+    // Replace params jika ada
+    if (params) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
+                message = message.replace(new RegExp('{' + key + '}', 'g'), params[key]);
+            }
+        }
+    }
+
+    return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+}
+
+// ============================================================
 // DOMContentLoaded - INISIALISASI
 // ============================================================
 
@@ -145,28 +187,29 @@ function applyBranding() {
 }
 
 function applyWhatsAppLinks() {
-    var waFormatted = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464');
-    var floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
-
+    // Floating Button
     var floatingBtn = document.getElementById('floatingWaBtn');
-    if (floatingBtn) floatingBtn.href = waFormatted + '?text=' + encodeURIComponent(floatingMsg);
-
-    var footerWa = document.getElementById('footerWa');
-    if (footerWa) {
-        footerWa.href = waFormatted;
-        footerWa.innerHTML = '<i class="fa-brands fa-whatsapp me-2 text-success"></i> +' + (siteConfig.whatsapp || '6285786012464');
+    if (floatingBtn) {
+        floatingBtn.href = getWhatsAppUrl('floating_button');
     }
 
-    var socialWa = document.getElementById('socialWa');
-    if (socialWa) socialWa.href = waFormatted;
+    // Footer WhatsApp - Kontak & Lokasi
+    var footerWa = document.getElementById('footerWa');
+    if (footerWa) {
+        footerWa.href = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464');
+    }
 
-    var jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+    // Jar 8L
     var jar8Btn = document.getElementById('jarBtn8L');
-    if (jar8Btn) jar8Btn.href = waFormatted + '?text=' + encodeURIComponent(jar8Msg);
+    if (jar8Btn) {
+        jar8Btn.href = getWhatsAppUrl('jar_8l');
+    }
 
-    var jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+    // Jar 16L
     var jar16Btn = document.getElementById('jarBtn16L');
-    if (jar16Btn) jar16Btn.href = waFormatted + '?text=' + encodeURIComponent(jar16Msg);
+    if (jar16Btn) {
+        jar16Btn.href = getWhatsAppUrl('jar_16l');
+    }
 }
 
 function applySocialMediaLinks() {
@@ -349,7 +392,7 @@ function renderProducts() {
 }
 
 // ============================================================
-// RENDER TESTIMONI (SLIDER)
+// RENDER TESTIMONI (SLIDER) - FOTO BESAR DI ATAS
 // ============================================================
 
 function renderTestimonials() {
@@ -365,19 +408,21 @@ function renderTestimonials() {
     for (var i = 0; i < siteConfig.testimonials.length; i++) {
         var item = siteConfig.testimonials[i];
         var starsHtml = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
-        var avatarSrc = item.avatar && item.avatar.trim() !== '' 
+        
+        // Jika avatar kosong, gunakan gambar placeholder
+        var imgSrc = item.avatar && item.avatar.trim() !== '' 
             ? item.avatar 
-            : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(item.name) + '&background=006241&color=fff&size=100';
+            : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
 
         var slide = document.createElement('div');
         slide.className = 'swiper-slide';
         slide.innerHTML = 
             '<div class="testimoni-card">' +
-                '<div class="stars">' + starsHtml + '</div>' +
-                '<p class="testimoni-text">' + item.text + '</p>' +
-                '<div class="testimoni-author">' +
-                    '<img src="' + avatarSrc + '" alt="' + item.name + '" class="testimoni-avatar" loading="lazy">' +
-                    '<div>' +
+                '<img src="' + imgSrc + '" alt="' + item.name + '" class="testimoni-image" loading="lazy">' +
+                '<div class="testimoni-body">' +
+                    '<div class="stars">' + starsHtml + '</div>' +
+                    '<p class="testimoni-text">' + item.text + '</p>' +
+                    '<div class="testimoni-author">' +
                         '<p class="testimoni-name">' + item.name + '</p>' +
                         '<p class="testimoni-role">' + (item.role || '') + '</p>' +
                     '</div>' +
@@ -416,23 +461,19 @@ function renderTestimonials() {
             breakpoints: {
                 0: { 
                     slidesPerView: 1, 
-                    spaceBetween: 12,
-                    loop: totalTestimonials > 1
+                    spaceBetween: 12
                 },
                 576: { 
                     slidesPerView: 1.2, 
-                    spaceBetween: 16,
-                    loop: totalTestimonials > 2
+                    spaceBetween: 16
                 },
                 768: { 
                     slidesPerView: 2, 
-                    spaceBetween: 20,
-                    loop: totalTestimonials > 2
+                    spaceBetween: 20
                 },
                 992: { 
                     slidesPerView: Math.min(3, totalTestimonials), 
-                    spaceBetween: 24,
-                    loop: totalTestimonials > 3
+                    spaceBetween: 24
                 }
             }
         });
@@ -784,18 +825,14 @@ function sendWhatsAppOrder(event) {
         return;
     }
 
-    var template = siteConfig.whatsapp_messages?.order_template ||
-        "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
+    // Gunakan template dari content.json melalui getWhatsAppUrl
+    var waUrl = getWhatsAppUrl('order_template', {
+        items: itemsText.trim(),
+        total: grandTotal.toLocaleString('id-ID'),
+        name: name,
+        address: address,
+        maps: mapsLink
+    });
 
-    var textMessage = template
-        .replace(/{items}/g, itemsText.trim())
-        .replace(/{total}/g, grandTotal.toLocaleString('id-ID'))
-        .replace(/{name}/g, name)
-        .replace(/{address}/g, address)
-        .replace(/{maps}/g, mapsLink);
-
-    var encodedMessage = encodeURIComponent(textMessage);
-    var whatsappUrl = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464') + '?text=' + encodedMessage;
-
-    window.open(whatsappUrl, '_blank');
+    window.open(waUrl, '_blank');
 }
