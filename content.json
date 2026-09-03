@@ -96,7 +96,7 @@
         "rawPrice": 40000,
         "image": "assets/img/products/longblack.webp",
         "description": "Black coffee dengan perpaduan dua shot espresso dan air berkualitas. Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati.",
-        "isNew": false,
+        "isNew": true,
         "isBestSeller": false
       },
       {
