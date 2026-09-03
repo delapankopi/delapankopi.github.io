@@ -241,20 +241,20 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD (hanya ikon, minimalis) =====
-        let categoryBadgeClass = '';
-        let categoryLabel = '';
+        // ===== BADGE KATEGORI DI CARD (ikon + label pendek) =====
+let categoryBadgeClass = '';
+let categoryLabel = '';
 
-        if (item.categoryName === 'Favorit') {
-            categoryBadgeClass = 'badge-bestseller';
-            categoryLabel = '★';
-        } else if (item.categoryName === 'Kopi') {
-            categoryBadgeClass = 'badge-coffee';
-            categoryLabel = '☕';
-        } else if (item.categoryName === 'Non-Kopi') {
-            categoryBadgeClass = 'badge-noncoffee';
-            categoryLabel = '🥤';
-        }
+if (item.categoryName === 'Favorit') {
+    categoryBadgeClass = 'badge-bestseller';
+    categoryLabel = '⭐ Favorite';
+} else if (item.categoryName === 'Kopi') {
+    categoryBadgeClass = 'badge-coffee';
+    categoryLabel = '☕ Coffee';
+} else if (item.categoryName === 'Non-Kopi') {
+    categoryBadgeClass = 'badge-noncoffee';
+    categoryLabel = '🥤 Non-Coffee';
+}
 
         slide.innerHTML = `
             <div class="product-card">
