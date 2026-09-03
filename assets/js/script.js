@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             applyWhatsAppLinks();
             applySocialMediaLinks();
             renderProducts();
-            renderTestimonials(); // <-- TAMBAHKAN BARIS INI
+            renderTestimonials();
         })
         .catch(error => console.error('Gagal memuat content.json:', error));
 
@@ -179,7 +179,7 @@ function applySocialMediaLinks() {
 }
 
 // ============================================================
-// HERO BEST SELLER (DIPERBAIKI - Hanya update gambar)
+// HERO BEST SELLER
 // ============================================================
 
 function updateHeroBestSeller() {
@@ -191,13 +191,10 @@ function updateHeroBestSeller() {
         heroImgEl.src = bestSeller.image;
         heroImgEl.alt = bestSeller.name;
     }
-
-    // NOTE: Elemen overlay hero sudah dihapus dari HTML,
-    // jadi tidak perlu update nama/deskripsi/badge lagi.
 }
 
 // ============================================================
-// RENDER PRODUCTS
+// RENDER PRODUCTS - FIXED
 // ============================================================
 
 function renderProducts() {
@@ -209,17 +206,20 @@ function renderProducts() {
         ...(siteConfig.products.bestSeller || []).map(p => ({ 
             ...p, 
             categoryName: 'Favorit',
-            isBestSeller: p.isBestSeller !== undefined ? p.isBestSeller : true 
+            isBestSeller: p.isBestSeller !== undefined ? p.isBestSeller : true,
+            isNew: p.isNew || false
         })),
         ...(siteConfig.products.coffee || []).map(p => ({ 
             ...p, 
             categoryName: 'Kopi',
-            isBestSeller: p.isBestSeller || false
+            isBestSeller: p.isBestSeller || false,
+            isNew: p.isNew || false
         })),
         ...(siteConfig.products.nonCoffee || []).map(p => ({ 
             ...p, 
             categoryName: 'Non-Kopi',
-            isBestSeller: p.isBestSeller || false
+            isBestSeller: p.isBestSeller || false,
+            isNew: p.isNew || false
         }))
     ];
 
@@ -231,7 +231,7 @@ function renderProducts() {
         const safeName = item.name.replace(/'/g, "\\'");
         const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
-        // ===== BADGE DI ATAS GAMBAR (hanya Best Seller atau New) =====
+        // ===== BADGE DI ATAS GAMBAR =====
         let imageBadgeHtml = '';
         
         if (item.isBestSeller) {
@@ -243,14 +243,14 @@ function renderProducts() {
         // ===== BADGE KATEGORI DI CARD =====
         let categoryBadgeClass = '';
         let categoryLabel = '';
-        
+
         if (item.categoryName === 'Favorit') {
             categoryBadgeClass = 'badge-bestseller';
-            categoryLabel = '⭐';
-        } else if (item.categoryName === 'Basic Coffee') {
+            categoryLabel = '★';
+        } else if (item.categoryName === 'Kopi') {
             categoryBadgeClass = 'badge-coffee';
             categoryLabel = '☕';
-        } else if (item.categoryName === 'Non-Coffee') {
+        } else if (item.categoryName === 'Non-Kopi') {
             categoryBadgeClass = 'badge-noncoffee';
             categoryLabel = '🥤';
         }
@@ -262,7 +262,7 @@ function renderProducts() {
                     <img src="${imgSrc}" alt="${item.name}" loading="lazy">
                 </div>
                 <div class="product-info">
-                    <span class="product-category-tag ${categoryBadgeClass}">${categoryIcon} ${item.categoryName}</span>
+                    <span class="product-category-tag ${categoryBadgeClass}">${categoryLabel}</span>
                     <h3 class="product-title">${item.name}</h3>
                     <div class="product-price">${item.price}</div>
                     <p class="product-desc">${description}</p>
@@ -318,7 +318,6 @@ function renderProducts() {
 function renderTestimonials() {
     const wrapper = document.getElementById('testimoniSliderWrapper');
     if (!wrapper || !siteConfig.testimonials || siteConfig.testimonials.length === 0) {
-        // Sembunyikan section jika tidak ada testimoni
         const section = document.getElementById('testimoni');
         if (section) section.style.display = 'none';
         return;
@@ -351,13 +350,11 @@ function renderTestimonials() {
         wrapper.appendChild(slide);
     });
 
-    // Destroy existing swiper instance
     if (testimoniSwiper) {
         testimoniSwiper.destroy(true, true);
         testimoniSwiper = null;
     }
 
-    // Initialize new swiper
     setTimeout(() => {
         const totalTestimonials = siteConfig.testimonials.length;
         
@@ -738,7 +735,6 @@ function sendWhatsAppOrder(event) {
         return;
     }
 
-    // Gunakan template dari content.json atau fallback
     const template = siteConfig.whatsapp_messages?.order_template ||
         "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
 
