@@ -300,7 +300,9 @@ body {
     transform: scale(1.05);
 }
 
-//* Product Badge */
+/* ============================================================
+   PRODUCT BADGE - DI ATAS GAMBAR
+   ============================================================ */
 .product-badge {
     position: absolute;
     top: 12px;
@@ -324,7 +326,9 @@ body {
     color: #ffffff;
 }
 
-/* ===== BADGE KATEGORI DI CARD ===== */
+/* ============================================================
+   PRODUCT CATEGORY TAG - DI CARD
+   ============================================================ */
 .product-category-tag {
     font-size: 0.6rem;
     font-weight: 600;
@@ -351,21 +355,14 @@ body {
     border: 1px solid rgba(2, 136, 209, 0.15);
 }
 
-/* Product Info */
+/* ============================================================
+   PRODUCT INFO
+   ============================================================ */
 .product-info {
     padding: 20px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-}
-
-.product-category-tag {
-    font-size: 0.725rem;
-    font-weight: 700;
-    color: var(--sb-green);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
 }
 
 .product-title {
@@ -417,7 +414,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* Swiper Navigation */
+/* ============================================================
+   SWIPER NAVIGATION
+   ============================================================ */
 .product-slider-wrapper .swiper-button-next,
 .product-slider-wrapper .swiper-button-prev {
     color: var(--sb-green);
@@ -1069,10 +1068,8 @@ footer .d-flex.align-items-center.gap-3 {
         padding: 8px 2px 40px 2px !important;
     }
 
-    /* PERBAIKAN: Biarkan aspect-ratio bekerja, jangan override dengan height */
     .product-img-holder {
         aspect-ratio: 4 / 3;
-        /* Hapus height dan padding yang mengganggu */
     }
 
     .product-info {
@@ -1096,7 +1093,8 @@ footer .d-flex.align-items-center.gap-3 {
     }
 
     .product-category-tag {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+        padding: 2px 8px;
         margin-bottom: 2px;
     }
 
