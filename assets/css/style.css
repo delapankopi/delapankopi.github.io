@@ -737,6 +737,235 @@ footer .d-flex.align-items-center.gap-3 {
 }
 
 /* ============================================================
+   TESTIMONI SLIDER
+   ============================================================ */
+
+.testimoni-slider-wrapper {
+    position: relative;
+    padding: 0 50px;
+}
+
+.testimoniSlider {
+    padding: 20px 10px 55px 10px !important;
+    overflow: hidden !important;
+}
+
+.testimoni-slider-wrapper .swiper-slide {
+    height: auto !important;
+    display: flex;
+}
+
+/* Testimoni Card */
+.testimoni-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(0, 98, 65, 0.08);
+    padding: 28px 30px;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    box-shadow: 0 4px 16px rgba(0, 56, 37, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.testimoni-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 56, 37, 0.10);
+    border-color: rgba(0, 98, 65, 0.2);
+}
+
+/* Rating Bintang */
+.testimoni-card .stars {
+    color: #f59e0b;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+/* Teks Testimoni */
+.testimoni-card .testimoni-text {
+    font-size: 0.9rem;
+    color: #1a2a25;
+    line-height: 1.7;
+    flex-grow: 1;
+    margin-bottom: 14px;
+    font-style: italic;
+}
+
+.testimoni-card .testimoni-text::before {
+    content: '"';
+    font-size: 2rem;
+    color: var(--sb-green);
+    opacity: 0.3;
+    margin-right: 4px;
+    font-family: 'Playfair Display', serif;
+}
+
+.testimoni-card .testimoni-text::after {
+    content: '"';
+    font-size: 2rem;
+    color: var(--sb-green);
+    opacity: 0.3;
+    margin-left: 4px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Author */
+.testimoni-card .testimoni-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 14px;
+    margin-top: auto;
+}
+
+.testimoni-card .testimoni-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--sb-green);
+    flex-shrink: 0;
+}
+
+.testimoni-card .testimoni-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #1a2a25;
+    margin-bottom: 0;
+}
+
+.testimoni-card .testimoni-role {
+    font-size: 0.75rem;
+    color: #6a7a75;
+    margin-bottom: 0;
+}
+
+/* Testimoni Slider Navigation */
+.testimoni-slider-wrapper .testimoni-prev,
+.testimoni-slider-wrapper .testimoni-next {
+    color: var(--sb-green);
+    background: #ffffff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0, 38, 25, 0.12);
+    transition: all 0.3s;
+    border: 1px solid rgba(0, 98, 65, 0.15);
+    top: 45%;
+}
+
+.testimoni-slider-wrapper .testimoni-prev {
+    left: 0px;
+}
+
+.testimoni-slider-wrapper .testimoni-next {
+    right: 0px;
+}
+
+.testimoni-slider-wrapper .testimoni-prev::after,
+.testimoni-slider-wrapper .testimoni-next::after {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.testimoni-slider-wrapper .testimoni-prev:hover,
+.testimoni-slider-wrapper .testimoni-next:hover {
+    background: var(--sb-green);
+    color: #ffffff;
+    border-color: var(--sb-green);
+    box-shadow: 0 8px 22px rgba(0, 98, 65, 0.35);
+}
+
+/* Testimoni Pagination */
+.testimoni-pagination {
+    bottom: 0px !important;
+}
+
+.testimoni-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #a3c2b5;
+    opacity: 0.6;
+    transition: all 0.3s;
+}
+
+.testimoni-pagination .swiper-pagination-bullet-active {
+    width: 26px;
+    border-radius: 12px;
+    background: var(--sb-green) !important;
+    opacity: 1;
+}
+
+/* ============================================================
+   RESPONSIVE TESTIMONI
+   ============================================================ */
+
+@media (max-width: 576px) {
+    .testimoni-slider-wrapper {
+        padding: 0 4px;
+    }
+
+    .testimoniSlider {
+        padding: 12px 2px 40px 2px !important;
+    }
+
+    .testimoni-card {
+        padding: 18px 16px;
+    }
+
+    .testimoni-card .testimoni-text {
+        font-size: 0.8rem;
+    }
+
+    .testimoni-card .testimoni-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .testimoni-slider-wrapper .testimoni-prev,
+    .testimoni-slider-wrapper .testimoni-next {
+        display: none !important;
+    }
+
+    .testimoni-pagination {
+        bottom: 0px !important;
+    }
+
+    .testimoni-pagination .swiper-pagination-bullet {
+        width: 7px;
+        height: 7px;
+    }
+
+    .testimoni-pagination .swiper-pagination-bullet-active {
+        width: 18px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .testimoni-slider-wrapper {
+        padding: 0 20px;
+    }
+
+    .testimoni-slider-wrapper .testimoni-prev,
+    .testimoni-slider-wrapper .testimoni-next {
+        width: 36px;
+        height: 36px;
+    }
+
+    .testimoni-slider-wrapper .testimoni-prev::after,
+    .testimoni-slider-wrapper .testimoni-next::after {
+        font-size: 12px;
+    }
+
+    .testimoni-card {
+        padding: 22px 20px;
+    }
+}
+
+/* ============================================================
    RESPONSIVE - TABLET (577px - 768px)
    ============================================================ */
 @media (min-width: 577px) and (max-width: 768px) {
