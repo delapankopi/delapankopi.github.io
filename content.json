@@ -16,7 +16,7 @@
   },
   "hero": {
     "background_image": "assets/img/background.webp",
-    "hero_image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
+    "hero_image": "",
     "heading": "Pusat Kopi Kemasan Botol Besar 1 Liter & Paket Pesta untuk Acara Spesial di Kota Tegal",
     "subtitle": "Menyediakan kopi kemasan botol 1 liter fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di kota Tegal."
   },
@@ -102,19 +102,19 @@
     ],
     "nonCoffee": [
       { 
-        "name": "Double Chocolate", 
-        "price": "Rp 50.000", 
-        "rawPrice": 50000, 
-        "image": "assets/img/products/double_chocolate.webp",
-        "description": "Minuman tanpa kopi favorit! Perpaduan dark chocolate dan milk chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan."
-      },
-      { 
         "name": "Matcha Latte", 
         "price": "Rp 75.000", 
         "rawPrice": 75000, 
         "image": "assets/img/products/matcha_latte.webp",
         "description": "Bubuk matcha premium berkualitas tinggi yang dipadukan dengan susu segar. Rasa earthy yang khas dengan aftertaste manis alami dan creamy."
-      }
+      },
+      { 
+        "name": "Signature Double Chocolate", 
+        "price": "Rp 50.000", 
+        "rawPrice": 50000, 
+        "image": "assets/img/products/signature_double_chocolate.webp",
+        "description": "Minuman tanpa kopi favorit! Perpaduan dark chocolate dan milk chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan."
+      },
     ]
   }
 }
