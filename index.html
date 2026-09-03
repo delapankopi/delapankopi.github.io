@@ -11,30 +11,30 @@
     <link rel="manifest" href="assets/img/site.webmanifest">
     
     <!-- Meta SEO & Open Graph (OG) Optimization -->
-    <meta name="description" content="Pusat kopi botol besar 1 liter premium terbaik di Tegal. Sedia juga paket menu khusus paket pesta (dispenser 8L & 16L) untuk acara arisan, pernikahan, dan event spesial Anda.">
-    <meta name="keywords" content="Delapan Kopi, Kopi Botolan Tegal, Kopi Party Pack, Paket Pesta, Dispenser Kopi Acara, Dispenser Arisan Pernikahan, Pandan Aren Latte, Spanish Latte, Coffee Shop Tegal">
+    <meta name="description" content="Pusat kopi botolan 1 liter premium terbaik di Tegal. Sedia juga paket menu khusus kemasan dispenser (8L & 16L) untuk acara arisan, pernikahan, dan event spesial Anda.">
+    <meta name="keywords" content="Delapan Kopi, Kopi Botolan Tegal, Dispenser Kopi Acara, Dispenser Arisan Pernikahan, Pandan Aren Latte, Spanish Latte, Coffee Shop Tegal">
     <meta name="author" content="Delapan Kopi">
 
     <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://delapankopi.github.io/">
-<meta property="og:title" content="Delapan Kopi - Pusat Kopi Kemasan Botol Besar (Large Bottle) 1 Liter & Paket Pesta (Party Packs) untuk Acara Spesial di Kota Tegal">
+<meta property="og:title" content="Delapan Kopi - Pusat Kopi Botolan & Paket Kemasan Dispenser Acara di Tegal">
 <meta property="og:description" content="Pilihan sempurna stok kopi botolan 1 liter dan paket kemasan dispenser (8L/16L) eksklusif untuk acara arisan, pernikahan, dll. Pesan mudah via WhatsApp!">
 <meta property="og:image" content="https://delapankopi.github.io/assets/img/delapankopi-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:alt" content="Delapan Kopi - Pusat Kopi Kemasan Botol Besar (Large Bottle) 1 Liter & Paket Pesta (Party Packs) untuk Acara Spesial di Kota Tegal">
+<meta property="og:image:alt" content="Delapan Kopi - Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal">
 <meta property="og:site_name" content="Delapan Kopi">
 <meta property="og:locale" content="id_ID">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://delapankopi.github.io/">
-<meta name="twitter:title" content="Delapan Kopi - Pusat Kopi Kemasan Botol Besar (Large Bottle) 1 Liter & Paket Pesta (Party Packs) untuk Acara Spesial di Kota Tegal">
+<meta name="twitter:title" content="Delapan Kopi - Pusat Kopi Botolan & Paket Kemasan Dispenser Acara di Tegal">
 <meta name="twitter:description" content="Pilihan sempurna stok kopi botolan 1 liter dan paket kemasan dispenser (8L/16L) eksklusif untuk acara arisan, pernikahan, dll. Pesan mudah via WhatsApp!">
 <meta name="twitter:image" content="https://delapankopi.github.io/assets/img/delapankopi-og.jpg">
-<meta name="twitter:image:alt" content="Delapan Kopi - Pusat Kopi Kemasan Botol Besar (Large Bottle) 1 Liter & Paket Pesta (Party Packs) untuk Acara Spesial di Kota Tegal">
+<meta name="twitter:image:alt" content="Delapan Kopi - Supplier Kopi Botol 1 Liter & Dispenser untuk Acara di Tegal">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -331,32 +331,30 @@
             border-color: rgba(0, 98, 65, 0.3);
         }
 
-        /* Container gambar dengan rasio 4:3 */
-.product-img-holder {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 3;  /* ← Cara modern & paling mudah */
-    background: linear-gradient(135deg, #f8faf9 0%, #eef3f0 100%);
-    overflow: hidden;
-    flex-shrink: 0;
-}
+        .product-img-holder {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f8faf9 0%, #eef3f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 15px;
+            flex-shrink: 0;
+        }
 
-        /* Gambar full menutupi container */
-.product-img-holder img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
-}
+        .product-img-holder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+        }
 
-/* Hover efek zoom */
-.product-card:hover .product-img-holder img {
-    transform: scale(1.05);
-}
+        .product-card:hover .product-img-holder img {
+            transform: scale(1.08);
+        }
 
         .product-badge {
             position: absolute;
@@ -1314,54 +1312,41 @@
     </div>
 
     <!-- Footer -->
-<footer class="text-white-50 py-5 border-top border-secondary overflow-hidden" style="background-color: var(--sb-green-dark);">
-    <div class="container">
-        <div class="row g-4 mb-4">
-            <div class="col-md-5">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden">
-                        <span class="font-serif fw-bold"></span>
+    <footer class="text-white-50 py-5 border-top border-secondary overflow-hidden" style="background-color: var(--sb-green-dark);">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="brand-logo-container d-flex align-items-center justify-content-center text-white p-0 overflow-hidden">
+                            <span class="font-serif fw-bold">00</span>
+                        </div>
+                        <span class="font-serif fw-bold tracking-wider text-white" style="font-size: 16px;">DELAPAN KOPI</span>
                     </div>
-                    <span class="font-serif fw-bold tracking-wider text-white" style="font-size: 16px;">delapan kopi</span>
+                    <p class="small mb-0 text-white-50">
+                        Home industry penyedia kopi botolan kemasan 1 liter berkualitas tinggi dan paket kemasan dispenser berkeran untuk berbagai acara spesial Anda di Tegal.
+                    </p>
                 </div>
-                <p class="small mb-0 text-white-50">
-                    Home industry penyedia kopi botolan kemasan 1 liter berkualitas tinggi dan paket kemasan dispenser berkeran untuk berbagai acara spesial Anda di Tegal.
-                </p>
+                <div class="col-md-4">
+                    <h4 class="text-white font-serif fs-6 fw-bold mb-3">Kontak & Lokasi</h4>
+                    <p id="footerAddress" class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Sapphire Residence (Cluster Zamrud) Blok F-8 RT.10/RW.09 Kel. Pacul, Kec. Talang, Kab. Tegal.</p>
+                    <p class="small mb-2"><a id="footerWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none hover-text-white"><i class="fa-brands fa-whatsapp me-2 text-success"></i> +62 857-8601-2464</a></p>
+                    <p id="footerOperational" class="small mb-0"><i class="fa-solid fa-clock me-2 text-info"></i> Senin - Sabtu: 08.00 - 17.00 WIB</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-white font-serif fs-6 fw-bold mb-3">Media Sosial & Chat</h4>
+                    <div class="d-flex gap-3 fs-5">
+                        <a id="footerIg" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a id="footerFb" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a id="footerTiktok" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a id="socialWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition text-success" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h4 class="text-white font-serif fs-6 fw-bold mb-3">Kontak &amp; Lokasi</h4>
-                <p id="footerAddress" class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Sapphire Residence (Cluster Zamrud) Blok F-8 RT.10/RW.09 Kel. Pacul, Kec. Talang, Kab. Tegal.</p>
-                <p class="small mb-2"><a id="footerWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none hover-text-white"><i class="fa-brands fa-whatsapp me-2 text-success"></i> +62 857-8601-2464</a></p>
-                <p id="footerOperational" class="small mb-0"><i class="fa-solid fa-clock me-2 text-info"></i> Senin - Sabtu: 08.00 - 17.00 WIB</p>
-            </div>
-            <div class="col-md-3">
-                <h4 class="text-white font-serif fs-6 fw-bold mb-3">Media Sosial &amp; Chat</h4>
-                <div class="d-flex gap-3 fs-5">
-                    <a id="footerIg" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a id="footerFb" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                    <a id="footerTiktok" href="#" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a id="socialWa" href="https://wa.me/6285786012464" target="_blank" rel="noopener noreferrer" class="text-white-50 hover-text-white transition text-success" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== FOOTER BAWAH: Copyright Kiri, Quick Link Kanan ===== -->
-        <div class="border-top border-secondary pt-4">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <!-- Copyright di Kiri -->
-                <div class="small text-secondary text-center text-md-start">
-                    &copy; 2026 <b>delapan kopi</b>. Seluruh Hak Cipta Dilindungi.
-                </div>
-                <!-- Quick Link di Kanan -->
-                <div class="d-flex gap-3 gap-md-4 mt-2 mt-md-0">
-                    <a href="#" class="text-secondary text-decoration-none small hover-text-white transition">Syarat &amp; Ketentuan</a>
-                    <span class="text-secondary small d-none d-md-inline">|</span>
-                    <a href="#" class="text-secondary text-decoration-none small hover-text-white transition">Kebijakan Privasi</a>
-                </div>
+            <div class="border-top border-secondary pt-4 text-center small text-secondary">
+                &copy; 2026 Delapan Kopi. Seluruh Hak Cipta Dilindungi.
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -1492,492 +1477,4 @@
                     if (document.getElementById('floatingWaBtn')) document.getElementById('floatingWaBtn').href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
                     if (document.getElementById('footerWa')) {
                         document.getElementById('footerWa').href = waFormatted;
-                        document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
-                    }
-                    if (document.getElementById('socialWa')) document.getElementById('socialWa').href = waFormatted;
-
-                    const jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-                    if (document.getElementById('jarBtn8L')) document.getElementById('jarBtn8L').href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
-                    
-                    const jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-                    if (document.getElementById('jarBtn16L')) document.getElementById('jarBtn16L').href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
-
-                    if (siteConfig.instagram && document.getElementById('footerIg')) document.getElementById('footerIg').href = siteConfig.instagram;
-                    if (siteConfig.facebook && document.getElementById('footerFb')) document.getElementById('footerFb').href = siteConfig.facebook;
-                    if (siteConfig.tiktok && document.getElementById('footerTiktok')) document.getElementById('footerTiktok').href = siteConfig.tiktok;
-
-                    renderProducts();
-                })
-                .catch(error => console.error('Gagal memuat content.json:', error));
-
-            AOS.init({ duration: 800, once: true, offset: 100 });
-        });
-
-        // ===== PERBAIKAN: Deskripsi best seller FULL tanpa potongan =====
-        function updateHeroBestSeller() {
-            const bestSeller = siteConfig.products?.bestSeller?.[0];
-            if (!bestSeller) return;
-
-            const heroImgEl = document.getElementById('heroMainImage');
-            if (heroImgEl && bestSeller.image) {
-                heroImgEl.src = bestSeller.image;
-                heroImgEl.alt = bestSeller.name;
-            }
-
-            const heroNameEl = document.querySelector('#beranda .card .font-serif.fw-bold.text-white.fs-6');
-            if (heroNameEl && bestSeller.name) {
-                heroNameEl.textContent = bestSeller.name;
-            }
-
-            const heroDescEl = document.querySelector('#beranda .card .text-white-50.small.mb-0');
-            if (heroDescEl && bestSeller.description) {
-                // Tampilkan FULL tanpa dipotong
-                heroDescEl.textContent = bestSeller.description;
-            }
-
-            const badgeEl = document.querySelector('#beranda .card .badge.bg-success.bg-opacity-25');
-            if (badgeEl) {
-                badgeEl.textContent = '★ Best Seller';
-            }
-        }
-
-        /* Render Produk dengan Desain Kartu Slider Baru yang Modern */
-        function renderProducts() {
-            const wrapper = document.getElementById('productSliderWrapper');
-            if (!wrapper || !siteConfig.products) return;
-            wrapper.innerHTML = '';
-
-            const allItems = [
-                ...(siteConfig.products.bestSeller || []).map(p => ({ ...p, badge: 'Best Seller', badgeClass: 'badge-bestseller', categoryName: 'Favorit' })),
-                ...(siteConfig.products.coffee || []).map(p => ({ ...p, badge: 'Coffee', badgeClass: 'badge-coffee', categoryName: 'Kopi' })),
-                ...(siteConfig.products.nonCoffee || []).map(p => ({ ...p, badge: 'Non-Coffee', badgeClass: 'badge-noncoffee', categoryName: 'Non-Kopi' }))
-            ];
-
-            allItems.forEach(item => {
-                const slide = document.createElement('div');
-                slide.className = 'swiper-slide';
-                
-                const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
-                const safeName = item.name.replace(/'/g, "\\'");
-                const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
-
-                slide.innerHTML = `
-                    <div class="product-card">
-                        <div class="product-img-holder">
-                            <span class="product-badge ${item.badgeClass}">${item.badge}</span>
-                            <img src="${imgSrc}" alt="${item.name}" loading="lazy">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category-tag">${item.categoryName}</span>
-                            <h3 class="product-title">${item.name}</h3>
-                            <div class="product-price">${item.price}</div>
-                            <p class="product-desc">${description}</p>
-                            <button type="button" onclick="openOrderModal('${safeName}')" class="btn-order-product">
-                                <i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang
-                            </button>
-                        </div>
-                    </div>
-                `;
-                wrapper.appendChild(slide);
-            });
-
-            if (productSwiper) {
-                productSwiper.destroy(true, true);
-                productSwiper = null;
-            }
-
-            setTimeout(() => {
-                productSwiper = new Swiper('.productSlider', {
-                    slidesPerView: 1.2,
-                    spaceBetween: 16,
-                    loop: allItems.length > 4,
-                    grabCursor: true,
-                    autoplay: { 
-                        delay: 4500, 
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true
-                    },
-                    pagination: { 
-                        el: '.swiper-pagination', 
-                        clickable: true 
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    breakpoints: {
-                        0: { 
-                            slidesPerView: 2, 
-                            spaceBetween: 10,
-                            slidesPerGroup: 1
-                        },
-                        400: { 
-                            slidesPerView: 2, 
-                            spaceBetween: 12,
-                            slidesPerGroup: 1
-                        },
-                        576: { 
-                            slidesPerView: 2.2, 
-                            spaceBetween: 16,
-                            slidesPerGroup: 1
-                        },
-                        768: { 
-                            slidesPerView: 3, 
-                            spaceBetween: 20,
-                            slidesPerGroup: 1
-                        },
-                        992: { 
-                            slidesPerView: 3.5, 
-                            spaceBetween: 22,
-                            slidesPerGroup: 1
-                        },
-                        1200: { 
-                            slidesPerView: 4, 
-                            spaceBetween: 24,
-                            slidesPerGroup: 1
-                        }
-                    }
-                });
-            }, 100);
-        }
-
-        function detectUserLocation() {
-            const btn = document.querySelector('.btn-detect-location');
-            if (!btn) return;
-            
-            const originalHtml = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fa-solid fa-spinner"></i> Mendeteksi...';
-            btn.classList.add('loading');
-            btn.disabled = true;
-
-            const tooltip = document.getElementById('locationTooltip');
-            if (tooltip) {
-                tooltip.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1" style="color: #0d6efd;"></i> Mengakses GPS Anda...';
-                tooltip.classList.add('show');
-            }
-
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        currentLat = position.coords.latitude.toFixed(6);
-                        currentLng = position.coords.longitude.toFixed(6);
-                        const latLng = [currentLat, currentLng];
-                        
-                        if (map && marker) {
-                            map.setView(latLng, 16);
-                            marker.setLatLng(latLng);
-                            const markerElement = marker.getElement();
-                            if (markerElement) {
-                                markerElement.classList.add('pulse-marker');
-                                setTimeout(() => {
-                                    markerElement.classList.remove('pulse-marker');
-                                }, 2000);
-                            }
-                        }
-                        
-                        const coordDisplay = document.getElementById('coordDisplay');
-                        if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
-                        showToast('success', '✅ Lokasi Terdeteksi!', `Koordinat: ${currentLat}, ${currentLng}`);
-                        
-                        if (tooltip) {
-                            tooltip.innerHTML = '<i class="fa-solid fa-check-circle text-success me-1"></i> <span class="text-success fw-bold">Lokasi berhasil dideteksi!</span>';
-                            setTimeout(() => { tooltip.classList.remove('show'); }, 3000);
-                        }
-                        
-                        btn.innerHTML = originalHtml;
-                        btn.classList.remove('loading');
-                        btn.disabled = false;
-                    },
-                    (error) => {
-                        let errorMessage = 'Gagal mendeteksi lokasi. ';
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                errorMessage += 'Izin lokasi ditolak.';
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                errorMessage += 'Informasi lokasi tidak tersedia.';
-                                break;
-                            case error.TIMEOUT:
-                                errorMessage += 'Waktu deteksi habis.';
-                                break;
-                            default:
-                                errorMessage += 'Terjadi kesalahan.';
-                        }
-                        
-                        showToast('error', '❌ Gagal Deteksi', errorMessage);
-                        
-                        if (tooltip) {
-                            tooltip.innerHTML = '<i class="fa-solid fa-circle-exclamation text-danger me-1"></i> <span class="text-danger fw-bold">' + errorMessage + '</span>';
-                            setTimeout(() => { tooltip.classList.remove('show'); }, 5000);
-                        }
-                        
-                        btn.innerHTML = originalHtml;
-                        btn.classList.remove('loading');
-                        btn.disabled = false;
-                    },
-                    { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
-                );
-            } else {
-                showToast('error', '❌ Tidak Didukung', 'Browser Anda tidak mendukung Geolocation.');
-                btn.innerHTML = originalHtml;
-                btn.classList.remove('loading');
-                btn.disabled = false;
-            }
-        }
-
-        function showToast(type, title, message) {
-            const toast = document.getElementById('locationToast');
-            if (!toast) return;
-            
-            const icon = toast.querySelector('.toast-icon');
-            const titleEl = document.getElementById('toastTitle');
-            const messageEl = document.getElementById('toastMessage');
-            
-            if (icon) icon.className = 'toast-icon';
-            
-            if (type === 'success') {
-                if (icon) icon.innerHTML = '<i class="fa-solid fa-check-circle"></i>';
-                if (icon) icon.classList.add('success');
-                toast.style.borderLeftColor = '#198754';
-            } else if (type === 'error') {
-                if (icon) icon.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
-                if (icon) icon.classList.add('error');
-                toast.style.borderLeftColor = '#dc3545';
-            } else {
-                if (icon) icon.innerHTML = '<i class="fa-solid fa-info-circle"></i>';
-                if (icon) icon.classList.add('info');
-                toast.style.borderLeftColor = '#0d6efd';
-            }
-            
-            if (titleEl) titleEl.textContent = title;
-            if (messageEl) messageEl.textContent = message;
-            
-            toast.classList.add('show');
-            
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 5000);
-        }
-
-        function closeToast() {
-            const toast = document.getElementById('locationToast');
-            if (toast) {
-                toast.classList.remove('show');
-                clearTimeout(toast._timeout);
-            }
-        }
-
-        function openOrderModal(initialProduct = "") {
-            const container = document.getElementById('orderItemsContainer');
-            if (container) {
-                container.innerHTML = ''; 
-                addOrderItem(initialProduct, 1, 'Normal (100%)');
-            }
-
-            if (orderModalInstance) {
-                orderModalInstance.show();
-            }
-        }
-
-        function initOrUpdateMap() {
-            if (!map) {
-                map = L.map('map').setView([currentLat, currentLng], 14);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(map);
-
-                marker = L.marker([currentLat, currentLng], { draggable: true }).addTo(map);
-
-                marker.on('dragend', function () {
-                    const position = marker.getLatLng();
-                    currentLat = position.lat.toFixed(6);
-                    currentLng = position.lng.toFixed(6);
-                    const coordDisplay = document.getElementById('coordDisplay');
-                    if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
-                });
-
-                map.on('click', function(e) {
-                    marker.setLatLng(e.latlng);
-                    currentLat = e.latlng.lat.toFixed(6);
-                    currentLng = e.latlng.lng.toFixed(6);
-                    const coordDisplay = document.getElementById('coordDisplay');
-                    if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
-                });
-            } else {
-                map.invalidateSize();
-                map.setView([currentLat, currentLng], 14);
-                marker.setLatLng([currentLat, currentLng]);
-            }
-        }
-
-        function addOrderItem(selectedName = "", qty = 1, selectedSweetness = "Normal (100%)") {
-            const container = document.getElementById('orderItemsContainer');
-            if (!container) return;
-            
-            const rowId = 'item-row-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
-
-            let optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
-
-            if (siteConfig && siteConfig.products) {
-                if (siteConfig.products.bestSeller && siteConfig.products.bestSeller.length > 0) {
-                    optionsHtml += '<optgroup label="-- FAVORIT / BEST SELLER --">';
-                    siteConfig.products.bestSeller.forEach(p => {
-                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                        const isSelected = (p.name === selectedName) ? 'selected' : '';
-                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                    });
-                    optionsHtml += '</optgroup>';
-                }
-
-                if (siteConfig.products.coffee && siteConfig.products.coffee.length > 0) {
-                    optionsHtml += '<optgroup label="-- COFFEE --">';
-                    siteConfig.products.coffee.forEach(p => {
-                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                        const isSelected = (p.name === selectedName) ? 'selected' : '';
-                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                    });
-                    optionsHtml += '</optgroup>';
-                }
-
-                if (siteConfig.products.nonCoffee && siteConfig.products.nonCoffee.length > 0) {
-                    optionsHtml += '<optgroup label="-- NON-COFFEE --">';
-                    siteConfig.products.nonCoffee.forEach(p => {
-                        const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                        const isSelected = (p.name === selectedName) ? 'selected' : '';
-                        optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-                    });
-                    optionsHtml += '</optgroup>';
-                }
-            }
-
-            if (!selectedName) {
-                optionsHtml = optionsHtml.replace('value="" disabled', 'value="" disabled selected');
-            }
-
-            const sweetnessLevels = (siteConfig.modal_settings && siteConfig.modal_settings.sweetness_levels) 
-                ? siteConfig.modal_settings.sweetness_levels 
-                : ["Normal (100%)", "Slight (70% - 80%)", "Less (50%)", "Low (25%)", "No Sugar"];
-                
-            let sweetnessOptionsHtml = '';
-            sweetnessLevels.forEach(lvl => {
-                const isSel = (lvl === selectedSweetness) ? 'selected' : '';
-                sweetnessOptionsHtml += `<option value="${lvl}" ${isSel}>${lvl}</option>`;
-            });
-
-            const rowDiv = document.createElement('div');
-            rowDiv.className = 'card p-3 bg-light border item-row';
-            rowDiv.id = rowId;
-            rowDiv.innerHTML = `
-                <div class="row g-2 align-items-center">
-                    <div class="col-12 col-md-5 col-product">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">PRODUK</label>
-                        <select class="form-select form-select-sm product-choice" onchange="calculateGrandTotal()" required>
-                            ${optionsHtml}
-                        </select>
-                    </div>
-                    <div class="col-6 col-md-4 col-sweetness">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
-                        <select class="form-select form-select-sm product-sweetness">
-                            ${sweetnessOptionsHtml}
-                        </select>
-                    </div>
-                    <div class="col-4 col-md-2 col-qty">
-                        <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">JUMLAH</label>
-                        <input type="number" class="form-control form-control-sm product-qty" min="1" value="${qty}" oninput="calculateGrandTotal()" required>
-                    </div>
-                    <div class="col-2 col-md-1 col-delete text-end">
-                        <label class="form-label d-block text-white" style="font-size: 9px; margin-bottom: 2px;">-</label>
-                        <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeOrderItem('${rowId}')" title="Hapus"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-            `;
-            container.appendChild(rowDiv);
-            calculateGrandTotal();
-        }
-
-        function removeOrderItem(rowId) {
-            const rows = document.querySelectorAll('.item-row');
-            if (rows.length > 1) {
-                const el = document.getElementById(rowId);
-                if (el) el.remove();
-                calculateGrandTotal();
-            } else {
-                alert("Minimal harus ada 1 produk dalam pesanan.");
-            }
-        }
-
-        function calculateGrandTotal() {
-            let grandTotal = 0;
-            const rows = document.querySelectorAll('.item-row');
-            rows.forEach(row => {
-                const selectEl = row.querySelector('.product-choice');
-                const qtyEl = row.querySelector('.product-qty');
-                if (selectEl && selectEl.value && qtyEl && qtyEl.value) {
-                    const valParts = selectEl.value.split('|');
-                    const rawPrice = parseInt(valParts[2]) || 0;
-                    const qty = parseInt(qtyEl.value) || 0;
-                    grandTotal += rawPrice * qty;
-                }
-            });
-            const grandTotalEl = document.getElementById('grandTotalDisplay');
-            if (grandTotalEl) grandTotalEl.innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
-        }
-
-        function sendWhatsAppOrder(event) {
-            event.preventDefault();
-            const nameEl = document.getElementById('customerName');
-            const addressEl = document.getElementById('customerAddress');
-            
-            const name = nameEl ? nameEl.value : '';
-            const address = addressEl ? addressEl.value : '';
-            const mapsLink = `https://maps.google.com/?q=${currentLat},${currentLng}`;
-
-            let itemsText = "";
-            let isValid = true;
-            let grandTotal = 0;
-
-            const rows = document.querySelectorAll('.item-row');
-            rows.forEach((row, index) => {
-                const selectEl = row.querySelector('.product-choice');
-                const sweetEl = row.querySelector('.product-sweetness');
-                const qtyEl = row.querySelector('.product-qty');
-                
-                if (!selectEl || !selectEl.value) {
-                    isValid = false;
-                    return;
-                }
-
-                const valParts = selectEl.value.split('|');
-                const rawPrice = parseInt(valParts[2]) || 0;
-                const qty = parseInt(qtyEl.value) || 0;
-                const subtotal = rawPrice * qty;
-                grandTotal += subtotal;
-
-                itemsText += `${index + 1}. *${valParts[0]}* (${valParts[1]})\n   - Jumlah: *${qty} Botol*\n   - Manis: *${sweetEl.value}*\n   - Subtotal: *Rp ${subtotal.toLocaleString('id-ID')}*\n\n`;
-            });
-
-            if (!isValid) {
-                alert("Mohon pilih menu terlebih dahulu pada setiap baris produk.");
-                return;
-            }
-
-            const template = siteConfig.whatsapp_messages?.order_template || 
-                "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
-            
-            const textMessage = template
-                .replace(/{items}/g, itemsText.trim())
-                .replace(/{total}/g, grandTotal.toLocaleString('id-ID'))
-                .replace(/{name}/g, name)
-                .replace(/{address}/g, address)
-                .replace(/{maps}/g, mapsLink);
-
-            const encodedMessage = encodeURIComponent(textMessage);
-            const whatsappUrl = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}?text=${encodedMessage}`;
-
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
-</body>
-</html>
+                        document.getElementById('footerWa').innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || 
