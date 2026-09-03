@@ -194,7 +194,7 @@ function updateHeroBestSeller() {
 }
 
 // ============================================================
-// RENDER PRODUCTS - FIXED
+// RENDER PRODUCTS - FIXED (dengan loop yang benar)
 // ============================================================
 
 function renderProducts() {
@@ -206,7 +206,7 @@ function renderProducts() {
     const bestSellerItems = (siteConfig.products.bestSeller || []).map(p => ({ 
         ...p, 
         categoryName: 'Kopi',
-        isBestSeller: true,  // ← PASTIKAN true
+        isBestSeller: true,
         isNew: p.isNew || false
     }));
 
@@ -236,7 +236,7 @@ function renderProducts() {
         const safeName = item.name.replace(/'/g, "\\'");
         const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
-        // ===== BADGE DI ATAS GAMBAR (HANYA Best Seller ATAU New) =====
+        // ===== BADGE DI ATAS GAMBAR =====
         let imageBadgeHtml = '';
         
         if (item.isBestSeller) {
@@ -245,7 +245,7 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD (Kopi / Non-Kopi SAJA) =====
+        // ===== BADGE KATEGORI DI CARD =====
         let categoryBadgeClass = '';
         let categoryLabel = '';
 
@@ -286,7 +286,7 @@ function renderProducts() {
         productSwiper = new Swiper('.productSlider', {
             slidesPerView: 1.2,
             spaceBetween: 16,
-            loop: allItems.length > 4,
+            loop: false,  // ← UBAH KE FALSE! 
             grabCursor: true,
             autoplay: {
                 delay: 4500,
