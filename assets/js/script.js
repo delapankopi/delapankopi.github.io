@@ -202,26 +202,31 @@ function renderProducts() {
     if (!wrapper || !siteConfig.products) return;
     wrapper.innerHTML = '';
 
-    const allItems = [
-        ...(siteConfig.products.bestSeller || []).map(p => ({ 
-            ...p, 
-            categoryName: 'Kopi',
-            isBestSeller: p.isBestSeller !== undefined ? p.isBestSeller : true,
-            isNew: p.isNew || false
-        })),
-        ...(siteConfig.products.coffee || []).map(p => ({ 
-            ...p, 
-            categoryName: 'Kopi',
-            isBestSeller: p.isBestSeller || false,
-            isNew: p.isNew || false
-        })),
-        ...(siteConfig.products.nonCoffee || []).map(p => ({ 
-            ...p, 
-            categoryName: 'Non-Kopi',
-            isBestSeller: p.isBestSeller || false,
-            isNew: p.isNew || false
-        }))
-    ];
+    // Proses BEST SELLER - pastikan isBestSeller = true
+    const bestSellerItems = (siteConfig.products.bestSeller || []).map(p => ({ 
+        ...p, 
+        categoryName: 'Kopi',
+        isBestSeller: true,  // ← PASTIKAN true
+        isNew: p.isNew || false
+    }));
+
+    // Proses COFFEE
+    const coffeeItems = (siteConfig.products.coffee || []).map(p => ({ 
+        ...p, 
+        categoryName: 'Kopi',
+        isBestSeller: p.isBestSeller || false,
+        isNew: p.isNew || false
+    }));
+
+    // Proses NON-COFFEE
+    const nonCoffeeItems = (siteConfig.products.nonCoffee || []).map(p => ({ 
+        ...p, 
+        categoryName: 'Non-Kopi',
+        isBestSeller: p.isBestSeller || false,
+        isNew: p.isNew || false
+    }));
+
+    const allItems = [...bestSellerItems, ...coffeeItems, ...nonCoffeeItems];
 
     allItems.forEach(item => {
         const slide = document.createElement('div');
