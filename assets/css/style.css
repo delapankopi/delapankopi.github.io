@@ -300,7 +300,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Product Badge */
+//* Product Badge */
 .product-badge {
     position: absolute;
     top: 12px;
@@ -325,40 +325,32 @@ body {
 }
 
 /* Category Tag di card */
-/* ============================================================
-   PRODUCT CATEGORY BADGE - MINIMALIS
-   ============================================================ */
-
 .product-category-tag {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     font-weight: 600;
-    padding: 2px 10px;
+    padding: 3px 12px;
     border-radius: 50px;
     display: inline-block;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    background: transparent;
-    color: #8a9a95;
-    border: 1px solid rgba(0, 98, 65, 0.15);
+    background: #eef3f0;
+    color: #1a2a25;
 }
 
 .product-category-tag.badge-bestseller {
     background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #ffffff;
-    border: none;
 }
 
 .product-category-tag.badge-coffee {
-    background: rgba(0, 98, 65, 0.08);
-    color: var(--sb-green);
-    border: 1px solid rgba(0, 98, 65, 0.15);
+    background: var(--sb-green);
+    color: #ffffff;
 }
 
 .product-category-tag.badge-noncoffee {
-    background: rgba(2, 136, 209, 0.08);
-    color: #0288d1;
-    border: 1px solid rgba(2, 136, 209, 0.15);
+    background: #0288d1;
+    color: #ffffff;
 }
 
 /* Product Info */
