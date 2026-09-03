@@ -15,18 +15,20 @@ let testimoniSwiper = null;
 // DOMContentLoaded - INISIALISASI
 // ============================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function() {
     // Inisialisasi Modal
     const modalEl = document.getElementById('orderModal');
     if (modalEl) {
         orderModalInstance = new bootstrap.Modal(modalEl);
-        modalEl.addEventListener('shown.bs.modal', () => {
+        modalEl.addEventListener('shown.bs.modal', function() {
             initOrUpdateMap();
-            setTimeout(() => {
+            setTimeout(function() {
                 const tooltip = document.getElementById('locationTooltip');
                 if (tooltip) {
                     tooltip.classList.add('show');
-                    setTimeout(() => tooltip.classList.remove('show'), 6000);
+                    setTimeout(function() {
+                        tooltip.classList.remove('show');
+                    }, 6000);
                 }
             }, 500);
         });
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbarToggler = document.querySelector('.navbar-toggler');
     const allNavLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .dropdown-item');
 
-    allNavLinks.forEach(link => {
+    allNavLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             if (this.getAttribute('data-bs-toggle') === 'dropdown') return;
             if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
@@ -56,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load content.json
     fetch('content.json')
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
             siteConfig = data;
             applyThemeColors();
             applyLogo();
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderProducts();
             renderTestimonials();
         })
-        .catch(error => console.error('Gagal memuat content.json:', error));
+        .catch(function(error) { console.error('Gagal memuat content.json:', error); });
 
     // Inisialisasi AOS
     AOS.init({ duration: 800, once: true, offset: 100 });
@@ -90,11 +92,12 @@ function applyThemeColors() {
 function applyLogo() {
     if (!siteConfig.logo) return;
     const logoContainers = document.querySelectorAll('.brand-logo-container');
-    logoContainers.forEach(container => {
+    logoContainers.forEach(function(container) {
         if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
-            container.innerHTML = `<img src="${siteConfig.logo.image_url}" alt="Logo" class="w-100 h-100 object-fit-contain">`;
+            container.innerHTML = '<img src="' + siteConfig.logo.image_url + '" alt="Logo" class="w-100 h-100 object-fit-contain">';
         } else {
-            container.innerHTML = `<span class="font-serif fw-bold" style="font-size: ${window.innerWidth < 576 ? '14px' : '18px'};">${siteConfig.logo.text_icon || '00'}</span>`;
+            var fontSize = window.innerWidth < 576 ? '14px' : '18px';
+            container.innerHTML = '<span class="font-serif fw-bold" style="font-size: ' + fontSize + ';">' + (siteConfig.logo.text_icon || '00') + '</span>';
         }
     });
 }
@@ -102,22 +105,22 @@ function applyLogo() {
 function applyHero() {
     if (!siteConfig.hero) return;
 
-    const heroSection = document.getElementById('beranda');
+    var heroSection = document.getElementById('beranda');
     if (heroSection && siteConfig.hero.background_image) {
-        heroSection.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${siteConfig.hero.background_image}') center/cover no-repeat`;
+        heroSection.style.background = 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("' + siteConfig.hero.background_image + '") center/cover no-repeat';
     }
 
-    const heroImgEl = document.getElementById('heroMainImage');
+    var heroImgEl = document.getElementById('heroMainImage');
     if (heroImgEl && siteConfig.hero.hero_image) {
         heroImgEl.src = siteConfig.hero.hero_image;
     }
 
-    const heroHeading = document.getElementById('heroHeading');
+    var heroHeading = document.getElementById('heroHeading');
     if (heroHeading && siteConfig.hero.heading) {
         heroHeading.innerText = siteConfig.hero.heading;
     }
 
-    const heroSubtitle = document.getElementById('heroSubtitle');
+    var heroSubtitle = document.getElementById('heroSubtitle');
     if (heroSubtitle && siteConfig.hero.subtitle) {
         heroSubtitle.innerText = siteConfig.hero.subtitle;
     }
@@ -131,10 +134,10 @@ function applyBranding() {
         document.getElementById('navTagline').innerText = siteConfig.tagline;
     }
     if (siteConfig.address && document.getElementById('footerAddress')) {
-        document.getElementById('footerAddress').innerHTML = `<i class="fa-solid fa-location-dot me-2 text-warning"></i> ${siteConfig.address}`;
+        document.getElementById('footerAddress').innerHTML = '<i class="fa-solid fa-location-dot me-2 text-warning"></i> ' + siteConfig.address;
     }
     if (siteConfig.operational_hours && document.getElementById('footerOperational')) {
-        document.getElementById('footerOperational').innerHTML = `<i class="fa-solid fa-clock me-2 text-info"></i> ${siteConfig.operational_hours}`;
+        document.getElementById('footerOperational').innerHTML = '<i class="fa-solid fa-clock me-2 text-info"></i> ' + siteConfig.operational_hours;
     }
     if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title && document.getElementById('modalTitleText')) {
         document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
@@ -142,28 +145,28 @@ function applyBranding() {
 }
 
 function applyWhatsAppLinks() {
-    const waFormatted = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}`;
-    const floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
+    var waFormatted = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464');
+    var floatingMsg = siteConfig.whatsapp_messages?.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
 
-    const floatingBtn = document.getElementById('floatingWaBtn');
-    if (floatingBtn) floatingBtn.href = `${waFormatted}?text=${encodeURIComponent(floatingMsg)}`;
+    var floatingBtn = document.getElementById('floatingWaBtn');
+    if (floatingBtn) floatingBtn.href = waFormatted + '?text=' + encodeURIComponent(floatingMsg);
 
-    const footerWa = document.getElementById('footerWa');
+    var footerWa = document.getElementById('footerWa');
     if (footerWa) {
         footerWa.href = waFormatted;
-        footerWa.innerHTML = `<i class="fa-brands fa-whatsapp me-2 text-success"></i> +${siteConfig.whatsapp || '6285786012464'}`;
+        footerWa.innerHTML = '<i class="fa-brands fa-whatsapp me-2 text-success"></i> +' + (siteConfig.whatsapp || '6285786012464');
     }
 
-    const socialWa = document.getElementById('socialWa');
+    var socialWa = document.getElementById('socialWa');
     if (socialWa) socialWa.href = waFormatted;
 
-    const jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-    const jar8Btn = document.getElementById('jarBtn8L');
-    if (jar8Btn) jar8Btn.href = `${waFormatted}?text=${encodeURIComponent(jar8Msg)}`;
+    var jar8Msg = siteConfig.whatsapp_messages?.jar_8l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 8 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+    var jar8Btn = document.getElementById('jarBtn8L');
+    if (jar8Btn) jar8Btn.href = waFormatted + '?text=' + encodeURIComponent(jar8Msg);
 
-    const jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
-    const jar16Btn = document.getElementById('jarBtn16L');
-    if (jar16Btn) jar16Btn.href = `${waFormatted}?text=${encodeURIComponent(jar16Msg)}`;
+    var jar16Msg = siteConfig.whatsapp_messages?.jar_16l || "Halo kak, saya ingin konsultasi dan pesan paket *Dispenser 16 Liter* untuk acara saya. Mohon info detailnya ya! 🙏";
+    var jar16Btn = document.getElementById('jarBtn16L');
+    if (jar16Btn) jar16Btn.href = waFormatted + '?text=' + encodeURIComponent(jar16Msg);
 }
 
 function applySocialMediaLinks() {
@@ -183,10 +186,11 @@ function applySocialMediaLinks() {
 // ============================================================
 
 function updateHeroBestSeller() {
-    const bestSeller = siteConfig.products?.bestSeller?.[0];
+    if (!siteConfig.products) return;
+    var bestSeller = siteConfig.products.bestSeller && siteConfig.products.bestSeller[0] ? siteConfig.products.bestSeller[0] : null;
     if (!bestSeller) return;
 
-    const heroImgEl = document.getElementById('heroMainImage');
+    var heroImgEl = document.getElementById('heroMainImage');
     if (heroImgEl && bestSeller.image) {
         heroImgEl.src = bestSeller.image;
         heroImgEl.alt = bestSeller.name;
@@ -194,60 +198,91 @@ function updateHeroBestSeller() {
 }
 
 // ============================================================
-// RENDER PRODUCTS - FIXED (dengan loop yang benar)
+// RENDER PRODUCTS - FIXED
 // ============================================================
 
 function renderProducts() {
-    const wrapper = document.getElementById('productSliderWrapper');
+    var wrapper = document.getElementById('productSliderWrapper');
     if (!wrapper || !siteConfig.products) return;
     wrapper.innerHTML = '';
 
-    // Proses BEST SELLER - pastikan isBestSeller = true
-    const bestSellerItems = (siteConfig.products.bestSeller || []).map(p => ({ 
-        ...p, 
-        categoryName: 'Kopi',
-        isBestSeller: true,
-        isNew: p.isNew || false
-    }));
+    // Proses BEST SELLER
+    var bestSellerItems = [];
+    if (siteConfig.products.bestSeller) {
+        for (var i = 0; i < siteConfig.products.bestSeller.length; i++) {
+            var p = siteConfig.products.bestSeller[i];
+            bestSellerItems.push({
+                name: p.name,
+                price: p.price,
+                rawPrice: p.rawPrice,
+                image: p.image,
+                description: p.description,
+                categoryName: 'Kopi',
+                isBestSeller: true,
+                isNew: p.isNew || false
+            });
+        }
+    }
 
     // Proses COFFEE
-    const coffeeItems = (siteConfig.products.coffee || []).map(p => ({ 
-        ...p, 
-        categoryName: 'Kopi',
-        isBestSeller: p.isBestSeller || false,
-        isNew: p.isNew || false
-    }));
+    var coffeeItems = [];
+    if (siteConfig.products.coffee) {
+        for (var j = 0; j < siteConfig.products.coffee.length; j++) {
+            var p2 = siteConfig.products.coffee[j];
+            coffeeItems.push({
+                name: p2.name,
+                price: p2.price,
+                rawPrice: p2.rawPrice,
+                image: p2.image,
+                description: p2.description,
+                categoryName: 'Kopi',
+                isBestSeller: p2.isBestSeller || false,
+                isNew: p2.isNew || false
+            });
+        }
+    }
 
     // Proses NON-COFFEE
-    const nonCoffeeItems = (siteConfig.products.nonCoffee || []).map(p => ({ 
-        ...p, 
-        categoryName: 'Non-Kopi',
-        isBestSeller: p.isBestSeller || false,
-        isNew: p.isNew || false
-    }));
+    var nonCoffeeItems = [];
+    if (siteConfig.products.nonCoffee) {
+        for (var k = 0; k < siteConfig.products.nonCoffee.length; k++) {
+            var p3 = siteConfig.products.nonCoffee[k];
+            nonCoffeeItems.push({
+                name: p3.name,
+                price: p3.price,
+                rawPrice: p3.rawPrice,
+                image: p3.image,
+                description: p3.description,
+                categoryName: 'Non-Kopi',
+                isBestSeller: p3.isBestSeller || false,
+                isNew: p3.isNew || false
+            });
+        }
+    }
 
-    const allItems = [...bestSellerItems, ...coffeeItems, ...nonCoffeeItems];
+    var allItems = bestSellerItems.concat(coffeeItems).concat(nonCoffeeItems);
 
-    allItems.forEach(item => {
-        const slide = document.createElement('div');
+    for (var l = 0; l < allItems.length; l++) {
+        var item = allItems[l];
+        var slide = document.createElement('div');
         slide.className = 'swiper-slide';
 
-        const imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
-        const safeName = item.name.replace(/'/g, "\\'");
-        const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
+        var imgSrc = item.image ? item.image : 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600';
+        var safeName = item.name.replace(/'/g, "\\'");
+        var description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
         // ===== BADGE DI ATAS GAMBAR =====
-        let imageBadgeHtml = '';
+        var imageBadgeHtml = '';
         
         if (item.isBestSeller) {
-            imageBadgeHtml = `<span class="product-badge badge-bestseller">⭐ Best Seller</span>`;
+            imageBadgeHtml = '<span class="product-badge badge-bestseller">⭐ Best Seller</span>';
         } else if (item.isNew) {
-            imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
+            imageBadgeHtml = '<span class="product-badge badge-new">✨ New</span>';
         }
 
         // ===== BADGE KATEGORI DI CARD =====
-        let categoryBadgeClass = '';
-        let categoryLabel = '';
+        var categoryBadgeClass = '';
+        var categoryLabel = '';
 
         if (item.categoryName === 'Kopi') {
             categoryBadgeClass = 'badge-coffee';
@@ -257,36 +292,36 @@ function renderProducts() {
             categoryLabel = '🥤 Non-Kopi';
         }
 
-        slide.innerHTML = `
-            <div class="product-card">
-                <div class="product-img-holder">
-                    ${imageBadgeHtml}
-                    <img src="${imgSrc}" alt="${item.name}" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <span class="product-category-tag ${categoryBadgeClass}">${categoryLabel}</span>
-                    <h3 class="product-title">${item.name}</h3>
-                    <div class="product-price">${item.price}</div>
-                    <p class="product-desc">${description}</p>
-                    <button type="button" onclick="openOrderModal('${safeName}')" class="btn-order-product">
-                        <i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang
-                    </button>
-                </div>
-            </div>
-        `;
+        slide.innerHTML = 
+            '<div class="product-card">' +
+                '<div class="product-img-holder">' +
+                    imageBadgeHtml +
+                    '<img src="' + imgSrc + '" alt="' + item.name + '" loading="lazy">' +
+                '</div>' +
+                '<div class="product-info">' +
+                    '<span class="product-category-tag ' + categoryBadgeClass + '">' + categoryLabel + '</span>' +
+                    '<h3 class="product-title">' + item.name + '</h3>' +
+                    '<div class="product-price">' + item.price + '</div>' +
+                    '<p class="product-desc">' + description + '</p>' +
+                    '<button type="button" onclick="openOrderModal(\'' + safeName + '\')" class="btn-order-product">' +
+                        '<i class="fa-solid fa-bag-shopping"></i> Pesan Sekarang' +
+                    '</button>' +
+                '</div>' +
+            '</div>';
+
         wrapper.appendChild(slide);
-    });
+    }
 
     if (productSwiper) {
         productSwiper.destroy(true, true);
         productSwiper = null;
     }
 
-    setTimeout(() => {
+    setTimeout(function() {
         productSwiper = new Swiper('.productSlider', {
             slidesPerView: 1.2,
             spaceBetween: 16,
-            loop: false,  // ← UBAH KE FALSE! 
+            loop: false,
             grabCursor: true,
             autoplay: {
                 delay: 4500,
@@ -318,47 +353,47 @@ function renderProducts() {
 // ============================================================
 
 function renderTestimonials() {
-    const wrapper = document.getElementById('testimoniSliderWrapper');
+    var wrapper = document.getElementById('testimoniSliderWrapper');
     if (!wrapper || !siteConfig.testimonials || siteConfig.testimonials.length === 0) {
-        const section = document.getElementById('testimoni');
+        var section = document.getElementById('testimoni');
         if (section) section.style.display = 'none';
         return;
     }
 
     wrapper.innerHTML = '';
 
-    siteConfig.testimonials.forEach(item => {
-        const starsHtml = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
-        const avatarSrc = item.avatar && item.avatar.trim() !== '' 
+    for (var i = 0; i < siteConfig.testimonials.length; i++) {
+        var item = siteConfig.testimonials[i];
+        var starsHtml = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+        var avatarSrc = item.avatar && item.avatar.trim() !== '' 
             ? item.avatar 
             : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(item.name) + '&background=006241&color=fff&size=100';
 
-        const slide = document.createElement('div');
+        var slide = document.createElement('div');
         slide.className = 'swiper-slide';
-        slide.innerHTML = `
-            <div class="testimoni-card">
-                <div class="stars">${starsHtml}</div>
-                <p class="testimoni-text">${item.text}</p>
-                <div class="testimoni-author">
-                    <img src="${avatarSrc}" alt="${item.name}" class="testimoni-avatar" loading="lazy">
-                    <div>
-                        <p class="testimoni-name">${item.name}</p>
-                        <p class="testimoni-role">${item.role || ''}</p>
-                    </div>
-                </div>
-            </div>
-        `;
+        slide.innerHTML = 
+            '<div class="testimoni-card">' +
+                '<div class="stars">' + starsHtml + '</div>' +
+                '<p class="testimoni-text">' + item.text + '</p>' +
+                '<div class="testimoni-author">' +
+                    '<img src="' + avatarSrc + '" alt="' + item.name + '" class="testimoni-avatar" loading="lazy">' +
+                    '<div>' +
+                        '<p class="testimoni-name">' + item.name + '</p>' +
+                        '<p class="testimoni-role">' + (item.role || '') + '</p>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
 
         wrapper.appendChild(slide);
-    });
+    }
 
     if (testimoniSwiper) {
         testimoniSwiper.destroy(true, true);
         testimoniSwiper = null;
     }
 
-    setTimeout(() => {
-        const totalTestimonials = siteConfig.testimonials.length;
+    setTimeout(function() {
+        var totalTestimonials = siteConfig.testimonials.length;
         
         testimoniSwiper = new Swiper('.testimoniSlider', {
             slidesPerView: 1,
@@ -409,15 +444,15 @@ function renderTestimonials() {
 // ============================================================
 
 function detectUserLocation() {
-    const btn = document.querySelector('.btn-detect-location');
+    var btn = document.querySelector('.btn-detect-location');
     if (!btn) return;
 
-    const originalHtml = btn.innerHTML;
+    var originalHtml = btn.innerHTML;
     btn.innerHTML = '<i class="fa-solid fa-spinner"></i> Mendeteksi...';
     btn.classList.add('loading');
     btn.disabled = true;
 
-    const tooltip = document.getElementById('locationTooltip');
+    var tooltip = document.getElementById('locationTooltip');
     if (tooltip) {
         tooltip.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1" style="color: #0d6efd;"></i> Mengakses GPS Anda...';
         tooltip.classList.add('show');
@@ -425,37 +460,39 @@ function detectUserLocation() {
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            function(position) {
                 currentLat = position.coords.latitude.toFixed(6);
                 currentLng = position.coords.longitude.toFixed(6);
-                const latLng = [currentLat, currentLng];
+                var latLng = [currentLat, currentLng];
 
                 if (map && marker) {
                     map.setView(latLng, 16);
                     marker.setLatLng(latLng);
-                    const markerElement = marker.getElement();
+                    var markerElement = marker.getElement();
                     if (markerElement) {
                         markerElement.classList.add('pulse-marker');
-                        setTimeout(() => markerElement.classList.remove('pulse-marker'), 2000);
+                        setTimeout(function() {
+                            markerElement.classList.remove('pulse-marker');
+                        }, 2000);
                     }
                 }
 
-                const coordDisplay = document.getElementById('coordDisplay');
-                if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
-                showToast('success', '✅ Lokasi Terdeteksi!', `Koordinat: ${currentLat}, ${currentLng}`);
+                var coordDisplay = document.getElementById('coordDisplay');
+                if (coordDisplay) coordDisplay.innerText = currentLat + ', ' + currentLng;
+                showToast('success', '✅ Lokasi Terdeteksi!', 'Koordinat: ' + currentLat + ', ' + currentLng);
 
                 if (tooltip) {
                     tooltip.innerHTML = '<i class="fa-solid fa-check-circle text-success me-1"></i> <span class="text-success fw-bold">Lokasi berhasil dideteksi!</span>';
-                    setTimeout(() => tooltip.classList.remove('show'), 3000);
+                    setTimeout(function() { tooltip.classList.remove('show'); }, 3000);
                 }
 
                 btn.innerHTML = originalHtml;
                 btn.classList.remove('loading');
                 btn.disabled = false;
             },
-            (error) => {
-                let errorMessage = 'Gagal mendeteksi lokasi. ';
-                switch (error.code) {
+            function(error) {
+                var errorMessage = 'Gagal mendeteksi lokasi. ';
+                switch(error.code) {
                     case error.PERMISSION_DENIED:
                         errorMessage += 'Izin lokasi ditolak.';
                         break;
@@ -473,7 +510,7 @@ function detectUserLocation() {
 
                 if (tooltip) {
                     tooltip.innerHTML = '<i class="fa-solid fa-circle-exclamation text-danger me-1"></i> <span class="text-danger fw-bold">' + errorMessage + '</span>';
-                    setTimeout(() => tooltip.classList.remove('show'), 5000);
+                    setTimeout(function() { tooltip.classList.remove('show'); }, 5000);
                 }
 
                 btn.innerHTML = originalHtml;
@@ -500,19 +537,19 @@ function initOrUpdateMap() {
         marker = L.marker([currentLat, currentLng], { draggable: true }).addTo(map);
 
         marker.on('dragend', function() {
-            const position = marker.getLatLng();
+            var position = marker.getLatLng();
             currentLat = position.lat.toFixed(6);
             currentLng = position.lng.toFixed(6);
-            const coordDisplay = document.getElementById('coordDisplay');
-            if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
+            var coordDisplay = document.getElementById('coordDisplay');
+            if (coordDisplay) coordDisplay.innerText = currentLat + ', ' + currentLng;
         });
 
         map.on('click', function(e) {
             marker.setLatLng(e.latlng);
             currentLat = e.latlng.lat.toFixed(6);
             currentLng = e.latlng.lng.toFixed(6);
-            const coordDisplay = document.getElementById('coordDisplay');
-            if (coordDisplay) coordDisplay.innerText = `${currentLat}, ${currentLng}`;
+            var coordDisplay = document.getElementById('coordDisplay');
+            if (coordDisplay) coordDisplay.innerText = currentLat + ', ' + currentLng;
         });
     } else {
         map.invalidateSize();
@@ -526,12 +563,12 @@ function initOrUpdateMap() {
 // ============================================================
 
 function showToast(type, title, message) {
-    const toast = document.getElementById('locationToast');
+    var toast = document.getElementById('locationToast');
     if (!toast) return;
 
-    const icon = toast.querySelector('.toast-icon');
-    const titleEl = document.getElementById('toastTitle');
-    const messageEl = document.getElementById('toastMessage');
+    var icon = toast.querySelector('.toast-icon');
+    var titleEl = document.getElementById('toastTitle');
+    var messageEl = document.getElementById('toastMessage');
 
     if (icon) icon.className = 'toast-icon';
 
@@ -555,13 +592,13 @@ function showToast(type, title, message) {
     toast.classList.add('show');
 
     clearTimeout(toast._timeout);
-    toast._timeout = setTimeout(() => {
+    toast._timeout = setTimeout(function() {
         toast.classList.remove('show');
     }, 5000);
 }
 
 function closeToast() {
-    const toast = document.getElementById('locationToast');
+    var toast = document.getElementById('locationToast');
     if (toast) {
         toast.classList.remove('show');
         clearTimeout(toast._timeout);
@@ -572,8 +609,9 @@ function closeToast() {
 // MODAL ORDER
 // ============================================================
 
-function openOrderModal(initialProduct = "") {
-    const container = document.getElementById('orderItemsContainer');
+function openOrderModal(initialProduct) {
+    if (initialProduct === undefined) initialProduct = "";
+    var container = document.getElementById('orderItemsContainer');
     if (container) {
         container.innerHTML = '';
         addOrderItem(initialProduct, 1, 'Normal (100%)');
@@ -583,40 +621,47 @@ function openOrderModal(initialProduct = "") {
     }
 }
 
-function addOrderItem(selectedName = "", qty = 1, selectedSweetness = "Normal (100%)") {
-    const container = document.getElementById('orderItemsContainer');
+function addOrderItem(selectedName, qty, selectedSweetness) {
+    if (selectedName === undefined) selectedName = "";
+    if (qty === undefined) qty = 1;
+    if (selectedSweetness === undefined) selectedSweetness = "Normal (100%)";
+    
+    var container = document.getElementById('orderItemsContainer');
     if (!container) return;
 
-    const rowId = 'item-row-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+    var rowId = 'item-row-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
 
-    let optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
+    var optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
 
     if (siteConfig && siteConfig.products) {
         if (siteConfig.products.bestSeller && siteConfig.products.bestSeller.length > 0) {
             optionsHtml += '<optgroup label="-- FAVORIT / BEST SELLER --">';
-            siteConfig.products.bestSeller.forEach(p => {
-                const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                const isSelected = (p.name === selectedName) ? 'selected' : '';
-                optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-            });
+            for (var i = 0; i < siteConfig.products.bestSeller.length; i++) {
+                var p = siteConfig.products.bestSeller[i];
+                var valStr = p.name + '|' + p.price + '|' + p.rawPrice;
+                var isSelected = (p.name === selectedName) ? 'selected' : '';
+                optionsHtml += '<option value="' + valStr + '" ' + isSelected + '>' + p.name + ' - ' + p.price + '</option>';
+            }
             optionsHtml += '</optgroup>';
         }
         if (siteConfig.products.coffee && siteConfig.products.coffee.length > 0) {
             optionsHtml += '<optgroup label="-- COFFEE --">';
-            siteConfig.products.coffee.forEach(p => {
-                const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                const isSelected = (p.name === selectedName) ? 'selected' : '';
-                optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-            });
+            for (var j = 0; j < siteConfig.products.coffee.length; j++) {
+                var p2 = siteConfig.products.coffee[j];
+                var valStr2 = p2.name + '|' + p2.price + '|' + p2.rawPrice;
+                var isSelected2 = (p2.name === selectedName) ? 'selected' : '';
+                optionsHtml += '<option value="' + valStr2 + '" ' + isSelected2 + '>' + p2.name + ' - ' + p2.price + '</option>';
+            }
             optionsHtml += '</optgroup>';
         }
         if (siteConfig.products.nonCoffee && siteConfig.products.nonCoffee.length > 0) {
             optionsHtml += '<optgroup label="-- NON-COFFEE --">';
-            siteConfig.products.nonCoffee.forEach(p => {
-                const valStr = `${p.name}|${p.price}|${p.rawPrice}`;
-                const isSelected = (p.name === selectedName) ? 'selected' : '';
-                optionsHtml += `<option value="${valStr}" ${isSelected}>${p.name} - ${p.price}</option>`;
-            });
+            for (var k = 0; k < siteConfig.products.nonCoffee.length; k++) {
+                var p3 = siteConfig.products.nonCoffee[k];
+                var valStr3 = p3.name + '|' + p3.price + '|' + p3.rawPrice;
+                var isSelected3 = (p3.name === selectedName) ? 'selected' : '';
+                optionsHtml += '<option value="' + valStr3 + '" ' + isSelected3 + '>' + p3.name + ' - ' + p3.price + '</option>';
+            }
             optionsHtml += '</optgroup>';
         }
     }
@@ -625,51 +670,51 @@ function addOrderItem(selectedName = "", qty = 1, selectedSweetness = "Normal (1
         optionsHtml = optionsHtml.replace('value="" disabled', 'value="" disabled selected');
     }
 
-    const sweetnessLevels = (siteConfig.modal_settings && siteConfig.modal_settings.sweetness_levels) ?
+    var sweetnessLevels = (siteConfig.modal_settings && siteConfig.modal_settings.sweetness_levels) ?
         siteConfig.modal_settings.sweetness_levels :
         ["Normal (100%)", "Slight (70% - 80%)", "Less (50%)", "Low (25%)", "No Sugar"];
 
-    let sweetnessOptionsHtml = '';
-    sweetnessLevels.forEach(lvl => {
-        const isSel = (lvl === selectedSweetness) ? 'selected' : '';
-        sweetnessOptionsHtml += `<option value="${lvl}" ${isSel}>${lvl}</option>`;
-    });
+    var sweetnessOptionsHtml = '';
+    for (var l = 0; l < sweetnessLevels.length; l++) {
+        var lvl = sweetnessLevels[l];
+        var isSel = (lvl === selectedSweetness) ? 'selected' : '';
+        sweetnessOptionsHtml += '<option value="' + lvl + '" ' + isSel + '>' + lvl + '</option>';
+    }
 
-    const rowDiv = document.createElement('div');
+    var rowDiv = document.createElement('div');
     rowDiv.className = 'card p-3 bg-light border item-row';
     rowDiv.id = rowId;
-    rowDiv.innerHTML = `
-        <div class="row g-2 align-items-center">
-            <div class="col-12 col-md-5 col-product">
-                <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">PRODUK</label>
-                <select class="form-select form-select-sm product-choice" onchange="calculateGrandTotal()" required>
-                    ${optionsHtml}
-                </select>
-            </div>
-            <div class="col-6 col-md-4 col-sweetness">
-                <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>
-                <select class="form-select form-select-sm product-sweetness">
-                    ${sweetnessOptionsHtml}
-                </select>
-            </div>
-            <div class="col-4 col-md-2 col-qty">
-                <label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">JUMLAH</label>
-                <input type="number" class="form-control form-control-sm product-qty" min="1" value="${qty}" oninput="calculateGrandTotal()" required>
-            </div>
-            <div class="col-2 col-md-1 col-delete text-end">
-                <label class="form-label d-block text-white" style="font-size: 9px; margin-bottom: 2px;">-</label>
-                <button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeOrderItem('${rowId}')" title="Hapus"><i class="fa-solid fa-trash"></i></button>
-            </div>
-        </div>
-    `;
+    rowDiv.innerHTML = 
+        '<div class="row g-2 align-items-center">' +
+            '<div class="col-12 col-md-5 col-product">' +
+                '<label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">PRODUK</label>' +
+                '<select class="form-select form-select-sm product-choice" onchange="calculateGrandTotal()" required>' +
+                    optionsHtml +
+                '</select>' +
+            '</div>' +
+            '<div class="col-6 col-md-4 col-sweetness">' +
+                '<label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">TINGKAT KEMANISAN</label>' +
+                '<select class="form-select form-select-sm product-sweetness">' +
+                    sweetnessOptionsHtml +
+                '</select>' +
+            '</div>' +
+            '<div class="col-4 col-md-2 col-qty">' +
+                '<label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">JUMLAH</label>' +
+                '<input type="number" class="form-control form-control-sm product-qty" min="1" value="' + qty + '" oninput="calculateGrandTotal()" required>' +
+            '</div>' +
+            '<div class="col-2 col-md-1 col-delete text-end">' +
+                '<label class="form-label d-block text-white" style="font-size: 9px; margin-bottom: 2px;">-</label>' +
+                '<button type="button" class="btn btn-outline-danger btn-sm w-100" onclick="removeOrderItem(\'' + rowId + '\')" title="Hapus"><i class="fa-solid fa-trash"></i></button>' +
+            '</div>' +
+        '</div>';
     container.appendChild(rowDiv);
     calculateGrandTotal();
 }
 
 function removeOrderItem(rowId) {
-    const rows = document.querySelectorAll('.item-row');
+    var rows = document.querySelectorAll('.item-row');
     if (rows.length > 1) {
-        const el = document.getElementById(rowId);
+        var el = document.getElementById(rowId);
         if (el) el.remove();
         calculateGrandTotal();
     } else {
@@ -678,20 +723,21 @@ function removeOrderItem(rowId) {
 }
 
 function calculateGrandTotal() {
-    let grandTotal = 0;
-    const rows = document.querySelectorAll('.item-row');
-    rows.forEach(row => {
-        const selectEl = row.querySelector('.product-choice');
-        const qtyEl = row.querySelector('.product-qty');
+    var grandTotal = 0;
+    var rows = document.querySelectorAll('.item-row');
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var selectEl = row.querySelector('.product-choice');
+        var qtyEl = row.querySelector('.product-qty');
         if (selectEl && selectEl.value && qtyEl && qtyEl.value) {
-            const valParts = selectEl.value.split('|');
-            const rawPrice = parseInt(valParts[2]) || 0;
-            const qty = parseInt(qtyEl.value) || 0;
+            var valParts = selectEl.value.split('|');
+            var rawPrice = parseInt(valParts[2]) || 0;
+            var qty = parseInt(qtyEl.value) || 0;
             grandTotal += rawPrice * qty;
         }
-    });
-    const grandTotalEl = document.getElementById('grandTotalDisplay');
-    if (grandTotalEl) grandTotalEl.innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+    }
+    var grandTotalEl = document.getElementById('grandTotalDisplay');
+    if (grandTotalEl) grandTotalEl.innerText = 'Rp ' + grandTotal.toLocaleString('id-ID');
 }
 
 // ============================================================
@@ -701,54 +747,55 @@ function calculateGrandTotal() {
 function sendWhatsAppOrder(event) {
     event.preventDefault();
 
-    const nameEl = document.getElementById('customerName');
-    const addressEl = document.getElementById('customerAddress');
+    var nameEl = document.getElementById('customerName');
+    var addressEl = document.getElementById('customerAddress');
 
-    const name = nameEl ? nameEl.value : '';
-    const address = addressEl ? addressEl.value : '';
-    const mapsLink = `https://maps.google.com/?q=${currentLat},${currentLng}`;
+    var name = nameEl ? nameEl.value : '';
+    var address = addressEl ? addressEl.value : '';
+    var mapsLink = 'https://maps.google.com/?q=' + currentLat + ',' + currentLng;
 
-    let itemsText = "";
-    let isValid = true;
-    let grandTotal = 0;
+    var itemsText = "";
+    var isValid = true;
+    var grandTotal = 0;
 
-    const rows = document.querySelectorAll('.item-row');
-    rows.forEach((row, index) => {
-        const selectEl = row.querySelector('.product-choice');
-        const sweetEl = row.querySelector('.product-sweetness');
-        const qtyEl = row.querySelector('.product-qty');
+    var rows = document.querySelectorAll('.item-row');
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var selectEl = row.querySelector('.product-choice');
+        var sweetEl = row.querySelector('.product-sweetness');
+        var qtyEl = row.querySelector('.product-qty');
 
         if (!selectEl || !selectEl.value) {
             isValid = false;
-            return;
+            break;
         }
 
-        const valParts = selectEl.value.split('|');
-        const rawPrice = parseInt(valParts[2]) || 0;
-        const qty = parseInt(qtyEl.value) || 0;
-        const subtotal = rawPrice * qty;
+        var valParts = selectEl.value.split('|');
+        var rawPrice = parseInt(valParts[2]) || 0;
+        var qty = parseInt(qtyEl.value) || 0;
+        var subtotal = rawPrice * qty;
         grandTotal += subtotal;
 
-        itemsText += `${index + 1}. *${valParts[0]}* (${valParts[1]})\n   - Jumlah: *${qty} Botol*\n   - Manis: *${sweetEl.value}*\n   - Subtotal: *Rp ${subtotal.toLocaleString('id-ID')}*\n\n`;
-    });
+        itemsText += (i + 1) + '. *' + valParts[0] + '* (' + valParts[1] + ')\n   - Jumlah: *' + qty + ' Botol*\n   - Manis: *' + sweetEl.value + '*\n   - Subtotal: *Rp ' + subtotal.toLocaleString('id-ID') + '*\n\n';
+    }
 
     if (!isValid) {
         alert("Mohon pilih menu terlebih dahulu pada setiap baris produk.");
         return;
     }
 
-    const template = siteConfig.whatsapp_messages?.order_template ||
+    var template = siteConfig.whatsapp_messages?.order_template ||
         "Halo kak 👋\n\nIzin pesan produk berikut:\n{items}\n\n*Estimasi Total:* *Rp {total}*\n\n*Nama Pemesan:* {name}\n*Detail Alamat:* {address}\n*Titik Google Maps:* {maps}\n\nMohon info ketersediaan dan total pembayarannya ya, terima kasih! 🙏";
 
-    const textMessage = template
+    var textMessage = template
         .replace(/{items}/g, itemsText.trim())
         .replace(/{total}/g, grandTotal.toLocaleString('id-ID'))
         .replace(/{name}/g, name)
         .replace(/{address}/g, address)
         .replace(/{maps}/g, mapsLink);
 
-    const encodedMessage = encodeURIComponent(textMessage);
-    const whatsappUrl = `https://wa.me/${siteConfig.whatsapp || '6285786012464'}?text=${encodedMessage}`;
+    var encodedMessage = encodeURIComponent(textMessage);
+    var whatsappUrl = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464') + '?text=' + encodedMessage;
 
     window.open(whatsappUrl, '_blank');
 }
