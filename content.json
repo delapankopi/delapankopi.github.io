@@ -1,50 +1,186 @@
-/* Product Badge */
-.product-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 50px;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-}
-
-.badge-bestseller {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #ffffff;
-}
-
-.badge-new {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: #ffffff;
-}
-
-/* Category Tag di card - style baru */
-.product-category-tag {
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 4px 14px;
-    border-radius: 50px;
-    display: inline-block;
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.product-category-tag.badge-bestseller {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #ffffff;
-}
-
-.product-category-tag.badge-coffee {
-    background: var(--sb-green);
-    color: #ffffff;
-}
-
-.product-category-tag.badge-noncoffee {
-    background: #0288d1;
-    color: #ffffff;
+{
+  "brand": "delapan kopi",
+  "tagline": "Satu Liter Kebaikan Nusantara",
+  "whatsapp": "6285786012464",
+  "instagram": "https://instagram.com/delapankopi",
+  "facebook": "https://facebook.com/delapankopi",
+  "tiktok": "https://tiktok.com/@delapankopi",
+  "logo": {
+    "text_icon": "",
+    "image_url": "assets/img/logo_delapan_kopi.webp"
+  },
+  "theme_colors": {
+    "primary_green": "#006241",
+    "dark_green": "#003825",
+    "light_bg": "#f2f7f4"
+  },
+  "hero": {
+    "background_image": "assets/img/background.webp",
+    "hero_image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
+    "heading": "Pusat Kopi Kemasan Botol Besar 1 Liter & Paket Pesta untuk Acara Spesial di Kota Tegal",
+    "subtitle": "Menyediakan kopi kemasan botol 1 liter fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di kota Tegal."
+  },
+  "address": "Sapphire Residence (Cluster Zamrud) Blok F-8 RT.10/RW.09, Kel. Pacul, Kec. Talang, Kab. Tegal.",
+  "operational_hours": "Senin - Sabtu: 08.00 - 17.00 WIB",
+  "modal_settings": {
+    "modal_title": "List Order",
+    "sweetness_levels": [
+      "Normal (100%)",
+      "Slight Sugar (70% - 80%)",
+      "Less Sugar (50%)",
+      "Low Sugar (25%)",
+      "No Sugar"
+    ]
+  },
+  "products": {
+    "bestSeller": [
+      {
+        "name": "Spanish Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/spanish_latte.webp",
+        "description": "Perpaduan sempurna espresso pekat dengan susu segar dan sentuhan karamel khas Spanyol. Manis creamy dengan aftertaste kopi yang kuat.",
+        "isNew": false,
+        "isBestSeller": true
+      }
+    ],
+    "coffee": [
+      {
+        "name": "Almond Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/almond_latte.webp",
+        "description": "Kombinasi espresso dan susu almond premium yang lembut. Rasa nutty alami dengan sentuhan vanilla, cocok untuk pecinta rasa ringan dan elegan.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Aren Latte",
+        "price": "Rp 70.000",
+        "rawPrice": 70000,
+        "image": "assets/img/products/aren_latte.webp",
+        "description": "Cita rasa khas Nusantara dengan gula aren asli yang dipadukan bersama espresso dan susu segar. Manis legit dengan aroma karamel alami.",
+        "isNew": true,
+        "isBestSeller": false
+      },
+      {
+        "name": "Blewah Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/blewah_latte.webp",
+        "description": "Kesegaran blewah yang dipadukan dengan espresso dan susu segar. Menyajikan rasa fruity yang unik dan menyegarkan di setiap tegukan.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Butter Caramel Latte",
+        "price": "Rp 53.000",
+        "rawPrice": 53000,
+        "image": "assets/img/products/butter_caramel_latte.webp",
+        "description": "Perpaduan butter caramel yang lumer dengan espresso dan susu pilihan. Rasa manis gurih yang creamy dengan aroma butterscotch yang menggoda.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Creamy Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/creamy_latte_low_sugar.webp",
+        "description": "Latte rendah gula dengan tekstur creamy yang tetap nikmat. Pilihan sehat tanpa mengurangi cita rasa kopi yang autentik.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Longblack",
+        "price": "Rp 40.000",
+        "rawPrice": 40000,
+        "image": "assets/img/products/longblack.webp",
+        "description": "Black coffee dengan perpaduan dua shot espresso dan air berkualitas. Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Pandan Aren Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/pandan_aren_latte.webp",
+        "description": "Perpaduan ekstrak pandan asli, gula aren, espresso, dan susu segar. Aroma wangi pandan berpadu manis legit aren.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Praline Latte",
+        "price": "Rp 47.000",
+        "rawPrice": 47000,
+        "image": "assets/img/products/praline_latte.webp",
+        "description": "Latte dengan sentuhan praline cokelat hazelnut yang mewah. Rasa manis gurih dengan aroma roasted nut yang memanjakan lidah.",
+        "isNew": false,
+        "isBestSeller": false
+      }
+    ],
+    "nonCoffee": [
+      {
+        "name": "Matcha Latte",
+        "price": "Rp 75.000",
+        "rawPrice": 75000,
+        "image": "assets/img/products/matcha_latte.webp",
+        "description": "Bubuk matcha premium berkualitas tinggi yang dipadukan dengan susu segar. Rasa earthy yang khas dengan aftertaste manis alami dan creamy.",
+        "isNew": false,
+        "isBestSeller": false
+      },
+      {
+        "name": "Signature Double Chocolate",
+        "price": "Rp 50.000",
+        "rawPrice": 50000,
+        "image": "assets/img/products/signature_double_chocolate.webp",
+        "description": "Minuman tanpa kopi favorit! Perpaduan dark chocolate dan milk chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan.",
+        "isNew": true,
+        "isBestSeller": false
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "name": "Maya Sari",
+      "role": "Ibu Rumah Tangga, Tegal",
+      "avatar": "",
+      "rating": 5,
+      "text": "Kopi botolan dari Delapan Kopi selalu jadi andalan saya untuk arisan keluarga. Rasanya enak, kemasan higienis, dan pengiriman cepat. Anak-anak juga suka varian non-kopinnya!"
+    },
+    {
+      "name": "Budi Hartono",
+      "role": "Event Organizer, Tegal",
+      "avatar": "",
+      "rating": 5,
+      "text": "Sudah 3 kali pakai jasa Delapan Kopi untuk acara pernikahan. Paket dispenser 16L sangat membantu, tamu puas dan praktis. Recommended banget!"
+    },
+    {
+      "name": "Rina Wati",
+      "role": "Karyawan Swasta, Tegal",
+      "avatar": "",
+      "rating": 4,
+      "text": "Suka banget sama Spanish Latte-nya! Creamy dan manisnya pas. Sekarang jadi langganan rutin buat stok di rumah. Mantap!"
+    },
+    {
+      "name": "Agus Arab",
+      "role": "Asisten Pak Erwe, Tegal",
+      "avatar": "",
+      "rating": 5,
+      "text": "Kualitas kopi Delapan Kopi sangat konsisten. Saya pakai untuk stok minuman di cafe, pelanggan selalu puas. Harga bersaing dan rasa premium."
+    },
+    {
+      "name": "Dewi Lestari",
+      "role": "Guru, Tegal",
+      "avatar": "",
+      "rating": 5,
+      "text": "Pertama kali coba kopi botolan, langsung jatuh cinta sama Pandan Aren Latte-nya. Wangi pandan dan manis arennya pas di lidah. Pasti repeat order!"
+    },
+    {
+      "name": "Fajar Ramadhan",
+      "role": "Mahasiswa, Tegal",
+      "avatar": "",
+      "rating": 4,
+      "text": "Cocok banget buat anak kos kayak saya. Kopi fresh tinggal minum, ga perlu repot seduh. Harga terjangkau dan rasa cafe-quality!"
+    }
+  ]
 }
