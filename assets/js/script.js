@@ -836,3 +836,34 @@ function sendWhatsAppOrder(event) {
 
     window.open(waUrl, '_blank');
 }
+function applyBranding() {
+    if (siteConfig.brand && document.getElementById('navBrand')) {
+        document.getElementById('navBrand').innerText = siteConfig.brand;
+    }
+    if (siteConfig.tagline && document.getElementById('navTagline')) {
+        document.getElementById('navTagline').innerText = siteConfig.tagline;
+    }
+    
+    // Address with Google Maps Link
+    if (siteConfig.address && document.getElementById('footerAddress')) {
+        var addressLink = document.getElementById('footerAddressLink');
+        if (addressLink) {
+            addressLink.textContent = siteConfig.address;
+            if (siteConfig.google_maps_url) {
+                addressLink.href = siteConfig.google_maps_url;
+                addressLink.target = '_blank';
+                addressLink.rel = 'noopener noreferrer';
+            }
+        } else {
+            // Fallback jika tidak ada link terpisah
+            document.getElementById('footerAddress').innerHTML = '<i class="fa-solid fa-location-dot me-2 text-warning"></i> ' + siteConfig.address;
+        }
+    }
+    
+    if (siteConfig.operational_hours && document.getElementById('footerOperational')) {
+        document.getElementById('footerOperational').innerHTML = '<i class="fa-solid fa-clock me-2 text-info"></i> ' + siteConfig.operational_hours;
+    }
+    if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title && document.getElementById('modalTitleText')) {
+        document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
+    }
+}
