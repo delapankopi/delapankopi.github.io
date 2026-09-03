@@ -231,7 +231,7 @@ function renderProducts() {
         const safeName = item.name.replace(/'/g, "\\'");
         const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
-        // ===== BADGE DI ATAS GAMBAR =====
+        // ===== BADGE DI ATAS GAMBAR (hanya Best Seller atau New) =====
         let imageBadgeHtml = '';
         
         if (item.isBestSeller) {
@@ -240,7 +240,7 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD =====
+        // ===== BADGE KATEGORI DI CARD (minimalis, hanya ikon) =====
         let categoryBadgeClass = '';
         let categoryLabel = '';
 
