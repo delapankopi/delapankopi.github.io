@@ -202,11 +202,10 @@ function renderProducts() {
     if (!wrapper || !siteConfig.products) return;
     wrapper.innerHTML = '';
 
-    // Gabungkan semua produk dari bestSeller, coffee, dan nonCoffee
     const allItems = [
         ...(siteConfig.products.bestSeller || []).map(p => ({ 
             ...p, 
-            categoryName: 'Favorit',
+            categoryName: 'Kopi',
             isBestSeller: p.isBestSeller !== undefined ? p.isBestSeller : true,
             isNew: p.isNew || false
         })),
@@ -232,7 +231,7 @@ function renderProducts() {
         const safeName = item.name.replace(/'/g, "\\'");
         const description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
-        // ===== BADGE DI ATAS GAMBAR (hanya Best Seller atau New) =====
+        // ===== BADGE DI ATAS GAMBAR (HANYA Best Seller ATAU New) =====
         let imageBadgeHtml = '';
         
         if (item.isBestSeller) {
@@ -241,20 +240,17 @@ function renderProducts() {
             imageBadgeHtml = `<span class="product-badge badge-new">✨ New</span>`;
         }
 
-        // ===== BADGE KATEGORI DI CARD (ikon + label pendek) =====
-let categoryBadgeClass = '';
-let categoryLabel = '';
+        // ===== BADGE KATEGORI DI CARD (Kopi / Non-Kopi SAJA) =====
+        let categoryBadgeClass = '';
+        let categoryLabel = '';
 
-if (item.categoryName === 'Favorit') {
-    categoryBadgeClass = 'badge-bestseller';
-    categoryLabel = '⭐ Favorite';
-} else if (item.categoryName === 'Kopi') {
-    categoryBadgeClass = 'badge-coffee';
-    categoryLabel = '☕ Coffee';
-} else if (item.categoryName === 'Non-Kopi') {
-    categoryBadgeClass = 'badge-noncoffee';
-    categoryLabel = '🥤 Non-Coffee';
-}
+        if (item.categoryName === 'Kopi') {
+            categoryBadgeClass = 'badge-coffee';
+            categoryLabel = '☕ Kopi';
+        } else if (item.categoryName === 'Non-Kopi') {
+            categoryBadgeClass = 'badge-noncoffee';
+            categoryLabel = '🥤 Non-Kopi';
+        }
 
         slide.innerHTML = `
             <div class="product-card">
@@ -276,7 +272,6 @@ if (item.categoryName === 'Favorit') {
         wrapper.appendChild(slide);
     });
 
-    // Inisialisasi Swiper
     if (productSwiper) {
         productSwiper.destroy(true, true);
         productSwiper = null;
