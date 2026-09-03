@@ -324,29 +324,19 @@ body {
     color: #ffffff;
 }
 
-/* ============================================================
-   PRODUCT CATEGORY BADGE - DENGAN LABEL
-   ============================================================ */
-
+/* ===== BADGE KATEGORI DI CARD ===== */
 .product-category-tag {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     font-weight: 600;
     padding: 3px 12px;
     border-radius: 50px;
     display: inline-block;
     margin-bottom: 4px;
     letter-spacing: 0.5px;
-    text-transform: uppercase;
     background: transparent;
     color: #8a9a95;
     border: 1px solid rgba(0, 98, 65, 0.12);
     width: fit-content;
-}
-
-.product-category-tag.badge-bestseller {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #ffffff;
-    border: none;
 }
 
 .product-category-tag.badge-coffee {
