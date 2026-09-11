@@ -329,10 +329,10 @@ function renderProducts() {
 
         if (item.categoryName === 'Kopi') {
             categoryBadgeClass = 'badge-coffee';
-            categoryLabel = '☕ Kopi';
+            categoryLabel = '☕ Coffee';
         } else if (item.categoryName === 'Non-Kopi') {
             categoryBadgeClass = 'badge-noncoffee';
-            categoryLabel = '🥤 Non-Kopi';
+            categoryLabel = '🥤 Non-Coffee';
         }
 
         slide.innerHTML = 
