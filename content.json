@@ -96,7 +96,7 @@
         "price": "Rp 40.000",
         "rawPrice": 40000,
         "image": "assets/img/products/longblack.webp",
-        "description": "Black coffee dengan perpaduan dua shot espresso dan air berkualitas. Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati.",
+        "description": "Rasa kopi yang strong, bold, dan tanpa gula — cocok untuk penikmat kopi hitam sejati.",
         "isNew": true,
         "isBestSeller": false
       },
@@ -134,7 +134,7 @@
         "price": "Rp 50.000",
         "rawPrice": 50000,
         "image": "assets/img/products/signature_double_chocolate.webp",
-        "description": "Minuman tanpa kopi favorit! Perpaduan dark chocolate dan milk chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan.",
+        "description": "Perpaduan 2 jenis chocolate dengan susu segar. Rasa cokelat yang kaya, creamy, dan memanjakan.",
         "isNew": true,
         "isBestSeller": false
       }
