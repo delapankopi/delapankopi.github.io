@@ -58,8 +58,8 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- =====================================================
-         STRUCTURED DATA - LOCAL BUSINESS
-         Sumber: content.json → untuk SEO lokal Tegal
+         STRUCTURED DATA 1 - LOCAL BUSINESS (info bisnis saja)
+         Tanpa aggregateRating & review → agar valid 100%
          ===================================================== -->
     <script type="application/ld+json">
     {
@@ -109,98 +109,13 @@
           "closes": "20:00"
         }
       ],
-      "hasMap": "https://maps.app.goo.gl/84og2zmHz5fQfyY1A",
-      "sameAs": [],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.7",
-        "reviewCount": "6",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Agus Arab" },
-          "datePublished": "2026-01-15",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "reviewBody": "Kualitas kopi Delapan Kopi sangat konsisten. Saya pakai untuk stok minuman di rumah, istri-istri saya selalu puas."
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Budi Hartono" },
-          "datePublished": "2026-02-05",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "reviewBody": "Sudah 3 kali pakai jasa Delapan Kopi untuk acara pernikahan. Paket dispenser 16L sangat membantu, tamu puas dan praktis."
-        },
-        {
-          "@type": "Review",
-          "author": { "@type": "Person", "name": "Dewi Lestari" },
-          "datePublished": "2026-02-20",
-          "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-          "reviewBody": "Pertama kali coba kopi botolan, langsung jatuh cinta sama Pandan Aren Latte-nya. Pasti repeat order!"
-        }
-      ],
-      "makesOffer": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Paket Dispenser 8 Liter",
-            "category": "Paket Minuman Acara",
-            "description": "Kapasitas 8L (±35-40 porsi) untuk arisan keluarga atau kumpul santai."
-          },
-          "price": "320000",
-          "priceCurrency": "IDR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Paket Dispenser 16 Liter",
-            "category": "Paket Minuman Acara",
-            "description": "Kapasitas 16L (±75-80 porsi) untuk pernikahan, lamaran, atau event akbar."
-          },
-          "price": "600000",
-          "priceCurrency": "IDR",
-          "availability": "https://schema.org/InStock"
-        }
-      ]
+      "hasMap": "https://maps.app.goo.gl/84og2zmHz5fQfyY1A"
     }
     </script>
 
     <!-- =====================================================
-         STRUCTURED DATA - PRODUCT BEST SELLER
-         ===================================================== -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Spanish Latte 1 Liter - Delapan Kopi",
-      "sku": "DK-SL-1L",
-      "image": "https://delapankopi.github.io/assets/img/products/spanish_latte.webp",
-      "description": "Perpaduan sempurna espresso pekat dengan susu segar dan sentuhan karamel khas Spanyol. Manis creamy dengan aftertaste kopi yang kuat.",
-      "brand": { "@type": "Brand", "name": "Delapan Kopi" },
-      "category": "Kopi Botolan",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://delapankopi.github.io/#menu",
-        "price": "47000",
-        "priceCurrency": "IDR",
-        "availability": "https://schema.org/InStock",
-        "areaServed": { "@type": "City", "name": "Tegal" }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "4"
-      }
-    }
-    </script>
-
-    <!-- =====================================================
-         STRUCTURED DATA - FAQ
+         STRUCTURED DATA 2 - FAQ PAGE
+         Schema paling aman & hampir selalu valid
          ===================================================== -->
     <script type="application/ld+json">
     {
@@ -248,6 +163,77 @@
           }
         }
       ]
+    }
+    </script>
+
+    <!-- =====================================================
+         STRUCTURED DATA 3 - PRODUCT (Best Seller)
+         Tanpa aggregateRating → agar valid 100%
+         ===================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Spanish Latte 1 Liter - Delapan Kopi",
+      "sku": "DK-SL-1L",
+      "image": "https://delapankopi.github.io/assets/img/products/spanish_latte.webp",
+      "description": "Perpaduan sempurna espresso pekat dengan susu segar dan sentuhan karamel khas Spanyol. Manis creamy dengan aftertaste kopi yang kuat.",
+      "brand": { "@type": "Brand", "name": "Delapan Kopi" },
+      "category": "Kopi Botolan",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://delapankopi.github.io/#menu",
+        "price": "47000",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock",
+        "areaServed": { "@type": "City", "name": "Tegal" }
+      }
+    }
+    </script>
+
+    <!-- =====================================================
+         STRUCTURED DATA 4 - OFFER (Paket Pesta)
+         Blok terpisah agar tidak membebani LocalBusiness
+         ===================================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Paket Dispenser 8 Liter - Delapan Kopi",
+      "sku": "DK-JAR-8L",
+      "image": "https://delapankopi.github.io/assets/img/delapankopi-og.jpg",
+      "description": "Paket dispenser 8 liter (±35-40 porsi) untuk arisan keluarga atau kumpul santai. Sudah termasuk sewa dispenser berkeran dan gelas saji.",
+      "brand": { "@type": "Brand", "name": "Delapan Kopi" },
+      "category": "Paket Minuman Acara",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://delapankopi.github.io/#menu-jar",
+        "price": "320000",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock",
+        "areaServed": { "@type": "City", "name": "Tegal" }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Paket Dispenser 16 Liter - Delapan Kopi",
+      "sku": "DK-JAR-16L",
+      "image": "https://delapankopi.github.io/assets/img/delapankopi-og.jpg",
+      "description": "Paket dispenser 16 liter (±75-80 porsi) untuk pernikahan, lamaran, atau event akbar. Sudah termasuk sewa dispenser berkeran dan gelas saji.",
+      "brand": { "@type": "Brand", "name": "Delapan Kopi" },
+      "category": "Paket Minuman Acara",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://delapankopi.github.io/#menu-jar",
+        "price": "600000",
+        "priceCurrency": "IDR",
+        "availability": "https://schema.org/InStock",
+        "areaServed": { "@type": "City", "name": "Tegal" }
+      }
     }
     </script>
 </head>
