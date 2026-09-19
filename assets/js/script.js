@@ -20,7 +20,6 @@ function getWhatsAppUrl(messageKey, params) {
     var messages = siteConfig.whatsapp_messages || {};
     var message = '';
 
-    // Pilih pesan berdasarkan key
     if (messageKey === 'floating_button') {
         message = messages.floating_button || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
     } else if (messageKey === 'jar_8l') {
@@ -41,7 +40,6 @@ function getWhatsAppUrl(messageKey, params) {
         message = messages.general_inquiry || "Halo kak, saya ingin bertanya seputar produk Delapan Kopi. 👋";
     }
 
-    // Replace params jika ada
     if (params) {
         for (var key in params) {
             if (params.hasOwnProperty(key)) {
@@ -51,6 +49,32 @@ function getWhatsAppUrl(messageKey, params) {
     }
 
     return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(message);
+}
+
+// ============================================================
+// HELPER: Ambil semua produk sebagai array flat
+// ============================================================
+
+function getAllProducts() {
+    if (!siteConfig.products) return [];
+    var all = [];
+    if (siteConfig.products.coffee) {
+        all = all.concat(siteConfig.products.coffee);
+    }
+    if (siteConfig.products.nonCoffee) {
+        all = all.concat(siteConfig.products.nonCoffee);
+    }
+    return all;
+}
+
+// ============================================================
+// HELPER: Ambil produk best seller
+// ============================================================
+
+function getBestSellerProducts() {
+    return getAllProducts().filter(function(p) {
+        return p.isBestSeller === true;
+    });
 }
 
 // ============================================================
@@ -136,7 +160,7 @@ function applyLogo() {
     const logoContainers = document.querySelectorAll('.brand-logo-container');
     logoContainers.forEach(function(container) {
         if (siteConfig.logo.image_url && siteConfig.logo.image_url.trim() !== "") {
-            container.innerHTML = '<img src="' + siteConfig.logo.image_url + '" alt="Logo" class="w-100 h-100 object-fit-contain">';
+            container.innerHTML = '<img src="' + siteConfig.logo.image_url + '" alt="Logo Delapan Kopi Tegal" class="w-100 h-100 object-fit-contain">';
         } else {
             var fontSize = window.innerWidth < 576 ? '14px' : '18px';
             container.innerHTML = '<span class="font-serif fw-bold" style="font-size: ' + fontSize + ';">' + (siteConfig.logo.text_icon || '00') + '</span>';
@@ -175,9 +199,22 @@ function applyBranding() {
     if (siteConfig.tagline && document.getElementById('navTagline')) {
         document.getElementById('navTagline').innerText = siteConfig.tagline;
     }
+
+    // Address with Google Maps Link
     if (siteConfig.address && document.getElementById('footerAddress')) {
-        document.getElementById('footerAddress').innerHTML = '<i class="fa-solid fa-location-dot me-2 text-warning"></i> ' + siteConfig.address;
+        var addressLink = document.getElementById('footerAddressLink');
+        if (addressLink) {
+            addressLink.textContent = siteConfig.address;
+            if (siteConfig.google_maps_url) {
+                addressLink.href = siteConfig.google_maps_url;
+                addressLink.target = '_blank';
+                addressLink.rel = 'noopener noreferrer';
+            }
+        } else {
+            document.getElementById('footerAddress').innerHTML = '<i class="fa-solid fa-location-dot me-2 text-warning"></i> ' + siteConfig.address;
+        }
     }
+
     if (siteConfig.operational_hours && document.getElementById('footerOperational')) {
         document.getElementById('footerOperational').innerHTML = '<i class="fa-solid fa-clock me-2 text-info"></i> ' + siteConfig.operational_hours;
     }
@@ -187,25 +224,21 @@ function applyBranding() {
 }
 
 function applyWhatsAppLinks() {
-    // Floating Button
     var floatingBtn = document.getElementById('floatingWaBtn');
     if (floatingBtn) {
         floatingBtn.href = getWhatsAppUrl('floating_button');
     }
 
-    // Footer WhatsApp - Kontak & Lokasi
     var footerWa = document.getElementById('footerWa');
     if (footerWa) {
         footerWa.href = 'https://wa.me/' + (siteConfig.whatsapp || '6285786012464');
     }
 
-    // Jar 8L
     var jar8Btn = document.getElementById('jarBtn8L');
     if (jar8Btn) {
         jar8Btn.href = getWhatsAppUrl('jar_8l');
     }
 
-    // Jar 16L
     var jar16Btn = document.getElementById('jarBtn16L');
     if (jar16Btn) {
         jar16Btn.href = getWhatsAppUrl('jar_16l');
@@ -229,19 +262,20 @@ function applySocialMediaLinks() {
 // ============================================================
 
 function updateHeroBestSeller() {
-    if (!siteConfig.products) return;
-    var bestSeller = siteConfig.products.bestSeller && siteConfig.products.bestSeller[0] ? siteConfig.products.bestSeller[0] : null;
-    if (!bestSeller) return;
+    var bestSellers = getBestSellerProducts();
+    if (bestSellers.length === 0) return;
+
+    var bestSeller = bestSellers[0];
 
     var heroImgEl = document.getElementById('heroMainImage');
     if (heroImgEl && bestSeller.image) {
         heroImgEl.src = bestSeller.image;
-        heroImgEl.alt = bestSeller.name;
+        heroImgEl.alt = bestSeller.name + ' - Best Seller Delapan Kopi Tegal';
     }
 }
 
 // ============================================================
-// RENDER PRODUCTS - FIXED
+// RENDER PRODUCTS - REFACTORED
 // ============================================================
 
 function renderProducts() {
@@ -249,61 +283,52 @@ function renderProducts() {
     if (!wrapper || !siteConfig.products) return;
     wrapper.innerHTML = '';
 
-    // Proses BEST SELLER
-    var bestSellerItems = [];
-    if (siteConfig.products.bestSeller) {
-        for (var i = 0; i < siteConfig.products.bestSeller.length; i++) {
-            var p = siteConfig.products.bestSeller[i];
-            bestSellerItems.push({
-                name: p.name,
-                price: p.price,
-                rawPrice: p.rawPrice,
-                image: p.image,
-                description: p.description,
-                categoryName: 'Kopi',
-                isBestSeller: true,
-                isNew: p.isNew || false
-            });
-        }
-    }
+    var allItems = [];
 
     // Proses COFFEE
-    var coffeeItems = [];
     if (siteConfig.products.coffee) {
         for (var j = 0; j < siteConfig.products.coffee.length; j++) {
-            var p2 = siteConfig.products.coffee[j];
-            coffeeItems.push({
-                name: p2.name,
-                price: p2.price,
-                rawPrice: p2.rawPrice,
-                image: p2.image,
-                description: p2.description,
+            var pc = siteConfig.products.coffee[j];
+            allItems.push({
+                sku: pc.sku || '',
+                name: pc.name,
+                price: pc.price,
+                rawPrice: pc.rawPrice,
+                image: pc.image,
+                description: pc.description,
                 categoryName: 'Kopi',
-                isBestSeller: p2.isBestSeller || false,
-                isNew: p2.isNew || false
+                isBestSeller: pc.isBestSeller || false,
+                isNew: pc.isNew || false
             });
         }
     }
 
     // Proses NON-COFFEE
-    var nonCoffeeItems = [];
     if (siteConfig.products.nonCoffee) {
         for (var k = 0; k < siteConfig.products.nonCoffee.length; k++) {
-            var p3 = siteConfig.products.nonCoffee[k];
-            nonCoffeeItems.push({
-                name: p3.name,
-                price: p3.price,
-                rawPrice: p3.rawPrice,
-                image: p3.image,
-                description: p3.description,
+            var pn = siteConfig.products.nonCoffee[k];
+            allItems.push({
+                sku: pn.sku || '',
+                name: pn.name,
+                price: pn.price,
+                rawPrice: pn.rawPrice,
+                image: pn.image,
+                description: pn.description,
                 categoryName: 'Non-Kopi',
-                isBestSeller: p3.isBestSeller || false,
-                isNew: p3.isNew || false
+                isBestSeller: pn.isBestSeller || false,
+                isNew: pn.isNew || false
             });
         }
     }
 
-    var allItems = bestSellerItems.concat(coffeeItems).concat(nonCoffeeItems);
+    // Sort: Best Seller dulu, lalu New, lalu sisanya
+    allItems.sort(function(a, b) {
+        if (a.isBestSeller && !b.isBestSeller) return -1;
+        if (!a.isBestSeller && b.isBestSeller) return 1;
+        if (a.isNew && !b.isNew) return -1;
+        if (!a.isNew && b.isNew) return 1;
+        return 0;
+    });
 
     for (var l = 0; l < allItems.length; l++) {
         var item = allItems[l];
@@ -314,16 +339,13 @@ function renderProducts() {
         var safeName = item.name.replace(/'/g, "\\'");
         var description = item.description || 'Pilihan menu favorit berkualitas tinggi dari Delapan Kopi.';
 
-        // ===== BADGE DI ATAS GAMBAR =====
         var imageBadgeHtml = '';
-        
         if (item.isBestSeller) {
             imageBadgeHtml = '<span class="product-badge badge-bestseller">⭐ Best Seller</span>';
         } else if (item.isNew) {
             imageBadgeHtml = '<span class="product-badge badge-new">✨ New</span>';
         }
 
-        // ===== BADGE KATEGORI DI CARD =====
         var categoryBadgeClass = '';
         var categoryLabel = '';
 
@@ -335,11 +357,11 @@ function renderProducts() {
             categoryLabel = '🥤 Non-Coffee';
         }
 
-        slide.innerHTML = 
+        slide.innerHTML =
             '<div class="product-card">' +
                 '<div class="product-img-holder">' +
                     imageBadgeHtml +
-                    '<img src="' + imgSrc + '" alt="' + item.name + '" loading="lazy">' +
+                    '<img src="' + imgSrc + '" alt="' + item.name + ' 1 Liter - Delapan Kopi Tegal" loading="lazy">' +
                 '</div>' +
                 '<div class="product-info">' +
                     '<span class="product-category-tag ' + categoryBadgeClass + '">' + categoryLabel + '</span>' +
@@ -392,7 +414,7 @@ function renderProducts() {
 }
 
 // ============================================================
-// RENDER TESTIMONI (SLIDER) - FOTO BESAR DI ATAS
+// RENDER TESTIMONI (SLIDER)
 // ============================================================
 
 function renderTestimonials() {
@@ -408,17 +430,16 @@ function renderTestimonials() {
     for (var i = 0; i < siteConfig.testimonials.length; i++) {
         var item = siteConfig.testimonials[i];
         var starsHtml = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
-        
-        // Jika avatar kosong, gunakan gambar placeholder
-        var imgSrc = item.avatar && item.avatar.trim() !== '' 
-            ? item.avatar 
+
+        var imgSrc = item.avatar && item.avatar.trim() !== ''
+            ? item.avatar
             : 'assets/img/default.webp';
 
         var slide = document.createElement('div');
         slide.className = 'swiper-slide';
-        slide.innerHTML = 
+        slide.innerHTML =
             '<div class="testimoni-card">' +
-                '<img src="' + imgSrc + '" alt="' + item.name + '" class="testimoni-image" loading="lazy">' +
+                '<img src="' + imgSrc + '" alt="Testimoni ' + item.name + ' - Pelanggan Delapan Kopi Tegal" class="testimoni-image" loading="lazy">' +
                 '<div class="testimoni-body">' +
                     '<div class="stars">' + starsHtml + '</div>' +
                     '<p class="testimoni-text">' + item.text + '</p>' +
@@ -439,7 +460,7 @@ function renderTestimonials() {
 
     setTimeout(function() {
         var totalTestimonials = siteConfig.testimonials.length;
-        
+
         testimoniSwiper = new Swiper('.testimoniSlider', {
             slidesPerView: 1,
             spaceBetween: 20,
@@ -459,22 +480,10 @@ function renderTestimonials() {
                 prevEl: '.testimoni-prev',
             },
             breakpoints: {
-                0: { 
-                    slidesPerView: 1, 
-                    spaceBetween: 12
-                },
-                576: { 
-                    slidesPerView: 1.2, 
-                    spaceBetween: 16
-                },
-                768: { 
-                    slidesPerView: 2, 
-                    spaceBetween: 20
-                },
-                992: { 
-                    slidesPerView: Math.min(3, totalTestimonials), 
-                    spaceBetween: 24
-                }
+                0: { slidesPerView: 1, spaceBetween: 12 },
+                576: { slidesPerView: 1.2, spaceBetween: 16 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                992: { slidesPerView: Math.min(3, totalTestimonials), spaceBetween: 24 }
             }
         });
     }, 150);
@@ -666,7 +675,7 @@ function addOrderItem(selectedName, qty, selectedSweetness) {
     if (selectedName === undefined) selectedName = "";
     if (qty === undefined) qty = 1;
     if (selectedSweetness === undefined) selectedSweetness = "Normal (100%)";
-    
+
     var container = document.getElementById('orderItemsContainer');
     if (!container) return;
 
@@ -675,16 +684,20 @@ function addOrderItem(selectedName, qty, selectedSweetness) {
     var optionsHtml = '<option value="" disabled>--- Pilih Menu ---</option>';
 
     if (siteConfig && siteConfig.products) {
-        if (siteConfig.products.bestSeller && siteConfig.products.bestSeller.length > 0) {
+        // Grup BEST SELLER (dari filter coffee & nonCoffee)
+        var bestSellers = getBestSellerProducts();
+        if (bestSellers.length > 0) {
             optionsHtml += '<optgroup label="-- FAVORIT / BEST SELLER --">';
-            for (var i = 0; i < siteConfig.products.bestSeller.length; i++) {
-                var p = siteConfig.products.bestSeller[i];
-                var valStr = p.name + '|' + p.price + '|' + p.rawPrice;
-                var isSelected = (p.name === selectedName) ? 'selected' : '';
-                optionsHtml += '<option value="' + valStr + '" ' + isSelected + '>' + p.name + ' - ' + p.price + '</option>';
+            for (var b = 0; b < bestSellers.length; b++) {
+                var pb = bestSellers[b];
+                var valB = pb.name + '|' + pb.price + '|' + pb.rawPrice;
+                var selB = (pb.name === selectedName) ? 'selected' : '';
+                optionsHtml += '<option value="' + valB + '" ' + selB + '>' + pb.name + ' - ' + pb.price + '</option>';
             }
             optionsHtml += '</optgroup>';
         }
+
+        // Grup COFFEE
         if (siteConfig.products.coffee && siteConfig.products.coffee.length > 0) {
             optionsHtml += '<optgroup label="-- COFFEE --">';
             for (var j = 0; j < siteConfig.products.coffee.length; j++) {
@@ -695,6 +708,8 @@ function addOrderItem(selectedName, qty, selectedSweetness) {
             }
             optionsHtml += '</optgroup>';
         }
+
+        // Grup NON-COFFEE
         if (siteConfig.products.nonCoffee && siteConfig.products.nonCoffee.length > 0) {
             optionsHtml += '<optgroup label="-- NON-COFFEE --">';
             for (var k = 0; k < siteConfig.products.nonCoffee.length; k++) {
@@ -725,7 +740,7 @@ function addOrderItem(selectedName, qty, selectedSweetness) {
     var rowDiv = document.createElement('div');
     rowDiv.className = 'card p-3 bg-light border item-row';
     rowDiv.id = rowId;
-    rowDiv.innerHTML = 
+    rowDiv.innerHTML =
         '<div class="row g-2 align-items-center">' +
             '<div class="col-12 col-md-5 col-product">' +
                 '<label class="form-label text-muted fw-semibold" style="font-size: 9px; margin-bottom: 2px;">PRODUK</label>' +
@@ -825,7 +840,6 @@ function sendWhatsAppOrder(event) {
         return;
     }
 
-    // Gunakan template dari content.json melalui getWhatsAppUrl
     var waUrl = getWhatsAppUrl('order_template', {
         items: itemsText.trim(),
         total: grandTotal.toLocaleString('id-ID'),
@@ -835,35 +849,4 @@ function sendWhatsAppOrder(event) {
     });
 
     window.open(waUrl, '_blank');
-}
-function applyBranding() {
-    if (siteConfig.brand && document.getElementById('navBrand')) {
-        document.getElementById('navBrand').innerText = siteConfig.brand;
-    }
-    if (siteConfig.tagline && document.getElementById('navTagline')) {
-        document.getElementById('navTagline').innerText = siteConfig.tagline;
-    }
-    
-    // Address with Google Maps Link
-    if (siteConfig.address && document.getElementById('footerAddress')) {
-        var addressLink = document.getElementById('footerAddressLink');
-        if (addressLink) {
-            addressLink.textContent = siteConfig.address;
-            if (siteConfig.google_maps_url) {
-                addressLink.href = siteConfig.google_maps_url;
-                addressLink.target = '_blank';
-                addressLink.rel = 'noopener noreferrer';
-            }
-        } else {
-            // Fallback jika tidak ada link terpisah
-            document.getElementById('footerAddress').innerHTML = '<i class="fa-solid fa-location-dot me-2 text-warning"></i> ' + siteConfig.address;
-        }
-    }
-    
-    if (siteConfig.operational_hours && document.getElementById('footerOperational')) {
-        document.getElementById('footerOperational').innerHTML = '<i class="fa-solid fa-clock me-2 text-info"></i> ' + siteConfig.operational_hours;
-    }
-    if (siteConfig.modal_settings && siteConfig.modal_settings.modal_title && document.getElementById('modalTitleText')) {
-        document.getElementById('modalTitleText').innerText = siteConfig.modal_settings.modal_title;
-    }
 }
