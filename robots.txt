@@ -1,8 +1,8 @@
+# robots.txt untuk Delapan Kopi
+# https://delapankopi.github.io/
+
 User-agent: *
 Allow: /
 
 # Sitemap
 Sitemap: https://delapankopi.github.io/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
