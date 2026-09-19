@@ -2,9 +2,9 @@
   "brand": "delapan kopi",
   "tagline": "Satu Liter Kebaikan Nusantara",
   "whatsapp": "6285786012464",
-  "instagram": "#",
-  "facebook": "#",
-  "tiktok": "#",
+  "instagram": "",
+  "facebook": "",
+  "tiktok": "",
   "logo": {
     "text_icon": "",
     "image_url": "assets/img/logo_delapan_kopi.webp"
@@ -21,8 +21,35 @@
     "subtitle": "Menyediakan kopi kemasan botol 1 liter fresh brew dan paket dispenser 8L/16L untuk konsumsi harian, catering, arisan, hingga pernikahan di kota Tegal."
   },
   "address": "Sapphire Residence (Cluster Zamrud) Blok F-8 RT.10/RW.09, Kel. Pacul, Kec. Talang, Kab. Tegal.",
+  "address_short": "Sapphire Residence Blok F-8, Pacul, Talang, Kab. Tegal",
+  "city": "Tegal",
+  "region": "Jawa Tengah",
+  "postal_code": "52192",
+  "geo": {
+    "latitude": -6.8796,
+    "longitude": 109.1256
+  },
   "google_maps_url": "https://maps.app.goo.gl/84og2zmHz5fQfyY1A",
   "operational_hours": "Senin - Sabtu: 09.00 - 20.00 WIB",
+  "operational_hours_schema": {
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "09:00",
+    "closes": "20:00"
+  },
+  "price_range": "Rp40.000 - Rp600.000",
+  "service_areas": [
+    "Kota Tegal",
+    "Kabupaten Tegal",
+    "Slawi",
+    "Adiwerna",
+    "Dukuhturi",
+    "Kramat",
+    "Talang",
+    "Pangkah",
+    "Tarub",
+    "Suradadi"
+  ],
+  "service_note": "Melayani pengiriman kopi botol & paket dispenser ke seluruh area Tegal dan sekitarnya. Gratis ongkir untuk radius 5 km dari Sapphire Residence.",
   "modal_settings": {
     "modal_title": "List Order",
     "sweetness_levels": [
@@ -34,20 +61,22 @@
     ]
   },
   "products": {
-    "bestSeller": [
+    "coffee": [
       {
+        "sku": "DK-SL-1L",
         "name": "Spanish Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/spanish_latte.webp",
         "description": "Perpaduan sempurna espresso pekat dengan susu segar dan sentuhan karamel khas Spanyol. Manis creamy dengan aftertaste kopi yang kuat.",
         "isNew": false,
         "isBestSeller": true
-      }
-    ],
-    "coffee": [
+      },
       {
+        "sku": "DK-AL-1L",
         "name": "Almond Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/almond_latte.webp",
@@ -56,7 +85,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-AR-1L",
         "name": "Aren Latte",
+        "category": "Coffee",
         "price": "Rp 70.000",
         "rawPrice": 70000,
         "image": "assets/img/products/aren_latte.webp",
@@ -65,7 +96,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-BL-1L",
         "name": "Blewah Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/blewah_latte.webp",
@@ -74,7 +107,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-BC-1L",
         "name": "Butter Caramel Latte",
+        "category": "Coffee",
         "price": "Rp 53.000",
         "rawPrice": 53000,
         "image": "assets/img/products/butter_caramel_latte.webp",
@@ -83,7 +118,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-CL-1L",
         "name": "Creamy Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/creamy_latte_low_sugar.webp",
@@ -92,7 +129,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-LB-1L",
         "name": "Longblack",
+        "category": "Coffee",
         "price": "Rp 40.000",
         "rawPrice": 40000,
         "image": "assets/img/products/longblack.webp",
@@ -101,7 +140,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-PA-1L",
         "name": "Pandan Aren Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/pandan_aren_latte.webp",
@@ -110,7 +151,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-PR-1L",
         "name": "Praline Latte",
+        "category": "Coffee",
         "price": "Rp 47.000",
         "rawPrice": 47000,
         "image": "assets/img/products/praline_latte.webp",
@@ -121,7 +164,9 @@
     ],
     "nonCoffee": [
       {
+        "sku": "DK-ML-1L",
         "name": "Matcha Latte",
+        "category": "Non-Coffee",
         "price": "Rp 75.000",
         "rawPrice": 75000,
         "image": "assets/img/products/matcha_latte.webp",
@@ -130,7 +175,9 @@
         "isBestSeller": false
       },
       {
+        "sku": "DK-SDC-1L",
         "name": "Signature Double Chocolate",
+        "category": "Non-Coffee",
         "price": "Rp 50.000",
         "rawPrice": 50000,
         "image": "assets/img/products/signature_double_chocolate.webp",
@@ -140,12 +187,31 @@
       }
     ]
   },
+  "party_packages": [
+    {
+      "sku": "DK-JAR-8L",
+      "name": "Paket Dispenser 8 Liter",
+      "price": "Rp 320.000",
+      "rawPrice": 320000,
+      "capacity": "±35-40 porsi",
+      "description": "Kapasitas 8L untuk arisan keluarga atau kumpul santai."
+    },
+    {
+      "sku": "DK-JAR-16L",
+      "name": "Paket Dispenser 16 Liter",
+      "price": "Rp 600.000",
+      "rawPrice": 600000,
+      "capacity": "±75-80 porsi",
+      "description": "Kapasitas 16L untuk pernikahan, lamaran, atau event akbar."
+    }
+  ],
   "testimonials": [
     {
       "name": "Agus Arab",
       "role": "Asisten Pak Erwe, Tegal",
       "avatar": "assets/img/testimoni/testimoni_agus.webp",
       "rating": 5,
+      "datePublished": "2026-01-15",
       "text": "Kualitas kopi Delapan Kopi sangat konsisten. Saya pakai untuk stok minuman di rumah, istri-istri saya selalu puas. Harga bersaing dan rasa premium."
     },
     {
@@ -153,34 +219,39 @@
       "role": "Karyawan Swasta, Tegal",
       "avatar": "assets/img/testimoni/testimoni-sandri.webp",
       "rating": 5,
+      "datePublished": "2026-01-20",
       "text": "Matcha Latte Delapan Kopi recommended! Matchanya berasa asli, creamy-nya pas, dan estetik juga buat hadiah."
     },
     {
       "name": "Budi Hartono",
       "role": "Event Organizer, Tegal",
-      "avatar": "",
+      "avatar": "assets/img/testimoni/testimoni-budi.webp",
       "rating": 5,
+      "datePublished": "2026-02-05",
       "text": "Sudah 3 kali pakai jasa Delapan Kopi untuk acara pernikahan. Paket dispenser 16L sangat membantu, tamu puas dan praktis. Recommended banget!"
     },
     {
       "name": "Rina Wati",
       "role": "Karyawan Swasta, Tegal",
-      "avatar": "",
+      "avatar": "assets/img/testimoni/testimoni-rina.webp",
       "rating": 4,
+      "datePublished": "2026-02-12",
       "text": "Suka banget sama Spanish Latte-nya! Creamy dan manisnya pas. Sekarang jadi langganan rutin buat stok di rumah. Mantap!"
     },
     {
       "name": "Dewi Lestari",
       "role": "Guru, Tegal",
-      "avatar": "",
+      "avatar": "assets/img/testimoni/testimoni-dewi.webp",
       "rating": 5,
+      "datePublished": "2026-02-20",
       "text": "Pertama kali coba kopi botolan, langsung jatuh cinta sama Pandan Aren Latte-nya. Wangi pandan dan manis arennya pas di lidah. Pasti repeat order!"
     },
     {
       "name": "Fajar Ramadhan",
       "role": "Mahasiswa, Tegal",
-      "avatar": "",
+      "avatar": "assets/img/testimoni/testimoni-fajar.webp",
       "rating": 4,
+      "datePublished": "2026-03-01",
       "text": "Cocok banget buat anak kos kayak saya. Kopi fresh tinggal minum, ga perlu repot seduh. Harga terjangkau dan rasa cafe-quality!"
     }
   ],
@@ -193,5 +264,21 @@
     "general_inquiry": "Halo kak, saya ingin bertanya seputar menu dan harga Delapan Kopi. Terima kasih! ☕",
     "event_inquiry": "Halo kak, saya ingin konsultasi untuk acara {event_type}. Butuh paket minuman untuk ±{jumlah} orang. Mohon rekomendasinya! 🎉",
     "custom_order": "Halo kak, saya ingin order custom untuk acara. Mohon dibantu ya! 🙏"
+  },
+  "seo": {
+    "site_name": "Delapan Kopi",
+    "site_url": "https://delapankopi.github.io/",
+    "og_image": "https://delapankopi.github.io/assets/img/delapankopi-og.jpg",
+    "keywords": [
+      "kopi botol Tegal",
+      "kopi 1 liter Tegal",
+      "catering minuman Tegal",
+      "sewa dispenser kopi Tegal",
+      "paket minuman pernikahan Tegal",
+      "kopi botolan Tegal",
+      "kopi acara Tegal"
+    ],
+    "business_type": "Home Industry Kopi Botolan",
+    "price_range": "Rp40.000 - Rp600.000"
   }
 }
