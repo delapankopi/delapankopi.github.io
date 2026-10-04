@@ -160,17 +160,6 @@
         "description": "Latte dengan sentuhan praline cokelat hazelnut yang mewah. Rasa manis gurih dengan aroma roasted nut yang memanjakan lidah.",
         "isNew": false,
         "isBestSeller": false
-      }
-      {
-        "sku": "DK-BS-1L",
-        "name": "Butter Scotch",
-        "category": "Coffee",
-        "price": "Rp ",
-        "rawPrice": ,
-        "image": "assets/img/products/butter_scotch.webp",
-        "description": "Perpaduan bold espresso yang dipadukan dengan susu segar (fresh milk) dan sirup butterscotch pilihan. Menghadirkan sensasi rasa manis yang hangat, creamy, dengan aroma karamel dan vanila yang khas di setiap tegukan.",
-        "isNew": true,
-        "isBestSeller": false
       },
     ],
     "nonCoffee": [
