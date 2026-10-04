@@ -193,6 +193,7 @@ function applyHero() {
 }
 
 function applyBranding() {
+    // === NAVBAR ===
     if (siteConfig.brand && document.getElementById('navBrand')) {
         document.getElementById('navBrand').innerText = siteConfig.brand;
     }
@@ -200,7 +201,15 @@ function applyBranding() {
         document.getElementById('navTagline').innerText = siteConfig.tagline;
     }
 
-    // Address with Google Maps Link
+    // === FOOTER (TAMBAHAN BARU) ===
+    if (siteConfig.brand && document.getElementById('footerBrand')) {
+        document.getElementById('footerBrand').innerText = siteConfig.brand;
+    }
+    if (siteConfig.tagline && document.getElementById('footerTagline')) {
+        document.getElementById('footerTagline').innerText = siteConfig.tagline;
+    }
+
+    // Address with Google Maps Link (tetap seperti sebelumnya)
     if (siteConfig.address && document.getElementById('footerAddress')) {
         var addressLink = document.getElementById('footerAddressLink');
         if (addressLink) {
